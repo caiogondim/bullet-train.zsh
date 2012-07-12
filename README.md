@@ -6,9 +6,9 @@ oh-my-zsh Powerline style Theme
 Set Up
 ------
 
-# Copy the **powerline.zsh-theme** in **.oh-my-zsh/themes/**.
+1. Copy the **powerline.zsh-theme** in **.oh-my-zsh/themes/**.
 
-# Configure the theme in your **.zshrc** file :
+2. Configure the theme in your **.zshrc** file :
 
 ```
 ZSH_THEME="powerline"
