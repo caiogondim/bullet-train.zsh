@@ -3,6 +3,10 @@ oh-my-zsh-powerline-theme
 
 oh-my-zsh Powerline style Theme
 
+Preview
+-------
+![Preview](preview.png)
+
 Set Up
 ------
 
