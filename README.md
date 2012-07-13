@@ -5,18 +5,21 @@ oh-my-zsh Powerline style Theme
 
 Preview
 -------
+
 ![Preview](http://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme/raw/master/preview.png)
 
 Set Up
 ------
 
-1. Copy the **powerline.zsh-theme** in **.oh-my-zsh/themes/**.
+1. Clone the repository.
+
+2. Create un symlink of **powerline.zsh-theme** in **.oh-my-zsh/themes/**.
 
 2. Configure the theme in your **.zshrc** file :
 
-```
-ZSH_THEME="powerline"
-```
+    ```
+    ZSH_THEME="powerline"
+    ```
 
 Requirements
 ------------
