@@ -25,6 +25,7 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
-PROMPT="%K{green}%F{black} %n %k%f%F{green}%K{blue}"$'\u2b80'"%k%f%F{white}%K{blue} %1~"$'$(git_prompt_info)'" %k%f%F{blue}"$'\u2b80'"%f"
+PROMPT="
+%K{green}%F{black} %n %k%f%F{green}%K{blue}"$'\u2b80'"%k%f%F{white}%K{blue} %1~"$'$(git_prompt_info)'" %k%f%F{blue}"$'\u2b80'"%f "
 
 RPROMPT=$POWERLINE_COLOR_FG_WHITE$'\u2b82'"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY%D{%H:%M:%S}  "$'\u2b82'"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE %D{%Y-%m-%d} %f%k"
