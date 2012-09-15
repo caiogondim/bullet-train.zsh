@@ -21,6 +21,17 @@ Set Up
     ZSH_THEME="powerline"
     ```
 
+More options
+------------
+
+By default, at the right of the powerline are displayed the date and the time.
+If you don't want date or time, you can choose what you want to display in **.zshrc**.
+
+    ```
+    POWERLINE_RIGHT_A="date replacement"
+    POWERLINE_RIGHT_B="time replacement"
+    ```
+
 Requirements
 ------------
 
