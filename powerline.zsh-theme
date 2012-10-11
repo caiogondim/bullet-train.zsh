@@ -8,6 +8,10 @@ if [ "$POWERLINE_RIGHT_A" = "" ]; then
   POWERLINE_RIGHT_A=%D{%Y-%m-%d}
 fi
 
+if [ "$POWERLINE_CURRENT_PATH" = "" ]; then
+  POWERLINE_CURRENT_PATH="%1~"
+fi
+
 POWERLINE_COLOR_BG_GRAY=%K{240}
 POWERLINE_COLOR_BG_LIGHT_GRAY=%K{240}
 POWERLINE_COLOR_BG_WHITE=%K{255}
@@ -32,7 +36,7 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
-PROMPT="%K{green}%F{black} %n %k%f%F{green}%K{blue}"$'\u2b80'"%k%f%F{white}%K{blue} %~ %k%f%F{blue}"$'\u2b80'"%f "
+PROMPT="%K{green}%F{black} %n %k%f%F{green}%K{blue}"$'\u2b80'"%k%f%F{white}%K{blue} "$POWERLINE_CURRENT_PATH" %k%f%F{blue}"$'\u2b80'"%f "
 #"%k%f%F{black}%K{yellow}"$'$(git_prompt_info)'" %k%f%F{yellow}"$'\u2b80'"%f "
 
 if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
