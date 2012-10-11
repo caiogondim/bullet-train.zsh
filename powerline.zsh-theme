@@ -35,4 +35,9 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 PROMPT="%K{green}%F{black} %n %k%f%F{green}%K{blue}"$'\u2b80'"%k%f%F{white}%K{blue} %~ %k%f%F{blue}"$'\u2b80'"%f "
 #"%k%f%F{black}%K{yellow}"$'$(git_prompt_info)'" %k%f%F{yellow}"$'\u2b80'"%f "
 
+if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
+    PROMPT="
+"$PROMPT
+fi
+
 RPROMPT="%F{red}"$'\u2b82'"%F{black}%K{red}"$'$(git_prompt_info)'" %f"$POWERLINE_COLOR_FG_WHITE$'\u2b82'"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY$POWERLINE_RIGHT_B "$'\u2b82'"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE $POWERLINE_RIGHT_A %f%k"
