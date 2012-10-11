@@ -1,0 +1,1 @@
+ln -f powerline.zsh-theme ~/.oh-my-zsh/themes/powerline.zsh-theme
