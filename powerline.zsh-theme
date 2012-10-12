@@ -8,7 +8,9 @@ if [ "$POWERLINE_RIGHT_A" = "" ]; then
   POWERLINE_RIGHT_A=%D{%Y-%m-%d}
 fi
 
-if [ "$POWERLINE_CURRENT_PATH" = "" ]; then
+POWERLINE_CURRENT_PATH="%d"
+
+if [ "$POWERLINE_FULL_CURRENT_PATH" = "" ]; then
   POWERLINE_CURRENT_PATH="%1~"
 fi
 
