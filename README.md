@@ -56,6 +56,12 @@ If you want git info on right instead of left :
 POWERLINE_SHOW_GIT_ON_RIGHT="true"
 ```
 
+If you want to tell if you are in a remote SSH session :
+
+```
+POWERLINE_DETECT_SSH="true"
+```
+
 Requirements
 ------------
 
