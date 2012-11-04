@@ -13,10 +13,10 @@ Set Up
 
 1. Clone the repository.
 
-2. Create un symlink of **powerline.zsh-theme** in **.oh-my-zsh/themes/**. You can use the **make_a_link.sh** file :
+2. Create un symlink of **powerline.zsh-theme** in **.oh-my-zsh/themes/**. You can use the **install_in_omz.sh** file :
 
     ```
-    make_a_link.sh
+    ./install_in_omz.sh
     ```
 
 3. Configure the theme in your **.zshrc** file :
