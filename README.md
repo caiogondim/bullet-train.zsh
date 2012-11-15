@@ -67,7 +67,7 @@ Requirements
 
 * Vim Powerline patched font: See [Powerline for vim](https://github.com/Lokaltog/vim-powerline.git) for more info.
 * Z shell (zsh): See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
-* Make sure terminal is using 256-colors mode with  `export TERM="xterm-256color"`
+* Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`.
 
 Contribute
 ----------
