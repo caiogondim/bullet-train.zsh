@@ -45,8 +45,13 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%F{220]➜%f"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%F{082]═%f"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{190]✭%f"
 
-POWERLINE_SEC1_BG=%K{green}
-POWERLINE_SEC1_FG=%F{green}
+if [ $(id -u) -eq 0 ]; then
+    POWERLINE_SEC1_BG=%K{red}
+    POWERLINE_SEC1_FG=%F{red}
+else
+    POWERLINE_SEC1_BG=%K{green}
+    POWERLINE_SEC1_FG=%F{green}
+fi
 POWERLINE_SEC1_TXT=%F{black}
 if [ "$POWERLINE_DETECT_SSH" != "" ]; then
   if [ -n "$SSH_CLIENT" ]; then
