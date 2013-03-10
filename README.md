@@ -65,7 +65,7 @@ POWERLINE_DETECT_SSH="true"
 Requirements
 ------------
 
-* Vim Powerline patched font: See [Powerline for vim](https://github.com/Lokaltog/vim-powerline.git) for more info.
+* Vim Powerline patched font: Download your favorite one on [Lokaltog/powerline-font](https://github.com/Lokaltog/powerline-fonts).
 * Z shell (zsh): See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
 * Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`.
 
@@ -86,3 +86,5 @@ Contribute
 * [krischer](https://github.com/krischer)
 * [Arthraim](https://github.com/Arthraim)
 * [itszero](https://github.com/itszero)
+* [adrienbrault](https://github.com/adrienbrault)
+* [mkraemer](https://github.com/mkraemer)
