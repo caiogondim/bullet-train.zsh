@@ -63,10 +63,11 @@ ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="AHEAD"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="BEHIND"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="DIVERGED"
 
-if [ "$(git_prompt_info)" = "" ]; then
-    POWERLINE_GIT_INFO_LEFT=""
-    POWERLINE_GIT_INFO_RIGHT=""
-else
+
+# if [ "$(git_prompt_info)" = "" ]; then
+   # POWERLINE_GIT_INFO_LEFT=""
+   # POWERLINE_GIT_INFO_RIGHT=""
+# else
     if [ "$POWERLINE_SHOW_GIT_ON_RIGHT" = "" ]; then
         POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)%F{white}'
         POWERLINE_GIT_INFO_RIGHT=""
@@ -74,13 +75,7 @@ else
         POWERLINE_GIT_INFO_LEFT=""
         POWERLINE_GIT_INFO_RIGHT="%F{white}"$'\ue0b2'"%F{black}%K{white}"$'$(git_prompt_info)'" %K{white}"
     fi
-fi
-
-POWERLINE_COLOR_BG_GRAY=%K{240}
-POWERLINE_COLOR_BG_WHITE=%K{255}
-
-POWERLINE_COLOR_FG_GRAY=%F{240}
-POWERLINE_COLOR_FG_WHITE=%F{255}
+# fi
 
 if [ $(id -u) -eq 0 ]; then
     POWERLINE_SEC1_BG=%K{red}
