@@ -14,7 +14,11 @@ else
   POWERLINE_RIGHT_A=""
 fi
 
-if [ "$POWERLINE_HIDE_USER_NAME" = "" ]; then
+if [ "$POWERLINE_HIDE_USER_NAME" = "" ] && [ "$POWERLINE_HIDE_HOST_NAME" = "" ]; then
+    POWERLINE_USER_NAME="%n@%M"
+elif [ "$POWERLINE_HIDE_USER_NAME" != "" ] && [ "$POWERLINE_HIDE_HOST_NAME" = "" ]; then
+    POWERLINE_USER_NAME="@%M"
+elif [ "$POWERLINE_HIDE_USER_NAME" = "" ] && [ "$POWERLINE_HIDE_HOST_NAME" != "" ]; then
     POWERLINE_USER_NAME="%n"
 else
     POWERLINE_USER_NAME=""

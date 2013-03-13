@@ -58,6 +58,12 @@ If you don't want to display your username (the green or red (root) colors are s
 POWERLINE_HIDE_USER_NAME="true"
 ```
 
+If you don't want to display your hostname (the green or red (root) colors are still there):
+
+```
+POWERLINE_HIDE_HOST_NAME="true"
+```
+
 If you don't want the blank line before the prompt:
 
 ```
