@@ -52,6 +52,16 @@ If you want to display date or non-zero-exit-code of last command next to time:
 POWERLINE_RIGHT_A="mixed"
 ```
 
+If you want to display a custom text next to time:
+```
+POWERLINE_RIGHT_A="Your very best text"
+```
+
+If you want to change the date format to what you want:
+```
+POWERLINE_DATE_FORMAT="%D{%d-%m}"
+```
+
 If you don't want to display your username (the green or red (root) colors are still there):
 
 ```
@@ -62,6 +72,11 @@ If you don't want to display your hostname (the green or red (root) colors are s
 
 ```
 POWERLINE_HIDE_HOST_NAME="true"
+```
+
+If you don't want to hide git prompt status (new files, modified files, unmerged files, etc):
+```
+POWERLINE_HIDE_GIT_PROMPT_STATUS="true"
 ```
 
 If you don't want the blank line before the prompt:
@@ -126,3 +141,4 @@ Contribute
 * [itszero](https://github.com/itszero)
 * [adrienbrault](https://github.com/adrienbrault)
 * [mkraemer](https://github.com/mkraemer)
+* [wujtruj](https://github.com/wujtruj)

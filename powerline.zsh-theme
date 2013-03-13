@@ -1,17 +1,19 @@
 # FreeAgent puts the powerline style in zsh !
 
+if [ "$POWERLINE_DATE_FORMAT" = "" ]; then
+  POWERLINE_DATE_FORMAT=%D{%Y-%m-%d}
+fi
+
 if [ "$POWERLINE_RIGHT_B" = "" ]; then
   POWERLINE_RIGHT_B=%D{%H:%M:%S}
 fi
 
 if [ "$POWERLINE_RIGHT_A" = "mixed" ]; then
-  POWERLINE_RIGHT_A=%(?.%D{%d-%m}.%F{133}✘%?)
+  POWERLINE_RIGHT_A=%(?."$POWERLINE_DATE_FORMAT".%F{red}✘ %?)
 elif [ "$POWERLINE_RIGHT_A" = "exit-status" ]; then
-  POWERLINE_RIGHT_A=%(?.%F{118}✔%?.%F{133}✘%?)
+  POWERLINE_RIGHT_A=%(?.%F{green}✔ %?.%F{red}✘ %?)
 elif [ "$POWERLINE_RIGHT_A" = "date" ]; then
-  POWERLINE_RIGHT_A=%D{%d-%m}
-else
-  POWERLINE_RIGHT_A=""
+  POWERLINE_RIGHT_A="$POWERLINE_DATE_FORMAT"
 fi
 
 if [ "$POWERLINE_HIDE_USER_NAME" = "" ] && [ "$POWERLINE_HIDE_HOST_NAME" = "" ]; then
@@ -77,13 +79,16 @@ ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
 ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
 ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
 
-
 # if [ "$(git_prompt_info)" = "" ]; then
    # POWERLINE_GIT_INFO_LEFT=""
    # POWERLINE_GIT_INFO_RIGHT=""
 # else
     if [ "$POWERLINE_SHOW_GIT_ON_RIGHT" = "" ]; then
-        POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)%F{white}'
+        if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
+            POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)%F{white}'
+        else
+            POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)%F{white}'
+        fi
         POWERLINE_GIT_INFO_RIGHT=""
     else
         POWERLINE_GIT_INFO_LEFT=""
@@ -114,7 +119,7 @@ if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
 fi
 
 if [ "$POWERLINE_RIGHT_A" = "" ]; then
-    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{yellow}"$'\ue0b2'"%k%F{black}%K{yellow} $POWERLINE_RIGHT_B %f%k"
+    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%k"
 else
-    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{yellow}"$'\ue0b2'"%k%F{black}%K{yellow} $POWERLINE_RIGHT_B %f%F{240}"$'\ue0b2'"%f%k%K{240}%F{255} $POWERLINE_RIGHT_A %f%k"
+    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%F{240}"$'\ue0b2'"%f%k%K{240}%F{255} $POWERLINE_RIGHT_A %f%k"
 fi
