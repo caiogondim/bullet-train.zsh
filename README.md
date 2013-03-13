@@ -34,7 +34,22 @@ By default, at the right of the powerline are displayed the date and the time.
 If you don't want date or time, you can choose what you want to display:
 
 ```
-POWERLINE_RIGHT="date replacement"
+POWERLINE_RIGHT_B="date replacement"
+```
+
+If you want to display date next to time:
+```
+POWERLINE_RIGHT_A="date"
+```
+
+If you want to display exit-code of last command next to time:
+```
+POWERLINE_RIGHT_A="exit-code"
+```
+
+If you want to display date or non-zero-exit-code of last command next to time:
+```
+POWERLINE_RIGHT_A="mixed"
 ```
 
 If you don't want to display your username (the green or red (root) colors are still there):

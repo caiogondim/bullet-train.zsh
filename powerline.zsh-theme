@@ -1,7 +1,17 @@
 # FreeAgent puts the powerline style in zsh !
 
-if [ "$POWERLINE_RIGHT" = "" ]; then
-  POWERLINE_RIGHT=%D{%H:%M:%S}
+if [ "$POWERLINE_RIGHT_B" = "" ]; then
+  POWERLINE_RIGHT_B=%D{%H:%M:%S}
+fi
+
+if [ "$POWERLINE_RIGHT_A" = "mixed" ]; then
+  POWERLINE_RIGHT_A=%(?.%D{%d-%m}.%F{133}✘%?)
+elif [ "$POWERLINE_RIGHT_A" = "exit-status" ]; then
+  POWERLINE_RIGHT_A=%(?.%F{118}✔%?.%F{133}✘%?)
+elif [ "$POWERLINE_RIGHT_A" = "date" ]; then
+  POWERLINE_RIGHT_A=%D{%d-%m}
+else
+  POWERLINE_RIGHT_A=""
 fi
 
 if [ "$POWERLINE_HIDE_USER_NAME" = "" ]; then
@@ -99,4 +109,8 @@ if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
 "$PROMPT
 fi
 
-RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{yellow}"$'\ue0b2'"%k%F{black}%K{yellow} $POWERLINE_RIGHT %f%k"
+if [ "$POWERLINE_RIGHT_A" = "" ]; then
+    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{yellow}"$'\ue0b2'"%k%F{black}%K{yellow} $POWERLINE_RIGHT_B %f%k"
+else
+    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{yellow}"$'\ue0b2'"%k%F{black}%K{yellow} $POWERLINE_RIGHT_B %f%F{240}"$'\ue0b2'"%f%k%K{240}%F{255} $POWERLINE_RIGHT_A %f%k"
+fi
