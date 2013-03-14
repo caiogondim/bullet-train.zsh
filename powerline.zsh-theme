@@ -118,8 +118,10 @@ if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
 "$PROMPT
 fi
 
-if [ "$POWERLINE_RIGHT_A" = "" ]; then
-    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%k"
-else
-    RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%F{240}"$'\ue0b2'"%f%k%K{240}%F{255} $POWERLINE_RIGHT_A %f%k"
+if [ "$POWERLINE_DISABLE_RPROMT" = "" ]; then
+    if [ "$POWERLINE_RIGHT_A" = "" ]; then
+        RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%k"
+    else
+        RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%F{240}"$'\ue0b2'"%f%k%K{240}%F{255} $POWERLINE_RIGHT_A %f%k"
+    fi
 fi
