@@ -118,7 +118,7 @@ if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
 "$PROMPT
 fi
 
-if [ "$POWERLINE_DISABLE_RPROMT" = "" ]; then
+if [ "$POWERLINE_DISABLE_RPROMPT" = "" ]; then
     if [ "$POWERLINE_RIGHT_A" = "" ]; then
         RPROMPT="$POWERLINE_GIT_INFO_RIGHT%F{white}"$'\ue0b2'"%k%F{black}%K{white} $POWERLINE_RIGHT_B %f%k"
     else
