@@ -79,6 +79,11 @@ If you don't want to hide git prompt status (new files, modified files, unmerged
 POWERLINE_HIDE_GIT_PROMPT_STATUS="true"
 ```
 
+If you want to hide the right hand side prompt completely:
+```
+POWERLINE_DISABLE_RPROMPT="true"
+```
+
 If you don't want the blank line before the prompt:
 
 ```
@@ -142,3 +147,4 @@ Contribute
 * [adrienbrault](https://github.com/adrienbrault)
 * [mkraemer](https://github.com/mkraemer)
 * [wujtruj](https://github.com/wujtruj)
+* [Flavius Aspra](http://flavius.github.com/)
