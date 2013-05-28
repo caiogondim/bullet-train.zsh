@@ -44,7 +44,7 @@ POWERLINE_RIGHT_A="date"
 
 If you want to display exit-code of last command next to time:
 ```
-POWERLINE_RIGHT_A="exit-code"
+POWERLINE_RIGHT_A="exit-status"
 ```
 
 If you want to display date or non-zero-exit-code of last command next to time:
