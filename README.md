@@ -80,7 +80,7 @@ If you don't want to display your hostname (the green or red (root) colors are s
 POWERLINE_HIDE_HOST_NAME="true"
 ```
 
-If you don't want to hide git prompt status (new files, modified files, unmerged files, etc):
+If you want to hide git prompt status (new files, modified files, unmerged files, etc):
 ```
 POWERLINE_HIDE_GIT_PROMPT_STATUS="true"
 ```
