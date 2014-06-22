@@ -1,6 +1,19 @@
 # Powerline for oh-my-zsh
 
-This a fork of the Powerline Vim plugin for the oh-my-zsh shell.
+This a fork of the
+[Powerline Vim plugin](https://github.com/Lokaltog/vim-powerline) for the
+[oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh).
+
+It currently shows:
+- Current Python virtualenv
+- Current git repo
+- Status of the current git repo
+- Time
+
+If you want add some new feature, of fix some bug, open an issue and lets hack
+together.
+
+Currently a **work in progress**.
 
 <img
   src="http://raw.github.com/caiogondim/oh-my-zsh-powerline-theme/master/img/icon.png"
@@ -11,7 +24,7 @@ This a fork of the Powerline Vim plugin for the oh-my-zsh shell.
 Preview
 -------
 
-![Preview](http://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme/raw/master/preview.png)
+![Preview](http://raw.github.com/caiogondim/oh-my-zsh-powerline-theme/master/preview.png)
 
 Set Up
 ------
