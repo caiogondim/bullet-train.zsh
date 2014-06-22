@@ -1,7 +1,12 @@
-oh-my-zsh-powerline-theme
-=========================
+# Powerline for oh-my-zsh
 
-oh-my-zsh Powerline style Theme
+This a fork of the Powerline Vim plugin for the oh-my-zsh shell.
+
+<img
+  src="http://raw.github.com/caiogondim/oh-my-zsh-powerline-theme/master/img/icon.png"
+  width="256"
+  align="right"
+/>
 
 Preview
 -------
