@@ -1,5 +1,11 @@
 # Powerline for oh-my-zsh
 
+<img
+  src="http://raw.github.com/caiogondim/oh-my-zsh-powerline-theme/master/img/icon.png"
+  width="256"
+  align="right"
+/>
+
 This a fork of the
 [Powerline Vim plugin](https://github.com/Lokaltog/vim-powerline) for the
 [oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh).
@@ -15,19 +21,13 @@ together.
 
 Currently a **work in progress**.
 
-<img
-  src="http://raw.github.com/caiogondim/oh-my-zsh-powerline-theme/master/img/icon.png"
-  width="256"
-  align="right"
-/>
 
-Preview
--------
+## Preview
 
 ![Preview](http://raw.github.com/caiogondim/oh-my-zsh-powerline-theme/master/preview.png)
 
-Set Up
-------
+
+## Set Up
 
 1. Clone the repository.
 
@@ -43,8 +43,8 @@ Set Up
     ZSH_THEME="powerline"
     ```
 
-More options
-------------
+
+## More options
 
 All options must be overridden in your **.zshrc** file.
 
@@ -144,15 +144,15 @@ POWERLINE_GIT_RENAMED="➜"
 POWERLINE_GIT_UNMERGED="═"
 ```
 
-Requirements
-------------
+
+## Requirements
 
 * Vim Powerline patched font: Download your favorite one on [Lokaltog/powerline-font](https://github.com/Lokaltog/powerline-fonts).
 * Z shell (zsh): See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
 * Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`.
 
-Contribute
-----------
+
+## Contribute
 
 ### How to contribute
 
