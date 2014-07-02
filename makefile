@@ -4,4 +4,4 @@ install:
 
 # Symlinks the theme for easier development
 link:
-	ln -s `pwd`/powerline.zsh-theme ~/.oh-my-zsh/themes/
+	ln -s `pwd`/bullet-train.zsh-theme ~/.oh-my-zsh/themes/
