@@ -95,7 +95,10 @@ fi
 
 PROMPT="$BULLETTRAIN_SEC1_BG$BULLETTRAIN_SEC1_TXT %k%f$BULLETTRAIN_SEC1_FG%K{blue}"$'\ue0b0'"%k%f%F{white}%K{blue} "$BULLETTRAIN_CURRENT_PATH"%F{blue}"$BULLETTRAIN_GIT_INFO_LEFT" %k"$'\ue0b0'"%f "
 PROMPT="%K{red} %F{red}%K{yellow}"$'\ue0b0'"%F{white}%K{yellow} "$BULLETTRAIN_DATE" %F{yellow}%K{green}"$'\ue0b0'$PROMPT
+PROMPT=$PROMPT"
+%{${fg_bold[default]}%}\$ %{$reset_color%}"
 
+# Adds blankline before?
 if [ "$BULLETTRAIN_NO_BLANK_LINE" = "" ]; then
   PROMPT="
 "$PROMPT
