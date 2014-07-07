@@ -4,4 +4,4 @@ install:
 
 # Symlinks the theme for easier development
 link:
-	ln -s `pwd`/bullet-train.zsh-theme ~/.oh-my-zsh/themes/
+	ln -sF `pwd`/bullet-train.zsh-theme ~/.oh-my-zsh/themes/
