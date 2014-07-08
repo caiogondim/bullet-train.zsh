@@ -8,6 +8,25 @@
 # using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over Terminal.app -
 # it has significantly better color fidelity.
 
+### Configuration
+# The default configuration, that can be overwrite in your .zshrc file
+
+VIRTUAL_ENV_DISABLE_PROMPT=true
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" \ue0a0 "
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY=" ✘"
+ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
+ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}✚%F{black}"
+ZSH_THEME_GIT_PROMPT_MODIFIED=" %F{blue}✹%F{black}"
+ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}✖%F{black}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED=" %F{yellow}✭%F{black}"
+ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
+ZSH_THEME_GIT_PROMPT_UNMERGED=" ═"
+ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
+ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
+ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
+
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
@@ -59,21 +78,6 @@ prompt_git() {
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-
-    ZSH_THEME_GIT_PROMPT_PREFIX=" \ue0a0 "
-    ZSH_THEME_GIT_PROMPT_SUFFIX=""
-    ZSH_THEME_GIT_PROMPT_DIRTY=" ✘"
-    ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
-    ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}✚%F{black}"
-    ZSH_THEME_GIT_PROMPT_MODIFIED=" %F{blue}✹%F{black}"
-    ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}✖%F{black}"
-    ZSH_THEME_GIT_PROMPT_UNTRACKED=" %F{yellow}✭%F{black}"
-    ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
-    ZSH_THEME_GIT_PROMPT_UNMERGED=" ═"
-    ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
-    ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
-    ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
-
     prompt_segment white black
     echo -n $(git_prompt_info)
   fi
@@ -123,7 +127,7 @@ prompt_dir() {
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
+    prompt_segment yellow white "🐍  `basename $virtualenv_path`"
   fi
 }
 
