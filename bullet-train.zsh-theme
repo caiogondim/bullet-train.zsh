@@ -123,9 +123,13 @@ prompt_dir() {
   prompt_segment blue white '%1~'
 }
 
+# RVM: only shows RVM info if on a gemset that is not the default one
 prompt_rvm() {
   if which rvm-prompt &> /dev/null; then
-    prompt_segment magenta white "♦️  `rvm-prompt i v g`"
+    if [[ ! -n `rvm gemset list | grep "=> (default)"` ]]
+    then
+      prompt_segment magenta white "♦️  `rvm-prompt i v g`"
+    fi
   fi
 }
 
