@@ -123,6 +123,12 @@ prompt_dir() {
   prompt_segment blue white '%1~'
 }
 
+prompt_rvm() {
+  if which rvm-prompt &> /dev/null; then
+    prompt_segment magenta white "♦️  `rvm-prompt i v g`"
+  fi
+}
+
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
@@ -154,6 +160,7 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_time
+  prompt_rvm
   prompt_virtualenv
   # prompt_context
   prompt_dir
