@@ -4,12 +4,14 @@
 # [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts).
 #
 # In addition, I recommend the
-# [Solarized theme](https://github.com/altercation/solarized/) and, if you're
-# using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over Terminal.app -
-# it has significantly better color fidelity.
+# [Tomorrow Night theme](https://github.com/chriskempson/tomorrow-theme) and, if 
+# you're using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over 
+# Terminal.app - it has significantly better color fidelity.
 
-### Configuration
+# ------------------------------------------------------------------------------
+# CONFIGURATION
 # The default configuration, that can be overwrite in your .zshrc file
+# ------------------------------------------------------------------------------
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
@@ -50,8 +52,10 @@ ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
 ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
 ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
 
-### Segment drawing
-# A few utility functions to make it easy and re-usable to draw segmented prompts
+# ------------------------------------------------------------------------------
+# SEGMENT DRAWING
+# A few functions to make it easy and re-usable to draw segmented prompts
+# ------------------------------------------------------------------------------
 
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
@@ -83,8 +87,11 @@ prompt_end() {
   CURRENT_BG=''
 }
 
-### Prompt components
-# Each component will draw itself, and hide itself if no information needs to be shown
+# ------------------------------------------------------------------------------
+# PROMPT COMPONENTS
+# Each component will draw itself, and hide itself if no information needs 
+# to be shown
+# ------------------------------------------------------------------------------
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
@@ -95,7 +102,7 @@ prompt_context() {
   fi
 }
 
-# Git: branch/detached head, dirty status
+# Git
 prompt_git() {
   local ref dirty mode repo_path
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
@@ -182,7 +189,11 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
 }
 
-## Main prompt
+# ------------------------------------------------------------------------------
+# MAIN
+# Entry point
+# ------------------------------------------------------------------------------
+
 build_prompt() {
   RETVAL=$?
   prompt_status
