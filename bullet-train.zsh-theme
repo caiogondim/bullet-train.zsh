@@ -13,6 +13,29 @@
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
+BULLETTRAIN_STATUS_BG=black
+BULLETTRAIN_STATUS_FG=default
+
+BULLETTRAIN_TIME_BG=green
+BULLETTRAIN_TIME_FG=white
+
+BULLETRTAIN_VIRTUALENV_BG=yellow
+BULLETRTAIN_VIRTUALENV_FG=white
+BULLETRTAIN_VIRTUALENV_SYMBOL=🐍
+
+BULLETTRAIN_RVM_BG=magenta
+BULLETTRAIN_RVM_FG=white
+BULLETTRAIN_RVM_SYMBOL=♦️
+
+BULLETTRAIN_DIR_BG=blue
+BULLETTRAIN_DIR_FG=white
+
+BULLETTRAIN_GIT_BG=white
+BULLETTRAIN_GIT_FG=black
+
+BULLETTRAIN_CONTEXT_BG=black
+BULLETTRAIN_CONTEXT_FG=default
+
 ZSH_THEME_GIT_PROMPT_PREFIX=" \ue0a0 "
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=" ✘"
@@ -68,7 +91,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$user@%m"
+    prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "%(!.%{%F{yellow}%}.)$user@%m"
   fi
 }
 
@@ -78,7 +101,7 @@ prompt_git() {
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    prompt_segment white black
+    prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
     echo -n $(git_prompt_info)
   fi
 }
@@ -120,7 +143,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue white '%1~'
+  prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%1~'
 }
 
 # RVM: only shows RVM info if on a gemset that is not the default one
@@ -128,7 +151,7 @@ prompt_rvm() {
   if which rvm-prompt &> /dev/null; then
     if [[ ! -n `rvm gemset list | grep "=> (default)"` ]]
     then
-      prompt_segment magenta white "♦️  `rvm-prompt i v g`"
+      prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_SYMBOL"  `rvm-prompt i v g`"
     fi
   fi
 }
@@ -137,12 +160,12 @@ prompt_rvm() {
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment yellow white "🐍  `basename $virtualenv_path`"
+    prompt_segment $BULLETRTAIN_VIRTUALENV_BG $BULLETRTAIN_VIRTUALENV_FG $BULLETRTAIN_VIRTUALENV_SYMBOL"  `basename $virtualenv_path`"
   fi
 }
 
 prompt_time() {
-  prompt_segment green white %D{%H:%M:%S}
+  prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
 }
 
 # Status:
@@ -156,7 +179,7 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
+  [[ -n "$symbols" ]] && prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
 }
 
 ## Main prompt
@@ -169,7 +192,7 @@ build_prompt() {
   # prompt_context
   prompt_dir
   prompt_git
-  prompt_hg
+  # prompt_hg
   prompt_end
 }
 
