@@ -6,134 +6,94 @@
   align="right"
 />
 
-This a fork of the
-[Powerline Vim plugin](https://github.com/Lokaltog/vim-powerline) for the
-[oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh).
+Bullet Train is a [oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh)
+theme based on the 
+[Powerline Vim plugin](https://github.com/Lokaltog/vim-powerline). It aims for 
+simplicity, showing information only when it's relevant.
 
 It currently shows:
 - Current Python virtualenv
-- Current git repo
-- Status of the current git repo
-- Time
+- Current Ruby version and gemset, through RVM
+- Git status
+- Timestamp
+- Current directory
 
 If you want add some new feature, of fix some bug, open an issue and lets hack
 together.
 
-Currently a **work in progress**.
-
 
 ## Preview
 
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/preview.png)
+![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview.gif)
 
 
-## Set Up
+## Requirements
 
-1. Clone the repository.
+In order to use the theme, you will first need:
 
-2. Create a symlink of **powerline.zsh-theme** in **.oh-my-zsh/themes/**. You can use the **install_in_omz.sh** file:
-
-    ```
-    ./install_in_omz.sh
-    ```
-
-3. Configure the theme in your **.zshrc** file:
-
-    ```
-    ZSH_THEME="powerline"
-    ```
+* [Vim Powerline patched](https://github.com/Lokaltog/powerline-fonts)
+* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+* Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`
 
 
-## More options
+## Installing
 
-All options must be overridden in your **.zshrc** file.
+1. Download the theme here
 
-By default, at the right of the powerline are displayed the date and the time.
-If you don't want date or time, you can choose what you want to display:
+2. Put the file **bullet-train.zsh-theme** in **~/.oh-my-zsh/themes/**
 
-```
-BULLETTRAIN_RIGHT_B="date replacement"
+3. Configure the theme in your **~/.zshrc** file:
+```bash
+ZSH_THEME="powerline"
 ```
 
-Or if you don't want to display anything:
 
-```
-BULLETTRAIN_RIGHT_B="none"
-```
+## Options
 
-If you want to display date next to time:
-```
-BULLETTRAIN_RIGHT_A="date"
-```
+Bullet Train is configurable. You can change colors and which segments you want
+or don't want to see. All options must be overridden in your **.zshrc** file.
 
-If you want to display exit-code of last command next to time:
-```
-BULLETTRAIN_RIGHT_A="exit-status"
+The status segment backgound and foreground color
+```bash
+BULLETTRAIN_STATUS_BG=black
+BULLETTRAIN_STATUS_FG=default
 ```
 
-If you want to display date or non-zero-exit-code of last command next to time:
-```
-BULLETTRAIN_RIGHT_A="mixed"
-```
-
-If you want to display a custom text next to time:
-```
-BULLETTRAIN_RIGHT_A="Your very best text"
+The time segment background and foreground color
+```bash
+BULLETTRAIN_TIME_BG=green
+BULLETTRAIN_TIME_FG=white
 ```
 
-If you want to change the date format to what you want:
-```
-BULLETTRAIN_DATE_FORMAT="%D{%d-%m}"
-```
-
-If you don't want to display your username (the green or red (root) colors are still there):
-
-```
-BULLETTRAIN_HIDE_USER_NAME="true"
+Python virtualenv background and foreground color, and the symbol used for the
+segment
+```bash
+BULLETRTAIN_VIRTUALENV_BG=yellow
+BULLETRTAIN_VIRTUALENV_FG=white
+BULLETRTAIN_VIRTUALENV_SYMBOL=🐍
 ```
 
-If you don't want to display your hostname (the green or red (root) colors are still there):
-
-```
-BULLETTRAIN_HIDE_HOST_NAME="true"
-```
-
-If you want to hide git prompt status (new files, modified files, unmerged files, etc):
-```
-BULLETTRAIN_HIDE_GIT_PROMPT_STATUS="true"
+RMV backgound and foreground color, and the symbol used for the segment
+```bash
+BULLETTRAIN_RVM_BG=magenta
+BULLETTRAIN_RVM_FG=white
+BULLETTRAIN_RVM_SYMBOL=♦️
 ```
 
-If you want to hide the right hand side prompt completely:
-```
-BULLETTRAIN_DISABLE_RPROMPT="true"
-```
-
-If you don't want the blank line before the prompt:
-
-```
-BULLETTRAIN_NO_BLANK_LINE="true"
+Current directory background and foreground colors
+```bash
+BULLETTRAIN_DIR_BG=blue
+BULLETTRAIN_DIR_FG=white
 ```
 
-If you want full path:
-
-```
-BULLETTRAIN_FULL_CURRENT_PATH="true"
-```
-
-If you want git info on right instead of left:
-
-```
-BULLETTRAIN_SHOW_GIT_ON_RIGHT="true"
+GIT background and foreground colors
+```bash
+BULLETTRAIN_GIT_BG=white
+BULLETTRAIN_GIT_FG=black
 ```
 
-If you want to tell if you are in a remote SSH session:
-
-```
-BULLETTRAIN_DETECT_SSH="true"
-```
-
-Also you can change the icons of GIT info, default values are:
-```
+GIT icons info
+```bash
 BULLETTRAIN_GIT_CLEAN="✔"
 BULLETTRAIN_GIT_DIRTY="✘"
 BULLETTRAIN_GIT_ADDED="%F{green}✚%F{black}"
@@ -145,30 +105,32 @@ BULLETTRAIN_GIT_UNMERGED="═"
 ```
 
 
-## Requirements
+## Credits
 
-* Vim Powerline patched font: Download your favorite one on [Lokaltog/powerline-font](https://github.com/Lokaltog/powerline-fonts).
-* Z shell (zsh): See [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for more info.
-* Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`.
+This theme is highly inspired by the following themes:
+- [Powerline](https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme)
+- [Agnoster](https://gist.github.com/agnoster/3712874)
 
 
-## Contribute
+## License
+The MIT License (MIT)
 
-### How to contribute
+Copyright (c) 2014 [Caio Gondim](http://caiogondim.com)
 
-* Create an issue if you find a bug or if you want a new feature.
-* Fork the project and pull request your very best feature.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### Thanks
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-* [shouze](https://github.com/shouze)
-* [stephpy](https://github.com/stephpy)
-* [Ph3nol](https://github.com/Ph3nol)
-* [gbin](https://github.com/gbin)
-* [krischer](https://github.com/krischer)
-* [Arthraim](https://github.com/Arthraim)
-* [itszero](https://github.com/itszero)
-* [adrienbrault](https://github.com/adrienbrault)
-* [mkraemer](https://github.com/mkraemer)
-* [wujtruj](https://github.com/wujtruj)
-* [Flavius Aspra](http://flavius.github.com/)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
