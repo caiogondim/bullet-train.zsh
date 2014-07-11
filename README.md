@@ -38,7 +38,7 @@ In order to use the theme, you will first need:
 
 ## Installing
 
-1. Download the theme here
+1. Download the theme [here](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme)
 
 2. Put the file **bullet-train.zsh-theme** in **~/.oh-my-zsh/themes/**
 
