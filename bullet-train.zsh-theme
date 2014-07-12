@@ -31,7 +31,7 @@ BULLETTRAIN_NVM_PREFIX="⬡ "
 
 BULLETTRAIN_RVM_BG=magenta
 BULLETTRAIN_RVM_FG=white
-BULLETTRAIN_RVM_SYMBOL=♦️
+BULLETTRAIN_RVM_PREFIX=♦️
 
 BULLETTRAIN_DIR_BG=blue
 BULLETTRAIN_DIR_FG=white
@@ -172,7 +172,7 @@ prompt_rvm() {
   if which rvm-prompt &> /dev/null; then
     if [[ ! -n `rvm gemset list | grep "=> (default)"` ]]
     then
-      prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_SYMBOL"  `rvm-prompt i v g`"
+      prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  `rvm-prompt i v g`"
     fi
   fi
 }

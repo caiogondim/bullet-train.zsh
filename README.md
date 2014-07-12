@@ -85,7 +85,7 @@ RMV backgound and foreground color, and the symbol used for the segment
 ```bash
 BULLETTRAIN_RVM_BG=magenta
 BULLETTRAIN_RVM_FG=white
-BULLETTRAIN_RVM_SYMBOL=♦️
+BULLETTRAIN_RVM_PREFIX=♦️
 ```
 
 Current directory background and foreground colors
