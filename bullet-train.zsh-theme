@@ -18,12 +18,16 @@ VIRTUAL_ENV_DISABLE_PROMPT=true
 BULLETTRAIN_STATUS_BG=black
 BULLETTRAIN_STATUS_FG=default
 
-BULLETTRAIN_TIME_BG=green
+BULLETTRAIN_TIME_BG=cyan
 BULLETTRAIN_TIME_FG=white
 
 BULLETRTAIN_VIRTUALENV_BG=yellow
 BULLETRTAIN_VIRTUALENV_FG=white
 BULLETRTAIN_VIRTUALENV_SYMBOL=🐍
+
+BULLETTRAIN_NVM_PREFIX="⬡ "
+BULLETTRAIN_NVM_BG=green
+BULLETTRAIN_NVM_FG=white
 
 BULLETTRAIN_RVM_BG=magenta
 BULLETTRAIN_RVM_FG=white
@@ -171,6 +175,16 @@ prompt_virtualenv() {
   fi
 }
 
+# NVM: Node version manager
+prompt_nvm() {
+  [[ `which nvm` != "nvm not found" ]] || return
+  local nvm_prompt
+  nvm_prompt=$(node -v 2>/dev/null)
+  [[ "${nvm_prompt}x" == "x" ]] && return
+  nvm_prompt=${nvm_prompt:1}
+  prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+}
+
 prompt_time() {
   prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
 }
@@ -200,6 +214,7 @@ build_prompt() {
   prompt_time
   prompt_rvm
   prompt_virtualenv
+  prompt_nvm
   # prompt_context
   prompt_dir
   prompt_git

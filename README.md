@@ -14,6 +14,7 @@ simplicity, showing information only when it's relevant.
 It currently shows:
 - Current Python virtualenv
 - Current Ruby version and gemset, through RVM
+- Current Node.js version, through NVM
 - Git status
 - Timestamp
 - Current directory
