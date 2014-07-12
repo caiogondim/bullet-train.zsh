@@ -7,8 +7,8 @@
 />
 
 Bullet Train is a [oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh)
-theme based on the 
-[Powerline Vim plugin](https://github.com/Lokaltog/vim-powerline). It aims for 
+theme based on the
+[Powerline Vim plugin](https://github.com/Lokaltog/vim-powerline). It aims for
 simplicity, showing information only when it's relevant.
 
 It currently shows:
@@ -62,8 +62,8 @@ BULLETTRAIN_STATUS_FG=default
 
 The time segment background and foreground color
 ```bash
-BULLETTRAIN_TIME_BG=green
-BULLETTRAIN_TIME_FG=white
+BULLETTRAIN_TIME_BG=''
+BULLETTRAIN_TIME_FG=''
 ```
 
 Python virtualenv background and foreground color, and the symbol used for the

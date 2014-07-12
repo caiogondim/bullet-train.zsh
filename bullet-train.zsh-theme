@@ -4,8 +4,8 @@
 # [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts).
 #
 # In addition, I recommend the
-# [Tomorrow Night theme](https://github.com/chriskempson/tomorrow-theme) and, if 
-# you're using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over 
+# [Tomorrow Night theme](https://github.com/chriskempson/tomorrow-theme) and, if
+# you're using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over
 # Terminal.app - it has significantly better color fidelity.
 
 # ------------------------------------------------------------------------------
@@ -18,8 +18,8 @@ VIRTUAL_ENV_DISABLE_PROMPT=true
 BULLETTRAIN_STATUS_BG=black
 BULLETTRAIN_STATUS_FG=default
 
-BULLETTRAIN_TIME_BG=cyan
-BULLETTRAIN_TIME_FG=white
+BULLETTRAIN_TIME_BG=''
+BULLETTRAIN_TIME_FG=''
 
 BULLETRTAIN_VIRTUALENV_BG=yellow
 BULLETRTAIN_VIRTUALENV_FG=white
@@ -71,13 +71,23 @@ prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+  if [[ $CURRENT_BG != 'NONE' && $CURRENT_BG == 'standout' ]]; then
+    echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+  elif [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
     echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
+}
+
+# Begins and ends an standout segment
+# A standout segment is one with the background and foreground colors inverted
+# Standout segment is only possible as the first segment
+prompt_standout_segment() {
+  CURRENT_BG="standout"
+  echo -n "%S "$1" %s"
 }
 
 # End the prompt, closing any open segments
@@ -93,7 +103,7 @@ prompt_end() {
 
 # ------------------------------------------------------------------------------
 # PROMPT COMPONENTS
-# Each component will draw itself, and hide itself if no information needs 
+# Each component will draw itself, and hide itself if no information needs
 # to be shown
 # ------------------------------------------------------------------------------
 
@@ -186,7 +196,11 @@ prompt_nvm() {
 }
 
 prompt_time() {
-  prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
+  if [[ $BULLETTRAIN_TIME_BG == '' && $BULLETTRAIN_TIME_BG == '' ]] then
+    prompt_standout_segment %D{%H:%M:%S}
+  else
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
+  fi
 }
 
 # Status:
@@ -210,7 +224,7 @@ prompt_status() {
 
 build_prompt() {
   RETVAL=$?
-  prompt_status
+  # prompt_status
   prompt_time
   prompt_rvm
   prompt_virtualenv
