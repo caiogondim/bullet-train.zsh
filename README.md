@@ -74,6 +74,13 @@ BULLETRTAIN_VIRTUALENV_FG=white
 BULLETRTAIN_VIRTUALENV_PREFIX=🐍
 ```
 
+Node.js version, if NVM is installed
+```bash
+BULLETTRAIN_NVM_BG=green
+BULLETTRAIN_NVM_FG=white
+BULLETTRAIN_NVM_PREFIX="⬡ "
+```
+
 RMV backgound and foreground color, and the symbol used for the segment
 ```bash
 BULLETTRAIN_RVM_BG=magenta
