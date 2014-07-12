@@ -71,7 +71,7 @@ segment
 ```bash
 BULLETRTAIN_VIRTUALENV_BG=yellow
 BULLETRTAIN_VIRTUALENV_FG=white
-BULLETRTAIN_VIRTUALENV_SYMBOL=🐍
+BULLETRTAIN_VIRTUALENV_PREFIX=🐍
 ```
 
 RMV backgound and foreground color, and the symbol used for the segment
