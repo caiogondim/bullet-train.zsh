@@ -45,7 +45,7 @@ In order to use the theme, you will first need:
 
 3. Configure the theme in your **~/.zshrc** file:
 ```bash
-ZSH_THEME="powerline"
+ZSH_THEME="bullet-train"
 ```
 
 
