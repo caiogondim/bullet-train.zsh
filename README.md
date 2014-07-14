@@ -54,53 +54,68 @@ ZSH_THEME="bullet-train"
 Bullet Train is configurable. You can change colors and which segments you want
 or don't want to see. All options must be overridden in your **.zshrc** file.
 
-The status segment backgound and foreground color
+The status segment backgound, foreground color and visibility:
+
 ```bash
+BULLETTRAIN_STATUS_SHOW=true
 BULLETTRAIN_STATUS_BG=black
 BULLETTRAIN_STATUS_FG=default
 ```
 
-The time segment background and foreground color
+The time segment background, foreground color and visibility:
+
 ```bash
+BULLETTRAIN_TIME_SHOW=true
 BULLETTRAIN_TIME_BG=''
 BULLETTRAIN_TIME_FG=''
 ```
 
-Python virtualenv background and foreground color, and the symbol used for the
-segment
+Python virtualenv background, foreground color, visibility and the symbol used
+for the segment:
+
 ```bash
-BULLETRTAIN_VIRTUALENV_BG=yellow
-BULLETRTAIN_VIRTUALENV_FG=white
-BULLETRTAIN_VIRTUALENV_PREFIX=🐍
+BULLETTRAIN_VIRTUALENV_SHOW=true
+BULLETTRAIN_VIRTUALENV_BG=yellow
+BULLETTRAIN_VIRTUALENV_FG=white
+BULLETTRAIN_VIRTUALENV_PREFIX=🐍
 ```
 
-Node.js version, if NVM is installed
+Node.js background, foreground color, visibility and prefix for the segment:
+
 ```bash
+BULLETTRAIN_NVM_SHOW=true
 BULLETTRAIN_NVM_BG=green
 BULLETTRAIN_NVM_FG=white
 BULLETTRAIN_NVM_PREFIX="⬡ "
 ```
 
-RMV backgound and foreground color, and the symbol used for the segment
+RMV backgound and foreground color, visibility and symbol used for the segment:
+
 ```bash
+BULLETTRAIN_RVM_SHOW=true
 BULLETTRAIN_RVM_BG=magenta
 BULLETTRAIN_RVM_FG=white
 BULLETTRAIN_RVM_PREFIX=♦️
 ```
 
-Current directory background and foreground colors
+Current directory background, foreground color and visibility:
+
 ```bash
+BULLETTRAIN_DIR_SHOW=true
 BULLETTRAIN_DIR_BG=blue
 BULLETTRAIN_DIR_FG=white
 ```
 
-GIT background and foreground colors
+Git background, foreground color and visibility:
+
 ```bash
+BULLETTRAIN_GIT_SHOW=true
 BULLETTRAIN_GIT_BG=white
 BULLETTRAIN_GIT_FG=black
 ```
 
-GIT icons info
+Git icons info:
+
 ```bash
 BULLETTRAIN_GIT_CLEAN="✔"
 BULLETTRAIN_GIT_DIRTY="✘"

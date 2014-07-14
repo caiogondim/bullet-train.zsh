@@ -18,27 +18,34 @@ VIRTUAL_ENV_DISABLE_PROMPT=true
 BULLETTRAIN_STATUS_BG=black
 BULLETTRAIN_STATUS_FG=default
 
+BULLETTRAIN_TIME_SHOW=true
 BULLETTRAIN_TIME_BG=''
 BULLETTRAIN_TIME_FG=''
 
-BULLETRTAIN_VIRTUALENV_BG=yellow
-BULLETRTAIN_VIRTUALENV_FG=white
-BULLETRTAIN_VIRTUALENV_PREFIX=🐍
+BULLETTRAIN_VIRTUALENV_SHOW=true
+BULLETTRAIN_VIRTUALENV_BG=yellow
+BULLETTRAIN_VIRTUALENV_FG=white
+BULLETTRAIN_VIRTUALENV_PREFIX=🐍
 
+BULLETTRAIN_NVM_SHOW=true
 BULLETTRAIN_NVM_BG=green
 BULLETTRAIN_NVM_FG=white
 BULLETTRAIN_NVM_PREFIX="⬡ "
 
+BULLETTRAIN_RVM_SHOW=true
 BULLETTRAIN_RVM_BG=magenta
 BULLETTRAIN_RVM_FG=white
 BULLETTRAIN_RVM_PREFIX=♦️
 
+BULLETTRAIN_DIR_SHOW=true
 BULLETTRAIN_DIR_BG=blue
 BULLETTRAIN_DIR_FG=white
 
+BULLETTRAIN_GIT_SHOW=true
 BULLETTRAIN_GIT_BG=white
 BULLETTRAIN_GIT_FG=black
 
+BULLETTRAIN_CONTEXT_SHOW=true
 BULLETTRAIN_CONTEXT_BG=black
 BULLETTRAIN_CONTEXT_FG=default
 
@@ -109,6 +116,10 @@ prompt_end() {
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
+  if [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] then
+    return
+  fi
+
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
@@ -118,6 +129,10 @@ prompt_context() {
 
 # Git
 prompt_git() {
+  if [[ $BULLETTRAIN_GIT_SHOW == false ]] then
+    return
+  fi
+
   local ref dirty mode repo_path
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
@@ -164,11 +179,19 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
+  if [[ $BULLETTRAIN_DIR_SHOW == false ]] then
+    return
+  fi
+
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%1~'
 }
 
 # RVM: only shows RVM info if on a gemset that is not the default one
 prompt_rvm() {
+  if [[ $BULLETTRAIN_RVM_SHOW == false ]] then
+    return
+  fi
+
   if which rvm-prompt &> /dev/null; then
     if [[ ! -n `rvm gemset list | grep "=> (default)"` ]]
     then
@@ -179,14 +202,22 @@ prompt_rvm() {
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
+  if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]] then
+    return
+  fi
+
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment $BULLETRTAIN_VIRTUALENV_BG $BULLETRTAIN_VIRTUALENV_FG $BULLETRTAIN_VIRTUALENV_PREFIX"  `basename $virtualenv_path`"
+    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX"  `basename $virtualenv_path`"
   fi
 }
 
 # NVM: Node version manager
 prompt_nvm() {
+  if [[ $BULLETTRAIN_NVM_SHOW == false ]] then
+    return
+  fi
+
   [[ `which nvm` != "nvm not found" ]] || return
   local nvm_prompt
   nvm_prompt=$(node -v 2>/dev/null)
@@ -196,6 +227,10 @@ prompt_nvm() {
 }
 
 prompt_time() {
+  if [[ $BULLETTRAIN_TIME_SHOW == false ]] then
+    return
+  fi
+
   if [[ $BULLETTRAIN_TIME_BG == '' && $BULLETTRAIN_TIME_BG == '' ]] then
     prompt_standout_segment %D{%H:%M:%S}
   else
