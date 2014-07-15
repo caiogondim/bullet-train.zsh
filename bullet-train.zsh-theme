@@ -120,7 +120,7 @@ prompt_context() {
     return
   fi
 
-  local user=`whoami`
+  local user=$(whoami)
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "%(!.%{%F{yellow}%}.)$user@%m"
@@ -163,10 +163,10 @@ prompt_hg() {
       st=""
       rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
       branch=$(hg id -b 2>/dev/null)
-      if `hg st | grep -Eq "^\?"`; then
+      if $(hg st | grep -Eq "^\?"); then
         prompt_segment red black
         st='±'
-      elif `hg st | grep -Eq "^(M|A)"`; then
+      elif $(hg st | grep -Eq "^(M|A)"); then
         prompt_segment yellow black
         st='±'
       else
@@ -193,9 +193,9 @@ prompt_rvm() {
   fi
 
   if which rvm-prompt &> /dev/null; then
-    if [[ ! -n `rvm gemset list | grep "=> (default)"` ]]
+    if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
     then
-      prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  `rvm-prompt i v g`"
+      prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  $(rvm-prompt i v g)"
     fi
   fi
 }
@@ -208,7 +208,7 @@ prompt_virtualenv() {
 
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX"  `basename $virtualenv_path`"
+    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX"  $(basename $virtualenv_path)"
   fi
 }
 
@@ -218,7 +218,7 @@ prompt_nvm() {
     return
   fi
 
-  [[ `which nvm` != "nvm not found" ]] || return
+  [[ $(which nvm) != "nvm not found" ]] || return
   local nvm_prompt
   nvm_prompt=$(node -v 2>/dev/null)
   [[ "${nvm_prompt}x" == "x" ]] && return
