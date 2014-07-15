@@ -1,0 +1,19 @@
+{
+  "name": "bullet-train-oh-my-zsh-theme",
+  "version": "0.0.0",
+  "description": "A Powerline-like theme for oh-my-zsh",
+  "main": "bullet-train.zsh-theme",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caiogondim/bullet-train-oh-my-zsh-theme.git"
+  },
+  "author": "Caio Gondim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/issues"
+  },
+  "homepage": "https://github.com/caiogondim/bullet-train-oh-my-zsh-theme"
+}
