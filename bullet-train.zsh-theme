@@ -186,8 +186,11 @@ prompt_dir() {
   if [[ $BULLETTRAIN_DIR_SHOW == false ]] then
     return
   fi
-
-  prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%1~'
+  if [[ $BULLETTRAIN_DIR_EXTENDED != true ]] then
+    prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%1~'
+  else
+    prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%4(c:...:)%3c'
+  fi
 }
 
 # RVM: only shows RVM info if on a gemset that is not the default one
