@@ -260,6 +260,23 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
 }
 
+# Prompt Character:
+#   should we show a basic '$' char
+#   or colored (red/green) different
+#   chars for root/normal prompt?
+prompt_char() {
+  local bt_prompt_char
+  if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]] then
+    bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
+  else
+    bt_prompt_char="\$"
+  fi
+  if [[ $BULLETTRAIN_PROMPT_ROOT == true ]] then
+    bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char})"
+  fi
+  echo -n $bt_prompt_char
+}
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -281,4 +298,4 @@ build_prompt() {
 
 PROMPT='
 %{%f%b%k%}$(build_prompt)
-%{${fg_bold[default]}%}\$ %{$reset_color%}'
+%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
