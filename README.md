@@ -104,14 +104,16 @@ Current directory background, foreground color and visibility:
 BULLETTRAIN_DIR_SHOW=true
 BULLETTRAIN_DIR_BG=blue
 BULLETTRAIN_DIR_FG=white
+BULLETTRAIN_DIR_EXTENDED=true
 ```
 
-Git background, foreground color and visibility:
+Git background, foreground color, visibility and details:
 
 ```bash
 BULLETTRAIN_GIT_SHOW=true
 BULLETTRAIN_GIT_BG=white
 BULLETTRAIN_GIT_FG=black
+BULLETTRAIN_GIT_EXTENDED=true
 ```
 
 Git icons info:

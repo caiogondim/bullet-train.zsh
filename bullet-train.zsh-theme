@@ -40,10 +40,12 @@ BULLETTRAIN_RVM_PREFIX=♦️
 BULLETTRAIN_DIR_SHOW=true
 BULLETTRAIN_DIR_BG=blue
 BULLETTRAIN_DIR_FG=white
+BULLETTRAIN_DIR_EXTENDED=true
 
 BULLETTRAIN_GIT_SHOW=true
 BULLETTRAIN_GIT_BG=white
 BULLETTRAIN_GIT_FG=black
+BULLETTRAIN_GIT_EXTENDED=true
 
 BULLETTRAIN_CONTEXT_SHOW=true
 BULLETTRAIN_CONTEXT_BG=black
@@ -139,7 +141,7 @@ prompt_git() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
 
-    if [[ $BULLETTRAIN_GIT_STATUS == true ]] then
+    if [[ $BULLETTRAIN_GIT_EXTENDED == true ]] then
       echo -n $(git_prompt_info)$(git_prompt_status)
     else
       echo -n $(git_prompt_info)
@@ -187,7 +189,7 @@ prompt_dir() {
   if [[ $BULLETTRAIN_DIR_SHOW == false ]] then
     return
   fi
-  if [[ $BULLETTRAIN_DIR_EXTENDED != true ]] then
+  if [[ $BULLETTRAIN_DIR_EXTENDED == false ]] then
     prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%1~'
   else
     prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%4(c:...:)%3c'
