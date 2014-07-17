@@ -138,11 +138,12 @@ prompt_git() {
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
-	if [[ $BULLETTRAIN_GIT_STATUS == true ]] then
+
+    if [[ $BULLETTRAIN_GIT_STATUS == true ]] then
       echo -n $(git_prompt_info)$(git_prompt_status)
-	else
+    else
       echo -n $(git_prompt_info)
-	fi
+    fi
   fi
 }
 
