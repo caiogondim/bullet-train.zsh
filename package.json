@@ -1,6 +1,6 @@
 {
   "name": "bullet-train-oh-my-zsh-theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Powerline-like theme for oh-my-zsh",
   "main": "bullet-train.zsh-theme",
   "scripts": {
