@@ -137,6 +137,33 @@ BULLETTRAIN_GIT_UNMERGED="═"
 ```
 
 
+## Contributors
+
+That project was originally a fork from
+[Powerline](https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme), but
+most of the code was later erased and its now more closely related to
+[Agnoster](https://gist.github.com/agnoster/3712874). Below is a `git summary`
+of the project:
+
+```
+35  Caio Gondim             34.7%
+33  Jérémy Romey            32.7%
+ 6  Jérémy Romey             5.9%
+ 6  Jocelyn Mallon           5.9%
+ 5  Arthur Wang              5.0%
+ 4  Flavius Aspra            4.0%
+ 2  itsZero (Chien-An Cho)   2.0%
+ 2  wujtruj                  2.0%
+ 1  yachi                    1.0%
+ 1  Guillaume BINET          1.0%
+ 1  Kevin                    1.0%
+ 1  Marius Krämer            1.0%
+ 1  illuminatis              1.0%
+ 1  krischer                 1.0%
+ 1  m.kuehn                  1.0%
+ 1  Adrien Brault            1.0%
+```
+
 ## Credits
 
 This theme is highly inspired by the following themes:
