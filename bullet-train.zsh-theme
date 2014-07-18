@@ -269,11 +269,11 @@ prompt_status() {
 # Prompt Character
 prompt_char() {
   local bt_prompt_char
-  
+
   if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]] then
     bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
   fi
-  
+
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]] then
     bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char})"
   fi
