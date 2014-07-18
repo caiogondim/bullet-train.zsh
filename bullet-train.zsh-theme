@@ -15,6 +15,9 @@
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
+BULLETTRAIN_PROMPT_CHAR="\$"
+BULLETTRAIN_PROMPT_ROOT=true
+
 BULLETTRAIN_STATUS_BG=black
 BULLETTRAIN_STATUS_FG=default
 
@@ -263,20 +266,18 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
 }
 
-# Prompt Character:
-#   should we show a basic '$' char
-#   or colored (red/green) different
-#   chars for root/normal prompt?
+# Prompt Character
 prompt_char() {
   local bt_prompt_char
+  
   if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]] then
     bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
-  else
-    bt_prompt_char="\$"
   fi
+  
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]] then
     bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char})"
   fi
+
   echo -n $bt_prompt_char
 }
 
