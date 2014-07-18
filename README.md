@@ -54,7 +54,7 @@ ZSH_THEME="bullet-train"
 Bullet Train is configurable. You can change colors and which segments you want
 or don't want to see. All options must be overridden in your **.zshrc** file.
 
-The character used for prompt and if you be warned when running as root:
+The character used for prompt and if you want to be warned when running as root:
 
 ```bash
 BULLETTRAIN_PROMPT_CHAR="\$"
