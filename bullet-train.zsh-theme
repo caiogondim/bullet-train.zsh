@@ -244,7 +244,7 @@ prompt_time() {
     return
   fi
 
-  if [[ $BULLETTRAIN_TIME_BG == '' && $BULLETTRAIN_TIME_BG == '' ]] then
+  if [[ $BULLETTRAIN_TIME_BG == '' && $BULLETTRAIN_TIME_FG == '' ]] then
     prompt_standout_segment %D{%H:%M:%S}
   else
     prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
