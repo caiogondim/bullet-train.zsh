@@ -176,22 +176,23 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-40  Caio Gondim             37.4%
-33  Jérémy Romey            30.8%
-7   Jocelyn Mallon          6.5%
-6   Jérémy Romey            5.6%
-5   Arthur Wang             4.7%
-4   Flavius Aspra           3.7%
-2   itsZero (Chien-An Cho)  1.9%
-2   wujtruj                 1.9%
-1   yachi                   0.9%
-1   Guillaume BINET         0.9%
-1   Kevin                   0.9%
-1   Marius Krämer           0.9%
-1   illuminatis             0.9%
-1   krischer                0.9%
-1   m.kuehn                 0.9%
-1   Adrien Brault           0.9%
+44  Caio Gondim
+33  Jérémy Romey
+ 7  Jocelyn Mallon
+ 6  Jérémy Romey
+ 5  Arthur Wang
+ 4  Flavius Aspra
+ 2  itsZero (Chien-An Cho)
+ 2  wujtruj
+ 1  Adrien Brault
+ 1  yachi
+ 1  Guillaume BINET
+ 1  Joe Block
+ 1  Kevin
+ 1  Marius Krämer
+ 1  illuminatis
+ 1  krischer
+ 1  m.kuehn
 ```
 
 ## Credits
