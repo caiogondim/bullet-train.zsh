@@ -58,21 +58,25 @@ In order to use the theme, you will first need:
 ## Installing
 
 ### For oh-my-zsh users
+
 1. Download the theme [here](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme)
 
 2. Put the file **bullet-train.zsh-theme** in **~/.oh-my-zsh/themes/**
 
 3. Configure the theme in your **~/.zshrc** file:
+
 ```bash
 ZSH_THEME="bullet-train"
 ```
 
 ### For antigen users
-add
+
+Add the following snippet to your **.zshrc** somewhere after the line
+`antigen use oh-my-zsh`.
+
 ```bash
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 ```
-to your .zshrc somewhere after the line ```antigen use oh-my-zsh```
 
 
 ## Options
