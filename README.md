@@ -33,17 +33,21 @@ together.
 It's better to use Bullet Train with a dark background color scheme. Below you
 can check Bullet Train with some popular dark color schemes.
 
-### Dark Background (iTerm2 default)
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/dark-background.png)
-
-### Tango Dark (iTerm2 default)
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tango-dark.png)
-
 ### Solarized Dark
 
 ![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/solarized-dark.png)
+
+### Monokai
+
+![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/monokai.png)
+
+### Tomorrow Night Eighties
+
+![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tomorrow-night-eighties.png)
+
+### Tomorrow Night Bright
+
+![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tomorrow-night-bright.png)
 
 
 ## Requirements
