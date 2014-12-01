@@ -6,10 +6,9 @@ module.exports = function(grunt) {
   var config = {};
 
   config.lintspaces = {
-    all: {
+    rest: {
       src: [
         'Gruntfile.js',
-        'makefile',
         'bullet-train.zsh-theme',
         'README.md'
       ],
@@ -21,9 +20,20 @@ module.exports = function(grunt) {
         spaces: 2
       }
     },
+    makefile: {
+      src: [
+        'makefile'
+      ],
+      options: {
+        newline: true,
+        newlineMaximum: 2,
+        trailingspaces: true,
+        indentation: 'tabs'
+      }
+    },
   };
 
   grunt.initConfig(config);
 
-  grunt.registerTask("test", "lintspaces:all");
+  grunt.registerTask("test", "lintspaces:makefile", "lintspaces:rest");
 };
