@@ -188,23 +188,24 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-44  Caio Gondim
+58  Caio Gondim
 33  Jérémy Romey
-07  Jocelyn Mallon
-06  Jérémy Romey
-05  Arthur Wang
-04  Flavius Aspra
-02  itsZero (Chien-An Cho)
-02  wujtruj
-01  Adrien Brault
-01  yachi
-01  Guillaume BINET
-01  Joe Block
-01  Kevin
-01  Marius Krämer
-01  illuminatis
-01  krischer
-01  m.kuehn
+ 7  Jocelyn Mallon
+ 6  Jérémy Romey
+ 5  Arthur Wang
+ 4  Flavius Aspra
+ 3  Dan Kaplun
+ 2  itsZero (Chien-An Cho)
+ 2  wujtruj
+ 1  yachi
+ 1  Guillaume BINET
+ 1  Joe Block
+ 1  Kevin
+ 1  Marius Krämer
+ 1  illuminatis
+ 1  krischer
+ 1  m.kuehn
+ 1  Adrien Brault
 ```
 
 ## Credits
