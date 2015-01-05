@@ -208,23 +208,13 @@ prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $CURRENT_BG == 'standout' ]]; then
-    echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
-  elif [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
     echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
-}
-
-# Begins and ends an standout segment
-# A standout segment is one with the background and foreground colors inverted
-# Standout segment is only possible as the first segment
-prompt_standout_segment() {
-  CURRENT_BG="standout"
-  echo -n "%S "$1" %s"
 }
 
 # End the prompt, closing any open segments
@@ -369,11 +359,7 @@ prompt_time() {
     return
   fi
 
-  if [[ $BULLETTRAIN_TIME_BG == '' && $BULLETTRAIN_TIME_FG == '' ]] then
-    prompt_standout_segment %D{%H:%M:%S}
-  else
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
-  fi
+  prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
 }
 
 # Status:
