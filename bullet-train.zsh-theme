@@ -24,6 +24,9 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ROOT+1}" ]; then
 fi
 
 # STATUS
+if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
+  BULLETTRAIN_STATUS_SHOW=false
+fi
 if [ ! -n "${BULLETTRAIN_STATUS_BG+1}" ]; then
   BULLETTRAIN_STATUS_BG=black
 fi
@@ -36,10 +39,10 @@ if [ ! -n "${BULLETTRAIN_TIME_SHOW+1}" ]; then
   BULLETTRAIN_TIME_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_TIME_BG+1}" ]; then
-  BULLETTRAIN_TIME_BG=''
+  BULLETTRAIN_TIME_BG=white
 fi
 if [ ! -n "${BULLETTRAIN_TIME_FG+1}" ]; then
-  BULLETTRAIN_TIME_FG=''
+  BULLETTRAIN_TIME_FG=black
 fi
 
 # VIRTUALENV
@@ -378,6 +381,10 @@ prompt_time() {
 # - am I root
 # - are there background jobs?
 prompt_status() {
+  if [[ $BULLETTRAIN_STATUS_SHOW == false ]] then
+    return
+  fi
+
   local symbols
   symbols=()
   [[ $RETVAL -ne 0 && $BULLETTRAIN_EXIT_SHOW != true ]] && symbols+="%{%F{red}%}✘ "
@@ -410,7 +417,7 @@ prompt_char() {
 
 build_prompt() {
   RETVAL=$?
-  # prompt_status
+  prompt_status
   prompt_time
   prompt_rvm
   prompt_virtualenv
