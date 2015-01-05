@@ -114,7 +114,7 @@ fi
 
 # CONTEXT
 if [ ! -n "${BULLETTRAIN_CONTEXT_SHOW+1}" ]; then
-  BULLETTRAIN_CONTEXT_SHOW=true
+  BULLETTRAIN_CONTEXT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_BG+1}" ]; then
   BULLETTRAIN_CONTEXT_BG=black
@@ -415,7 +415,7 @@ build_prompt() {
   prompt_rvm
   prompt_virtualenv
   prompt_nvm
-  # prompt_context
+  prompt_context
   prompt_dir
   prompt_git
   # prompt_hg
