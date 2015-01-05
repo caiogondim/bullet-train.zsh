@@ -95,12 +95,15 @@ BULLETTRAIN_PROMPT_CHAR="\$"
 BULLETTRAIN_PROMPT_ROOT=true
 ```
 
-The status segment backgound, foreground color and visibility:
+The status segment background. Shows if the last command exited with error, and
+if there is jobs on background running:
 
 ```bash
 BULLETTRAIN_STATUS_SHOW=true
-BULLETTRAIN_STATUS_BG=black
-BULLETTRAIN_STATUS_FG=default
+BULLETTRAIN_EXIT_SHOW=false
+BULLETTRAIN_STATUS_BG=green
+BULLETTRAIN_STATUS_ERROR_BG=red
+BULLETTRAIN_STATUS_FG=black
 ```
 
 The time segment background, foreground color and visibility:

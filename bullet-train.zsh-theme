@@ -25,13 +25,19 @@ fi
 
 # STATUS
 if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
-  BULLETTRAIN_STATUS_SHOW=false
+  BULLETTRAIN_STATUS_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_EXIT_SHOW+1}" ]; then
+  BULLETTRAIN_EXIT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_BG+1}" ]; then
-  BULLETTRAIN_STATUS_BG=black
+  BULLETTRAIN_STATUS_BG=green
+fi
+if [ ! -n "${BULLETTRAIN_STATUS_ERROR_BG+1}" ]; then
+  BULLETTRAIN_STATUS_ERROR_BG=red
 fi
 if [ ! -n "${BULLETTRAIN_STATUS_FG+1}" ]; then
-  BULLETTRAIN_STATUS_FG=default
+  BULLETTRAIN_STATUS_FG=black
 fi
 
 # TIME
@@ -373,12 +379,17 @@ prompt_status() {
 
   local symbols
   symbols=()
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_EXIT_SHOW != true ]] && symbols+="%{%F{red}%}✘ "
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_EXIT_SHOW == true ]] && symbols+="%{%F{red}%}✘ $RETVAL"
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_EXIT_SHOW != true ]] && symbols+="✘"
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_EXIT_SHOW == true ]] && symbols+="✘ $RETVAL"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
+  if [[ -n "$symbols" && $RETVAL -ne 0 ]] then
+    prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_FG "$symbols"
+  elif [[ -n "$symbols" ]] then
+    prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
+  fi
+
 }
 
 # Prompt Character
@@ -403,8 +414,8 @@ prompt_char() {
 
 build_prompt() {
   RETVAL=$?
-  prompt_status
   prompt_time
+  prompt_status
   prompt_rvm
   prompt_virtualenv
   prompt_nvm
