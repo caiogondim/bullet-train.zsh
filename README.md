@@ -114,6 +114,23 @@ BULLETTRAIN_TIME_BG=''
 BULLETTRAIN_TIME_FG=''
 ```
 
+### Context
+
+Shows username and machine name when in some different value than default. To
+set the default user use the `BULLETTRAIN_CONTEXT_DEFAULT_USER` variable. To
+show the context segment in when ssh'ing, set the `BULLETTRAIN_IS_SSH_CLIENT` in
+the remote machine.
+
+Default values:
+
+```bash
+BULLETTRAIN_CONTEXT_SHOW=false
+BULLETTRAIN_CONTEXT_BG=black
+BULLETTRAIN_CONTEXT_FG=default
+# BULLETTRAIN_CONTEXT_DEFAULT_USER
+# BULLETTRAIN_IS_SSH_CLIENT
+```
+
 Python virtualenv background, foreground color, visibility and the symbol used
 for the segment:
 
