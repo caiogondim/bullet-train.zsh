@@ -88,12 +88,16 @@ antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-
 Bullet Train is configurable. You can change colors and which segments you want
 or don't want to see. All options must be overridden in your **.zshrc** file.
 
+### Prompt
+
 The character used for prompt and if you want to be warned when running as root:
 
 ```bash
 BULLETTRAIN_PROMPT_CHAR="\$"
 BULLETTRAIN_PROMPT_ROOT=true
 ```
+
+### Status
 
 The status segment background. Shows if the last command exited with error, and
 if there is jobs on background running:
@@ -105,6 +109,8 @@ BULLETTRAIN_STATUS_BG=green
 BULLETTRAIN_STATUS_ERROR_BG=red
 BULLETTRAIN_STATUS_FG=black
 ```
+
+### Time
 
 The time segment background, foreground color and visibility:
 
@@ -131,6 +137,8 @@ BULLETTRAIN_CONTEXT_FG=default
 # BULLETTRAIN_IS_SSH_CLIENT
 ```
 
+### Python virtualenv
+
 Python virtualenv background, foreground color, visibility and the symbol used
 for the segment:
 
@@ -141,6 +149,8 @@ BULLETTRAIN_VIRTUALENV_FG=white
 BULLETTRAIN_VIRTUALENV_PREFIX=🐍
 ```
 
+### node.js nvm
+
 Node.js background, foreground color, visibility and prefix for the segment:
 
 ```bash
@@ -149,6 +159,8 @@ BULLETTRAIN_NVM_BG=green
 BULLETTRAIN_NVM_FG=white
 BULLETTRAIN_NVM_PREFIX="⬡ "
 ```
+
+### Ruby RVM
 
 RMV backgound and foreground color, visibility and symbol used for the segment:
 
@@ -159,6 +171,8 @@ BULLETTRAIN_RVM_FG=white
 BULLETTRAIN_RVM_PREFIX=♦️
 ```
 
+### Dir
+
 Current directory background, foreground color and visibility:
 
 ```bash
@@ -167,6 +181,8 @@ BULLETTRAIN_DIR_BG=blue
 BULLETTRAIN_DIR_FG=white
 BULLETTRAIN_DIR_EXTENDED=true
 ```
+
+### Git
 
 Git background, foreground color, visibility and details:
 
