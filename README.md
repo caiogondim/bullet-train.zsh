@@ -153,8 +153,10 @@ BULLETTRAIN_VIRTUALENV_PREFIX=🐍
 
 Node.js background, foreground color, visibility and prefix for the segment:
 
+Default values:
+
 ```bash
-BULLETTRAIN_NVM_SHOW=true
+BULLETTRAIN_NVM_SHOW=false
 BULLETTRAIN_NVM_BG=green
 BULLETTRAIN_NVM_FG=white
 BULLETTRAIN_NVM_PREFIX="⬡ "
