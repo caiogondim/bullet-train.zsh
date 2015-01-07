@@ -223,13 +223,13 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-58  Caio Gondim
+65  Caio Gondim
 33  Jérémy Romey
 7  Jocelyn Mallon
 6  Jérémy Romey
 5  Arthur Wang
 4  Flavius Aspra
-3  Dan Kaplun
+4  Dan Kaplun
 2  itsZero (Chien-An Cho)
 2  wujtruj
 1  yachi
