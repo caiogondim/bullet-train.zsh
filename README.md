@@ -90,12 +90,10 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 
 ### Prompt
 
-The character used for prompt and if you want to be warned when running as root:
-
-```bash
-BULLETTRAIN_PROMPT_CHAR="\$"
-BULLETTRAIN_PROMPT_ROOT=true
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_PROMPT_CHAR`|`\$`|Character to be show before any command
+|`BULLETTRAIN_PROMPT_ROOT`|`true`|Highlight if running as root
 
 ### Status
 
