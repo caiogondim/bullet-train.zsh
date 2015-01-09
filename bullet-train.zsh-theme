@@ -103,6 +103,9 @@ fi
 if [ ! -n "${BULLETTRAIN_DIR_FG+1}" ]; then
   BULLETTRAIN_DIR_FG=white
 fi
+if [ ! -n "${BULLETTRAIN_DIR_CONTEXT_SHOW+1}" ]; then
+  BULLETTRAIN_DIR_CONTEXT_SHOW=false
+fi
 if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
   BULLETTRAIN_DIR_EXTENDED=true
 fi
@@ -241,16 +244,15 @@ prompt_end() {
 # ------------------------------------------------------------------------------
 
 # Context: user@hostname (who am I and where am I)
+context() {
+  local user="$(whoami)"
+  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@%m"
+}
 prompt_context() {
-  if [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] then
-    return
-  fi
+  [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] && return
 
-  local user=$(whoami)
-
-  if [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]]; then
-    prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$user@%m"
-  fi
+  local _context="$(context)"
+  [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
 
 # Git
@@ -313,11 +315,12 @@ prompt_dir() {
   if [[ $BULLETTRAIN_DIR_SHOW == false ]] then
     return
   fi
-  if [[ $BULLETTRAIN_DIR_EXTENDED == false ]] then
-    prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%1~'
-  else
-    prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG '%4(c:...:)%3c'
-  fi
+
+  local dir=''
+  local _context="$(context)"
+  [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
+  [[ $BULLETTRAIN_DIR_EXTENDED == true ]] && dir="${dir}%4(c:...:)%3c" || dir="${dir}%1~"
+  prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
 
 # RVM: only shows RVM info if on a gemset that is not the default one
