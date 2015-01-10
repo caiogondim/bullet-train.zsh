@@ -97,119 +97,89 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 
 ### Status
 
-The status segment background. Shows if the last command exited with error, and
-if there is jobs on background running:
-
-```bash
-BULLETTRAIN_STATUS_SHOW=true
-BULLETTRAIN_STATUS_EXIT_SHOW=false
-BULLETTRAIN_STATUS_BG=green
-BULLETTRAIN_STATUS_ERROR_BG=red
-BULLETTRAIN_STATUS_FG=black
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_STATUS_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_STATUS_EXIT_SHOW`|`false`|Show/hide exit code of last command
+|`BULLETTRAIN_STATUS_BG`|`green`|Background color
+|`BULLETTRAIN_STATUS_ERROR_BG`|`red`|Background color of segment when last command exited with an error
+|`BULLETTRAIN_STATUS_FG`|`black`|Foreground color
 
 ### Time
 
-The time segment background, foreground color and visibility:
-
-```bash
-BULLETTRAIN_TIME_SHOW=true
-BULLETTRAIN_TIME_BG=''
-BULLETTRAIN_TIME_FG=''
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_TIME_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_TIME_BG`|`''`|Background color
+|`BULLETTRAIN_TIME_FG`|`''`|Foreground color
 
 ### Context
 
-Shows username and machine name when in some different value than default. To
-set the default user use the `BULLETTRAIN_CONTEXT_DEFAULT_USER` variable. To
-show the context segment in when ssh'ing, set the `BULLETTRAIN_IS_SSH_CLIENT` in
-the remote machine.
-
-Default values:
-
-```bash
-BULLETTRAIN_CONTEXT_SHOW=false
-BULLETTRAIN_CONTEXT_BG=black
-BULLETTRAIN_CONTEXT_FG=default
-# BULLETTRAIN_CONTEXT_DEFAULT_USER
-# BULLETTRAIN_IS_SSH_CLIENT
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_CONTEXT_SHOW`|`false`|Show/hide that segment
+|`BULLETTRAIN_CONTEXT_BG`|`black`|Background color
+|`BULLETTRAIN_CONTEXT_FG`|`default`|Foreground color
+|`BULLETTRAIN_CONTEXT_DEFAULT_USER`|none|Default user. If you are running with other user other than default, the segment will be showed.
+|`BULLETTRAIN_IS_SSH_CLIENT`|none|If `true`, the segment will be showed.
 
 ### Python virtualenv
 
-Python virtualenv background, foreground color, visibility and the symbol used
-for the segment:
-
-```bash
-BULLETTRAIN_VIRTUALENV_SHOW=true
-BULLETTRAIN_VIRTUALENV_BG=yellow
-BULLETTRAIN_VIRTUALENV_FG=white
-BULLETTRAIN_VIRTUALENV_PREFIX=🐍
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_VIRTUALENV_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_VIRTUALENV_BG`|`yellow`|Background color
+|`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
+|`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
 
 ### node.js nvm
 
-Node.js background, foreground color, visibility and prefix for the segment:
-
-Default values:
-
-```bash
-BULLETTRAIN_NVM_SHOW=false
-BULLETTRAIN_NVM_BG=green
-BULLETTRAIN_NVM_FG=white
-BULLETTRAIN_NVM_PREFIX="⬡ "
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_NVM_SHOW`|`false`|Show/hide that segment
+|`BULLETTRAIN_NVM_BG`|`green`|Background color
+|`BULLETTRAIN_NVM_FG`|`white`|Foreground color
+|`BULLETTRAIN_NVM_PREFIX`|`"⬡ "`|Prefix of the segment
 
 ### Ruby RVM
 
-RMV backgound and foreground color, visibility and symbol used for the segment:
-
-```bash
-BULLETTRAIN_RVM_SHOW=true
-BULLETTRAIN_RVM_BG=magenta
-BULLETTRAIN_RVM_FG=white
-BULLETTRAIN_RVM_PREFIX=♦️
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_RVM_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_RVM_BG`|`magenta`|Background color
+|`BULLETTRAIN_RVM_FG`|`white`|Foreground color
+|`BULLETTRAIN_RVM_PREFIX`|`"♦"️`|Prefix of the segment
 
 ### Dir
 
-Current directory background, foreground color and visibility:
-
-```bash
-BULLETTRAIN_DIR_SHOW=true
-BULLETTRAIN_DIR_BG=blue
-BULLETTRAIN_DIR_FG=white
-BULLETTRAIN_DIR_EXTENDED=true
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_DIR_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_DIR_BG`|`blue`|Background color
+|`BULLETTRAIN_DIR_FG`|`white`|Foreground color
+|`BULLETTRAIN_DIR_EXTENDED`|`true`|Show user and machine in an SCP formatted style.
 
 ### Git
 
-Git background, foreground color, visibility and details:
-
-```bash
-BULLETTRAIN_GIT_SHOW=true
-BULLETTRAIN_GIT_BG=white
-BULLETTRAIN_GIT_FG=black
-BULLETTRAIN_GIT_EXTENDED=true
-```
-
-Git icons info:
-
-```bash
-BULLETTRAIN_GIT_PREFIX=""
-BULLETTRAIN_GIT_SUFFIX=""
-BULLETTRAIN_GIT_DIRTY="✘"
-BULLETTRAIN_GIT_CLEAN="✔"
-BULLETTRAIN_GIT_ADDED="%F{green}✚%F{black}"
-BULLETTRAIN_GIT_MODIFIED="%F{blue}✹%F{black}"
-BULLETTRAIN_GIT_DELETED="%F{red}✖%F{black}"
-BULLETTRAIN_GIT_UNTRACKED="%F{yellow}✭%F{black}"
-BULLETTRAIN_GIT_RENAMED="➜"
-BULLETTRAIN_GIT_UNMERGED="═"
-BULLETTRAIN_GIT_AHEAD=" ⬆"
-BULLETTRAIN_GIT_BEHIND=" ⬇"
-BULLETTRAIN_GIT_DIVERGED=" ⬍"
-```
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_GIT_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_GIT_BG`|`white`|Background color
+|`BULLETTRAIN_GIT_FG`|`black`|Foreground color
+|`BULLETTRAIN_GIT_EXTENDED`|`true`| 
+|`BULLETTRAIN_GIT_PREFIX`|`""`|Prefix
+|`BULLETTRAIN_GIT_SUFFIX`|`""`|Suffix
+|`BULLETTRAIN_GIT_DIRTY`|`"✘"`|Icon for dirty state
+|`BULLETTRAIN_GIT_CLEAN`|`"✔"`|Icon for clean state
+|`BULLETTRAIN_GIT_ADDED`|`"%F{green}✚%F{black}"`|Icon for added files on stage
+|`BULLETTRAIN_GIT_MODIFIED`|`"%F{blue}✹%F{black}"`|Icon for modified files
+|`BULLETTRAIN_GIT_DELETED`|`"%F{red}✖%F{black}"`|Icon for delete files on stage
+|`BULLETTRAIN_GIT_UNTRACKED`|`"%F{yellow}✭%F{black}"`|Icon for untracked files
+|`BULLETTRAIN_GIT_RENAMED`|`"➜"`|Icon for renamed
+|`BULLETTRAIN_GIT_UNMERGED`|`"═"`|Icon for unmerged state
+|`BULLETTRAIN_GIT_AHEAD`|`" ⬆"`|Icon for ahead state from remote
+|`BULLETTRAIN_GIT_BEHIND`|`" ⬇"`|Icon for behind state from remote
+|`BULLETTRAIN_GIT_DIVERGED`|`" ⬍"`|Icon for diverged state from remote
 
 
 ## Contributors
