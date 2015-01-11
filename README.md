@@ -191,15 +191,15 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-65  Caio Gondim
+71  Caio Gondim
 33  Jérémy Romey
 7  Jocelyn Mallon
 6  Jérémy Romey
+6  Dan Kaplun
 5  Arthur Wang
 4  Flavius Aspra
-4  Dan Kaplun
-2  itsZero (Chien-An Cho)
 2  wujtruj
+2  itsZero (Chien-An Cho)
 1  yachi
 1  Guillaume BINET
 1  Joe Block
