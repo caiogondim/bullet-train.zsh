@@ -166,7 +166,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_GIT_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_GIT_BG`|`white`|Background color
 |`BULLETTRAIN_GIT_FG`|`black`|Foreground color
-|`BULLETTRAIN_GIT_EXTENDED`|`true`| 
+|`BULLETTRAIN_GIT_EXTENDED`|`true`|
 |`BULLETTRAIN_GIT_PREFIX`|`""`|Prefix
 |`BULLETTRAIN_GIT_SUFFIX`|`""`|Suffix
 |`BULLETTRAIN_GIT_DIRTY`|`"✘"`|Icon for dirty state
