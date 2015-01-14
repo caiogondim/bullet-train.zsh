@@ -18,6 +18,8 @@ It currently shows:
 - Git status
 - Timestamp
 - Current directory
+- Background jobs
+- Exit code of last command
 
 If you want add some new feature, of fix some bug, open an issue and lets hack
 together.
