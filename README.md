@@ -85,6 +85,13 @@ Add the following snippet to your **.zshrc** somewhere after the line
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 ```
 
+### For Zgen users
+
+If you're using [zgen](https://github.com/tarjoilija/zgen), add the following line to your **~/.zshrc** where you're adding your other zsh plugins.
+
+```bash
+zgen load caiogondim/bullet-train-oh-my-zsh-theme
+```
 
 ## Options
 
