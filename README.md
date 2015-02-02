@@ -59,6 +59,7 @@ In order to use the theme, you will first need:
 * [Vim Powerline patched](https://github.com/Lokaltog/powerline-fonts)
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 * Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`
+* For [iTerm 2](http://iterm2.com/) users, make sure you go into your settings and set both the regular font and the non-ascii font to powerline fonts or the prompt separators and special characters will not display correctly.
 
 
 ## Installing
@@ -84,6 +85,13 @@ Add the following snippet to your **.zshrc** somewhere after the line
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 ```
 
+### For Zgen users
+
+If you're using [zgen](https://github.com/tarjoilija/zgen), add the following line to your **~/.zshrc** where you're adding your other zsh plugins.
+
+```bash
+zgen load caiogondim/bullet-train-oh-my-zsh-theme
+```
 
 ## Options
 
