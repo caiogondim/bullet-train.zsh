@@ -404,7 +404,7 @@ prompt_char() {
   fi
 
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]] then
-    bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char})"
+    bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
   fi
 
   echo -n $bt_prompt_char
