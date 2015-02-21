@@ -84,9 +84,7 @@ ZSH_THEME="bullet-train"
 
 2. Download via cURL the theme
 
-```bash
-curl -O 'https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme'
-```
+		curl -O 'https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme'
 
 3. Configure the theme in your **~/.zshrc** file:
 
