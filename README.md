@@ -66,6 +66,8 @@ In order to use the theme, you will first need:
 
 ### For oh-my-zsh users
 
+##### Manually
+
 1. Download the theme [here](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme)
 
 2. Put the file **bullet-train.zsh-theme** in **~/.oh-my-zsh/themes/**
@@ -75,6 +77,23 @@ In order to use the theme, you will first need:
 ```bash
 ZSH_THEME="bullet-train"
 ```
+
+##### Via cURL
+
+1. Go to Oh My Zsh themes `cd ~/.oh-my-zsh/themes/`
+
+2. Download via cURL the theme
+
+```bash
+curl -O 'https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme'
+```
+
+3. Configure the theme in your **~/.zshrc** file:
+
+```bash
+ZSH_THEME="bullet-train"
+```
+
 
 ### For antigen users
 
