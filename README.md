@@ -80,17 +80,17 @@ ZSH_THEME="bullet-train"
 
 ##### Via cURL
 
-1. Go to Oh My Zsh themes `cd ~/.oh-my-zsh/themes/`
+1. Go to oh-my-zsh themes folder:
 
-2. Download via cURL the theme
+		cd ~/.oh-my-zsh/themes/
 
-		curl -O 'https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme'
+2. Download the theme via cURL:
+
+		curl -O 'https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme'```
 
 3. Configure the theme in your **~/.zshrc** file:
 
-```bash
-ZSH_THEME="bullet-train"
-```
+		ZSH_THEME="bullet-train"
 
 
 ### For antigen users
