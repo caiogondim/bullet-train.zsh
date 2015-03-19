@@ -59,7 +59,7 @@ In order to use the theme, you will first need:
 * [Vim Powerline patched](https://github.com/Lokaltog/powerline-fonts)
 * [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 * Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`
-* For [iTerm 2](http://iterm2.com/) users, make sure you go into your settings and set both the regular font and the non-ascii font to powerline fonts or the prompt separators and special characters will not display correctly.
+* For [iTerm 2](http://iterm2.com/) users, make sure you go into your settings and set both the regular font and the non-ascii font to [powerline fonts](https://github.com/powerline/fonts) or the prompt separators and special characters will not display correctly.
 
 
 ## Installing
