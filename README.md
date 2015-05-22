@@ -203,27 +203,27 @@ of the project:
 ```
 82  Caio Gondim
 33  Jérémy Romey
- 7  Jocelyn Mallon
- 6  Jérémy Romey
- 6  Dan Kaplun
- 5  Arthur Wang
- 4  Flavius Aspra
- 4  Joe Block
- 2  wujtruj
- 2  itsZero (Chien-An Cho)
- 1  m.kuehn
- 1  Adrien Brault
- 1  yachi
- 1  Guillaume BINET
- 1  Hannes Frank
- 1  Kevin
- 1  Mario Zigliotto
- 1  Marius Krämer
- 1  Michael Robinson
- 1  gvillalta99
- 1  illuminatis
- 1  krischer
- ```
+07  Jocelyn Mallon
+06  Jérémy Romey
+06  Dan Kaplun
+05  Arthur Wang
+04  Flavius Aspra
+04  Joe Block
+02  wujtruj
+02  itsZero (Chien-An Cho)
+01  m.kuehn
+01  Adrien Brault
+01  yachi
+01  Guillaume BINET
+01  Hannes Frank
+01  Kevin
+01  Mario Zigliotto
+01  Marius Krämer
+01  Michael Robinson
+01  gvillalta99
+01  illuminatis
+01  krischer
+```
 
 ## Credits
 
