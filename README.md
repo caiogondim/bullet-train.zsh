@@ -201,26 +201,29 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-77  Caio Gondim
+82  Caio Gondim
 33  Jérémy Romey
-7   Jocelyn Mallon
-6   Jérémy Romey
-6   Dan Kaplun
-5   Arthur Wang
-4   Flavius Aspra
-3   Joe Block
-2   wujtruj
-2   itsZero (Chien-An Cho)
-1   yachi
-1   Guillaume BINET
-1   Hannes Frank
-1   Kevin
-1   Marius Krämer
-1   illuminatis
-1   krischer
-1   m.kuehn
-1   Adrien Brault
-```
+ 7  Jocelyn Mallon
+ 6  Jérémy Romey
+ 6  Dan Kaplun
+ 5  Arthur Wang
+ 4  Flavius Aspra
+ 4  Joe Block
+ 2  wujtruj
+ 2  itsZero (Chien-An Cho)
+ 1  m.kuehn
+ 1  Adrien Brault
+ 1  yachi
+ 1  Guillaume BINET
+ 1  Hannes Frank
+ 1  Kevin
+ 1  Mario Zigliotto
+ 1  Marius Krämer
+ 1  Michael Robinson
+ 1  gvillalta99
+ 1  illuminatis
+ 1  krischer
+ ```
 
 ## Credits
 
