@@ -355,7 +355,8 @@ prompt_nvm() {
     return
   fi
 
-  [[ $(type nvm >/dev/null 2>&1) || $(which nvm >/dev/null 2>&1) ]] || return
+  $(type nvm >/dev/null 2>&1) || return
+
   local nvm_prompt
   nvm_prompt=$(node -v 2>/dev/null)
   [[ "${nvm_prompt}x" == "x" ]] && return
