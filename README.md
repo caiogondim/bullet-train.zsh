@@ -24,6 +24,7 @@ It currently shows:
 If you want add some new feature, of fix some bug, open an issue and lets hack
 together.
 
+For a tmux theme to work with it, i suggest [Maglev](https://github.com/caiogondim/maglev).
 
 ## Preview
 
