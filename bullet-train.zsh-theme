@@ -369,7 +369,7 @@ prompt_time() {
     return
   fi
 
-  prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%H:%M:%S}
+  prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG '%D{%H:%M:%S}'
 }
 
 # Status:
