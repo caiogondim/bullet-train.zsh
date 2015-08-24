@@ -168,7 +168,8 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_DIR_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_DIR_BG`|`blue`|Background color
 |`BULLETTRAIN_DIR_FG`|`white`|Foreground color
-|`BULLETTRAIN_DIR_EXTENDED`|`true`|Show user and machine in an SCP formatted style.
+|`BULLETTRAIN_DIR_CONTEXT_SHOW`|`false`|Show user and machine in an SCP formatted style
+|`BULLETTRAIN_DIR_EXTENDED`|`true`|Extended path
 
 ### Git
 
