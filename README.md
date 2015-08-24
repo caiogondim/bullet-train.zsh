@@ -159,7 +159,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_RVM_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_RVM_BG`|`magenta`|Background color
 |`BULLETTRAIN_RVM_FG`|`white`|Foreground color
-|`BULLETTRAIN_RVM_PREFIX`|`"♦"️`|Prefix of the segment
+|`BULLETTRAIN_RVM_PREFIX`|`"♦"`|Prefix of the segment
 
 ### Dir
 
