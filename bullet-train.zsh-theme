@@ -109,6 +109,9 @@ fi
 if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
   BULLETTRAIN_DIR_EXTENDED=true
 fi
+if [ ! -n "${BULLETTRAIN_DIR_DONTSHORTEN+1}" ]; then
+  BULLETTRAIN_DIR_DONTSHORTEN=false
+fi
 
 # GIT
 if [ ! -n "${BULLETTRAIN_GIT_SHOW+1}" ]; then
@@ -319,7 +322,17 @@ prompt_dir() {
   local dir=''
   local _context="$(context)"
   [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
-  [[ $BULLETTRAIN_DIR_EXTENDED == true ]] && dir="${dir}%4(c:...:)%3c" || dir="${dir}%1~"
+
+  if [[ $BULLETTRAIN_DIR_EXTENDED == true ]] then
+    if [[ $BULLETTRAIN_DIR_DONTSHORTEN == true ]] then
+      dir="${dir}%0~"
+    else
+      dir="${dir}%4(c:...:)%3c"
+    fi
+  else
+    dir="${dir}%1~"
+  fi
+
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
 
