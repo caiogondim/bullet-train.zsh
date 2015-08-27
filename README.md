@@ -121,6 +121,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |Variable|Default|Meaning
 |--------|-------|-------|
 |`BULLETTRAIN_TIME_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_TIME_12HR`|`false`|Format time using 12-hour clock (am/pm)
 |`BULLETTRAIN_TIME_BG`|`''`|Background color
 |`BULLETTRAIN_TIME_FG`|`''`|Foreground color
 
