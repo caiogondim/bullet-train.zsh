@@ -27,9 +27,9 @@ fi
 if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
   BULLETTRAIN_STATUS_SHOW=true
 fi
-if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SHOW+1}" ]; then
-  BULLETTRAIN_STATUS_EXIT_SHOW=false
-fi
+  if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SHOW+1}" ]; then
+    BULLETTRAIN_STATUS_EXIT_SHOW=false
+  fi
 if [ ! -n "${BULLETTRAIN_STATUS_BG+1}" ]; then
   BULLETTRAIN_STATUS_BG=green
 fi
@@ -107,10 +107,7 @@ if [ ! -n "${BULLETTRAIN_DIR_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_DIR_CONTEXT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
-  BULLETTRAIN_DIR_EXTENDED=true
-fi
-if [ ! -n "${BULLETTRAIN_DIR_DONTSHORTEN+1}" ]; then
-  BULLETTRAIN_DIR_DONTSHORTEN=false
+  BULLETTRAIN_DIR_EXTENDED=1
 fi
 
 # GIT
@@ -323,14 +320,15 @@ prompt_dir() {
   local _context="$(context)"
   [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
 
-  if [[ $BULLETTRAIN_DIR_EXTENDED == true ]] then
-    if [[ $BULLETTRAIN_DIR_DONTSHORTEN == true ]] then
-      dir="${dir}%0~"
-    else
-      dir="${dir}%4(c:...:)%3c"
-    fi
-  else
+  if [[ $BULLETTRAIN_DIR_EXTENDED == 0 ]]; then
+    #short directories
     dir="${dir}%1~"
+  elif [[ $BULLETTRAIN_DIR_EXTENDED == 2 ]]; then
+    #long directories
+    dir="${dir}%0~"
+  else
+    #medium directories (default case)
+    dir="${dir}%4(c:...:)%3c"
   fi
 
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
