@@ -107,7 +107,7 @@ if [ ! -n "${BULLETTRAIN_DIR_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_DIR_CONTEXT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
-  BULLETTRAIN_DIR_EXTENDED=true
+  BULLETTRAIN_DIR_EXTENDED=1
 fi
 
 # GIT
@@ -319,7 +319,18 @@ prompt_dir() {
   local dir=''
   local _context="$(context)"
   [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
-  [[ $BULLETTRAIN_DIR_EXTENDED == true ]] && dir="${dir}%4(c:...:)%3c" || dir="${dir}%1~"
+
+  if [[ $BULLETTRAIN_DIR_EXTENDED == 0 ]]; then
+    #short directories
+    dir="${dir}%1~"
+  elif [[ $BULLETTRAIN_DIR_EXTENDED == 2 ]]; then
+    #long directories
+    dir="${dir}%0~"
+  else
+    #medium directories (default case)
+    dir="${dir}%4(c:...:)%3c"
+  fi
+
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
 
