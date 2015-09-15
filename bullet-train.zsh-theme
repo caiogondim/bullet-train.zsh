@@ -345,6 +345,8 @@ prompt_rvm() {
     then
       prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  $(rvm-prompt i v g)"
     fi
+  elif which rbenv &> /dev/null; then
+    prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
