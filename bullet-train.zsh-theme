@@ -93,6 +93,21 @@ if [ ! -n "${BULLETTRAIN_RVM_PREFIX+1}" ]; then
   BULLETTRAIN_RVM_PREFIX=♦️
 fi
 
+# RBENV
+
+if [ ! -n "${BULLETTRAIN_RBENV_SHOW+1}" ]; then
+  BULLETTRAIN_RBENV_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_RBENV_BG+1}" ]; then
+  BULLETTRAIN_RBENV_BG=magenta
+fi
+if [ ! -n "${BULLETTRAIN_RBENV_FG+1}" ]; then
+  BULLETTRAIN_RBENV_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_RBENV_PREFIX+1}" ]; then
+  BULLETTRAIN_RBENV_PREFIX=💎
+fi
+
 # DIR
 if [ ! -n "${BULLETTRAIN_DIR_SHOW+1}" ]; then
   BULLETTRAIN_DIR_SHOW=true
@@ -348,6 +363,18 @@ prompt_rvm() {
   fi
 }
 
+# Rbenv: current working rbenv if there is a .ruby-version from rbenv local
+prompt_rbenv() {
+  if [[ $BULLETTRAIN_RBENV_SHOW == false ]] then
+    return
+  fi
+
+  local rbenv_path="$RBENV"
+  if [[ -e .ruby-version ]]; then
+    prompt_segment $BULLETTRAIN_RBENV_BG $BULLETTRAIN_RBENV_FG $BULLETTRAIN_RBENV_PREFIX"  $(cat .ruby-version)"
+  fi
+}
+
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]] then
@@ -438,6 +465,7 @@ build_prompt() {
   prompt_rvm
   prompt_virtualenv
   prompt_nvm
+  prompt_rbenv
   prompt_context
   prompt_dir
   prompt_git
