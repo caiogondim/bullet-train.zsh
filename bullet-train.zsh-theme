@@ -79,18 +79,18 @@ if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
   BULLETTRAIN_NVM_PREFIX="⬡ "
 fi
 
-# RMV
-if [ ! -n "${BULLETTRAIN_RVM_SHOW+1}" ]; then
-  BULLETTRAIN_RVM_SHOW=true
+# RUBY
+if [ ! -n "${BULLETTRAIN_RUBY_SHOW+1}" ]; then
+  BULLETTRAIN_RUBY_SHOW=true
 fi
-if [ ! -n "${BULLETTRAIN_RVM_BG+1}" ]; then
-  BULLETTRAIN_RVM_BG=magenta
+if [ ! -n "${BULLETTRAIN_RUBY_BG+1}" ]; then
+  BULLETTRAIN_RUBY_BG=magenta
 fi
-if [ ! -n "${BULLETTRAIN_RVM_FG+1}" ]; then
-  BULLETTRAIN_RVM_FG=white
+if [ ! -n "${BULLETTRAIN_RUBY_FG+1}" ]; then
+  BULLETTRAIN_RUBY_FG=white
 fi
-if [ ! -n "${BULLETTRAIN_RVM_PREFIX+1}" ]; then
-  BULLETTRAIN_RVM_PREFIX=♦️
+if [ ! -n "${BULLETTRAIN_RUBY_PREFIX+1}" ]; then
+  BULLETTRAIN_RUBY_PREFIX=♦️
 fi
 
 # DIR
@@ -334,19 +334,21 @@ prompt_dir() {
   prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG $dir
 }
 
-# RVM: only shows RVM info if on a gemset that is not the default one
-prompt_rvm() {
-  if [[ $BULLETTRAIN_RVM_SHOW == false ]] then
+# RUBY
+# RVM: only shows RUBY info if on a gemset that is not the default one
+# RBENV: shows current ruby version active in the shell
+prompt_ruby() {
+  if [[ $BULLETTRAIN_RUBY_SHOW == false ]] then
     return
   fi
 
   if which rvm-prompt &> /dev/null; then
     if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
     then
-      prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  $(rvm-prompt i v g)"
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
     fi
   elif which rbenv &> /dev/null; then
-    prompt_segment $BULLETTRAIN_RVM_BG $BULLETTRAIN_RVM_FG $BULLETTRAIN_RVM_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
+    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
@@ -437,7 +439,7 @@ build_prompt() {
   RETVAL=$?
   prompt_time
   prompt_status
-  prompt_rvm
+  prompt_ruby
   prompt_virtualenv
   prompt_nvm
   prompt_context
