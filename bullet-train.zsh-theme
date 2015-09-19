@@ -337,6 +337,7 @@ prompt_dir() {
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell
+# CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
   if [[ $BULLETTRAIN_RUBY_SHOW == false ]] then
     return
