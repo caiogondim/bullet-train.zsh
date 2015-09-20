@@ -22,6 +22,9 @@ fi
 if [ ! -n "${BULLETTRAIN_PROMPT_ROOT+1}" ]; then
   BULLETTRAIN_PROMPT_ROOT=true
 fi
+if [ ! -n "${BULLETTRAIN_PROMPT_SEP_LINE+1}" ]; then
+  BULLETTRAIN_PROMPT_SEP_LINE=true
+fi
 
 # STATUS
 if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
@@ -449,6 +452,10 @@ build_prompt() {
   prompt_end
 }
 
-PROMPT='
+if [[ $BULLETTRAIN_PROMPT_SEP_LINE == true ]] then
+  PROMPT='
 %{%f%b%k%}$(build_prompt)
 %{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+else
+  PROMPT='%{%f%b%k%}$(build_prompt)%{${fg_bold[default]}%} $(prompt_char) %{$reset_color%}'
+fi
