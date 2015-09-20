@@ -377,7 +377,6 @@ prompt_go() {
   fi
 }
 
-
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]] then
