@@ -13,7 +13,7 @@ simplicity, showing information only when it's relevant.
 
 It currently shows:
 - Current Python virtualenv
-- Current Ruby version and gemset, through RVM
+- Current Ruby version using Rbenv; version and gemset when on RVM
 - Current Node.js version, through NVM
 - Git status
 - Timestamp
@@ -154,14 +154,14 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_NVM_FG`|`white`|Foreground color
 |`BULLETTRAIN_NVM_PREFIX`|`"⬡ "`|Prefix of the segment
 
-### Ruby RVM
+### Ruby RVM/Rbenv
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_RVM_SHOW`|`true`|Show/hide that segment
-|`BULLETTRAIN_RVM_BG`|`magenta`|Background color
-|`BULLETTRAIN_RVM_FG`|`white`|Foreground color
-|`BULLETTRAIN_RVM_PREFIX`|`"♦"`|Prefix of the segment
+|`BULLETTRAIN_RUBY_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_RUBY_BG`|`magenta`|Background color
+|`BULLETTRAIN_RUBY_FG`|`white`|Foreground color
+|`BULLETTRAIN_RUBY_PREFIX`|`"♦"`|Prefix of the segment
 
 ### Dir
 
