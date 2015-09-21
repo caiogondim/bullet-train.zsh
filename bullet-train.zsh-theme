@@ -93,6 +93,20 @@ if [ ! -n "${BULLETTRAIN_RUBY_PREFIX+1}" ]; then
   BULLETTRAIN_RUBY_PREFIX=♦️
 fi
 
+# GO
+if [ ! -n "${BULLETTRAIN_GO_SHOW+1}" ]; then
+  BULLETTRAIN_GO_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_GO_BG+1}" ]; then
+  BULLETTRAIN_GO_BG=green
+fi
+if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
+  BULLETTRAIN_GO_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
+  BULLETTRAIN_GO_PREFIX= 
+fi
+
 # DIR
 if [ ! -n "${BULLETTRAIN_DIR_SHOW+1}" ]; then
   BULLETTRAIN_DIR_SHOW=true
@@ -352,6 +366,17 @@ prompt_ruby() {
   fi
 }
 
+# GO
+prompt_go() {
+  if [[ $BULLETTRAIN_GO_SHOW == false ]] then
+    return
+  fi
+
+  if which go &> /dev/null; then
+    prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX"$(go version | grep -oE 'go[[:digit:]].[[:digit:]]')"
+  fi
+}
+
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]]; then
@@ -439,6 +464,7 @@ build_prompt() {
   RETVAL=$?
   prompt_time
   prompt_status
+  prompt_go
   prompt_ruby
   prompt_virtualenv
   prompt_nvm
