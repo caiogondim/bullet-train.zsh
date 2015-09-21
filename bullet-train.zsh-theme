@@ -338,17 +338,21 @@ prompt_dir() {
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell
 prompt_ruby() {
-  if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
+  if [[ $BULLETTRAIN_RUBY_SHOW == false ]] then
     return
   fi
 
-  if which rvm-prompt &> /dev/null; then
-    if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
-    then
-      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
+  PROJECT=$(bundle list | grep 'rail')
+  if [[ $PROJECT == *"rail"* ]]
+  then
+    if which rvm-prompt &> /dev/null; then
+      if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
+      then
+        prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
+      fi
+    elif which rbenv &> /dev/null; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
     fi
-  elif which rbenv &> /dev/null; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
@@ -366,17 +370,23 @@ prompt_virtualenv() {
 
 # NVM: Node version manager
 prompt_nvm() {
-  if [[ $BULLETTRAIN_NVM_SHOW == false ]]; then
+  if [[ $BULLETTRAIN_NVM_SHOW == false ]] then
     return
   fi
 
-  $(type nvm >/dev/null 2>&1) || return
+  PROJECT=$(npm list | grep 'empty')
+  if [[ $PROJECT == *"empty"* ]]
+  then
+    # Do Nothing
+  else
+    $(type nvm >/dev/null 2>&1) || return
 
-  local nvm_prompt
-  nvm_prompt=$(node -v 2>/dev/null)
-  [[ "${nvm_prompt}x" == "x" ]] && return
-  nvm_prompt=${nvm_prompt:1}
-  prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+    local nvm_prompt
+    nvm_prompt=$(node -v 2>/dev/null)
+    [[ "${nvm_prompt}x" == "x" ]] && return
+    nvm_prompt=${nvm_prompt:1}
+    prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+  fi
 }
 
 prompt_time() {
