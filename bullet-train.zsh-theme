@@ -337,19 +337,20 @@ prompt_dir() {
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell
+# CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
   if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
     return
   fi
 
-  if which rvm-prompt &> /dev/null; then
+  if command -v rvm-prompt > /dev/null 2>&1; then
     if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
     then
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
     fi
-  elif which chruby &> /dev/null; then
+  elif command -v chruby > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -e 's/ \* //')"
-  elif which rbenv &> /dev/null; then
+  elif command -v rbenv > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
