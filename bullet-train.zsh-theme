@@ -90,7 +90,7 @@ if [ ! -n "${BULLETTRAIN_RUBY_FG+1}" ]; then
   BULLETTRAIN_RUBY_FG=white
 fi
 if [ ! -n "${BULLETTRAIN_RUBY_PREFIX+1}" ]; then
-  BULLETTRAIN_RUBY_PREFIX=♦️
+  BULLETTRAIN_RUBY_PREFIX=💎
 fi
 
 # DIR

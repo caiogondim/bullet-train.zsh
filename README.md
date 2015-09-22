@@ -161,7 +161,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_RUBY_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_RUBY_BG`|`magenta`|Background color
 |`BULLETTRAIN_RUBY_FG`|`white`|Foreground color
-|`BULLETTRAIN_RUBY_PREFIX`|`"♦"`|Prefix of the segment
+|`BULLETTRAIN_RUBY_PREFIX`|`"💎"`|Prefix of the segment
 
 ### Dir
 
