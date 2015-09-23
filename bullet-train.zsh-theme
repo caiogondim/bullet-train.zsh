@@ -98,7 +98,7 @@ fi
 
 # Go
 if [ ! -n "${BULLETTRAIN_GO_SHOW+1}" ]; then
-  BULLETTRAIN_GO_SHOW=true
+  BULLETTRAIN_GO_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_GO_BG+1}" ]; then
   BULLETTRAIN_GO_BG=cyan
@@ -381,7 +381,7 @@ prompt_go() {
   setopt extended_glob
   if [[ (-f *.go(#qN) || -d Godeps) ]]; then
     if command -v go > /dev/null 2>&1; then
-      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX"$(go version | grep -oE 'go[[:digit:]].[[:digit:]]')"
+      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep -oE 'go[[:digit:]].[[:digit:]]')"
     fi
   fi
 }
