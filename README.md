@@ -13,7 +13,7 @@ simplicity, showing information only when it's relevant.
 
 It currently shows:
 - Current Python virtualenv
-- Current Ruby version using Rbenv; version and gemset when on RVM
+- Current Ruby version using Rbenv or chruby; version and gemset when on RVM
 - Current Node.js version, through NVM
 - Git status
 - Timestamp
