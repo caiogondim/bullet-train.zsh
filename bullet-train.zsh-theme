@@ -22,6 +22,9 @@ fi
 if [ ! -n "${BULLETTRAIN_PROMPT_ROOT+1}" ]; then
   BULLETTRAIN_PROMPT_ROOT=true
 fi
+if [ ! -n "${BULLETTRAIN_PROMPT_SEPARATE_LINE+1}" ]; then
+  BULLETTRAIN_PROMPT_SEPARATE_LINE=true
+fi
 
 # STATUS
 if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
@@ -257,7 +260,7 @@ prompt_context() {
 
 # Git
 prompt_git() {
-  if [[ $BULLETTRAIN_GIT_SHOW == false ]] then
+  if [[ $BULLETTRAIN_GIT_SHOW == false ]]; then
     return
   fi
 
@@ -267,7 +270,7 @@ prompt_git() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
 
-    if [[ $BULLETTRAIN_GIT_EXTENDED == true ]] then
+    if [[ $BULLETTRAIN_GIT_EXTENDED == true ]]; then
       echo -n $(git_prompt_info)$(git_prompt_status)
     else
       echo -n $(git_prompt_info)
@@ -312,7 +315,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  if [[ $BULLETTRAIN_DIR_SHOW == false ]] then
+  if [[ $BULLETTRAIN_DIR_SHOW == false ]]; then
     return
   fi
 
@@ -337,24 +340,27 @@ prompt_dir() {
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell
+# CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
-  if [[ $BULLETTRAIN_RUBY_SHOW == false ]] then
+  if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
     return
   fi
 
-  if which rvm-prompt &> /dev/null; then
+  if command -v rvm-prompt > /dev/null 2>&1; then
     if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
     then
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
     fi
-  elif which rbenv &> /dev/null; then
+  elif command -v chruby > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -e 's/ \* //')"
+  elif command -v rbenv > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]] then
+  if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]]; then
     return
   fi
 
@@ -368,7 +374,7 @@ prompt_virtualenv() {
 
 # NVM: Node version manager
 prompt_nvm() {
-  if [[ $BULLETTRAIN_NVM_SHOW == false ]] then
+  if [[ $BULLETTRAIN_NVM_SHOW == false ]]; then
     return
   fi
 
@@ -382,11 +388,11 @@ prompt_nvm() {
 }
 
 prompt_time() {
-  if [[ $BULLETTRAIN_TIME_SHOW == false ]] then
+  if [[ $BULLETTRAIN_TIME_SHOW == false ]]; then
     return
   fi
 
-  if [[ $BULLETTRAIN_TIME_12HR == true ]] then
+  if [[ $BULLETTRAIN_TIME_12HR == true ]]; then
     prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r}
   else
     prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%X}
@@ -398,7 +404,7 @@ prompt_time() {
 # - am I root
 # - are there background jobs?
 prompt_status() {
-  if [[ $BULLETTRAIN_STATUS_SHOW == false ]] then
+  if [[ $BULLETTRAIN_STATUS_SHOW == false ]]; then
     return
   fi
 
@@ -409,9 +415,9 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡%f"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⚙"
 
-  if [[ -n "$symbols" && $RETVAL -ne 0 ]] then
+  if [[ -n "$symbols" && $RETVAL -ne 0 ]]; then
     prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_FG "$symbols"
-  elif [[ -n "$symbols" ]] then
+  elif [[ -n "$symbols" ]]; then
     prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
   fi
 
@@ -421,11 +427,11 @@ prompt_status() {
 prompt_char() {
   local bt_prompt_char
 
-  if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]] then
+  if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]]; then
     bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
   fi
 
-  if [[ $BULLETTRAIN_PROMPT_ROOT == true ]] then
+  if [[ $BULLETTRAIN_PROMPT_ROOT == true ]]; then
     bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
   fi
 
@@ -451,6 +457,10 @@ build_prompt() {
   prompt_end
 }
 
-PROMPT='
+if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] then
+  PROMPT='
 %{%f%b%k%}$(build_prompt)
 %{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+else
+  PROMPT='%{%f%b%k%}$(build_prompt)%{${fg_bold[default]}%} $(prompt_char) %{$reset_color%}'
+fi
