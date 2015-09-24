@@ -436,6 +436,13 @@ prompt_char() {
   echo -n $bt_prompt_char
 }
 
+# Prompt Line Separator
+prompt_line_sep() {
+  if [[ $BULLETTRAIN_PROMPT_SEP_LINE == true ]]; then
+    # newline wont print without a non newline character, so add a zero-width space
+    echo -e '\n\u200B'
+  fi
+}
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -455,10 +462,4 @@ build_prompt() {
   prompt_end
 }
 
-if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] then
-  PROMPT='
-%{%f%b%k%}$(build_prompt)
-%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
-else
-  PROMPT='%{%f%b%k%}$(build_prompt)%{${fg_bold[default]}%} $(prompt_char) %{$reset_color%}'
-fi
+PROMPT='$(prompt_line_sep)%{%f%b%k%}$(build_prompt)$(prompt_line_sep)%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
