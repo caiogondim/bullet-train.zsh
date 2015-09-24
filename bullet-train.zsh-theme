@@ -25,6 +25,9 @@ fi
 if [ ! -n "${BULLETTRAIN_PROMPT_SEPARATE_LINE+1}" ]; then
   BULLETTRAIN_PROMPT_SEPARATE_LINE=true
 fi
+if [ ! -n "${BULLETTRAIN_PROMPT_ADD_NEWLINE+1}" ]; then
+  BULLETTRAIN_PROMPT_ADD_NEWLINE=true
+fi
 
 # STATUS
 if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
@@ -455,9 +458,15 @@ build_prompt() {
   prompt_end
 }
 
-if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] then
-  PROMPT='%{%f%b%k%}$(build_prompt)
+if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]]; then
+  if [[ $BULLETTRAIN_PROMPT_ADD_NEWLINE == true ]]; then
+    PROMPT='
+%{%f%b%k%}$(build_prompt)
 %{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+  else
+    PROMPT='%{%f%b%k%}$(build_prompt)
+%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+  fi
 else
   PROMPT='%{%f%b%k%}$(build_prompt)%{${fg_bold[default]}%} $(prompt_char) %{$reset_color%}'
 fi
