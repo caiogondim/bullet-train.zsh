@@ -207,31 +207,32 @@ of the project:
 
 ```
 100  Caio Gondim
- 33  Jérémy Romey
-  7  Jocelyn Mallon
-  7  Greg Fitzgerald
-  6  Dan Kaplun
-  6  Jérémy Romey
-  6  Joe Block
-  5  Arthur Wang
-  4  Flavius Aspra
-  3  Viktor (Icon) VAD
-  3  Mario Zigliotto
-  2  wujtruj
-  2  itsZero (Chien-An Cho)
-  1  yachi
-  1  Andreas Galauner
-  1  Guillaume BINET
-  1  Hannes Frank
-  1  Kevin
-  1  Marius Krämer
-  1  Michael Robinson
-  1  Sébastien Bordenave
-  1  gvillalta99
-  1  illuminatis
-  1  krischer
-  1  m.kuehn
-  1  Adrien Brault
+33   Jérémy Romey
+7    Jocelyn Mallon
+7    Greg Fitzgerald
+6    Dan Kaplun
+6    Jérémy Romey
+6    Joe Block
+5    Arthur Wang
+4    Flavius Aspra
+3    Viktor (Icon) VAD
+3    Mario Zigliotto
+2    wujtruj
+2    itsZero (Chien-An Cho)
+1    yachi
+1    Andreas Galauner
+1    Guillaume BINET
+1    Hannes Frank
+1    Kevin
+1    Marius Krämer
+1    Michael Robinson
+1    Sébastien Bordenave
+1    gvillalta99
+1    illuminatis
+1    krischer
+1    m.kuehn
+1    Adrien Brault
+1    Michael Cornell
 ```
 
 ## Credits
@@ -244,7 +245,7 @@ This theme is highly inspired by the following themes:
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2014 [Caio Gondim](http://caiogondim.com)
+Copyright (c) 2014-2015 [Caio Gondim](http://caiogondim.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
