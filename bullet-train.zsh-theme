@@ -424,6 +424,7 @@ prompt_status() {
 # Prompt Character
 prompt_char() {
   local bt_prompt_char
+  bt_prompt_char=""
 
   if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]]; then
     bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
@@ -433,12 +434,16 @@ prompt_char() {
     bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
   fi
 
+  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false  ]]; then
+    bt_prompt_char=" ${bt_prompt_char}
+  fi
+
   echo -n $bt_prompt_char
 }
 
 # Prompt Line Separator
 prompt_line_sep() {
-  if [[ $BULLETTRAIN_PROMPT_SEP_LINE == true ]]; then
+  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]]; then
     # newline wont print without a non newline character, so add a zero-width space
     echo -e '\n\u200B'
   fi
