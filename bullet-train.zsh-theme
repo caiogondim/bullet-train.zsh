@@ -107,7 +107,7 @@ if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
   BULLETTRAIN_GO_FG=white
 fi
 if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
-  BULLETTRAIN_GO_PREFIX=
+  BULLETTRAIN_GO_PREFIX="go "
 fi
 
 # DIR
