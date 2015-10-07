@@ -473,7 +473,7 @@ prompt_char() {
 prompt_line_sep() {
   if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]]; then
     # newline wont print without a non newline character, so add a zero-width space
-    echo -e '\n\u200B'
+    echo -e '\n%{\u200B%}'
   fi
 }
 # ------------------------------------------------------------------------------
