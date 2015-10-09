@@ -356,19 +356,23 @@ prompt_dir() {
 # RBENV: shows current ruby version active in the shell
 # CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
-  if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
+  if [[ $BULLETTRAIN_RUBY_SHOW == false ]] then
     return
   fi
 
-  if command -v rvm-prompt > /dev/null 2>&1; then
-    if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
-    then
-      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
+  PROJECT=$(bundle list | grep 'rail')
+  if [[ $PROJECT == *"rail"* ]]
+  then
+    if command -v rvm-prompt > /dev/null 2>&1; then
+      if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
+      then
+        prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
+      fi
+    elif command -v chruby > /dev/null 2>&1; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -e 's/ \* //')"
+    elif command -v rbenv > /dev/null 2>&1; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
     fi
-  elif command -v chruby > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -e 's/ \* //')"
-  elif command -v rbenv > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
@@ -400,17 +404,23 @@ prompt_virtualenv() {
 
 # NVM: Node version manager
 prompt_nvm() {
-  if [[ $BULLETTRAIN_NVM_SHOW == false ]]; then
+  if [[ $BULLETTRAIN_NVM_SHOW == false ]] then
     return
   fi
 
-  $(type nvm >/dev/null 2>&1) || return
+  PROJECT=$(npm list | grep 'empty')
+  if [[ $PROJECT == *"empty"* ]]
+  then
+    # Do Nothing
+  else
+    $(type nvm >/dev/null 2>&1) || return
 
-  local nvm_prompt
-  nvm_prompt=$(node -v 2>/dev/null)
-  [[ "${nvm_prompt}x" == "x" ]] && return
-  nvm_prompt=${nvm_prompt:1}
-  prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+    local nvm_prompt
+    nvm_prompt=$(node -v 2>/dev/null)
+    [[ "${nvm_prompt}x" == "x" ]] && return
+    nvm_prompt=${nvm_prompt:1}
+    prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+  fi
 }
 
 prompt_time() {
