@@ -12,7 +12,7 @@ theme based on the
 simplicity, showing information only when it's relevant.
 
 It currently shows:
-- Current Python virtualenv
+- Current Python virtualenv; when using Pyenv and no active virtualenv shows the current Python version the shell uses
 - Current Ruby version using Rbenv or chruby; version and gemset when on RVM
 - Current Node.js version, through NVM
 - Git status
@@ -137,7 +137,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_CONTEXT_DEFAULT_USER`|none|Default user. If you are running with other user other than default, the segment will be showed.
 |`BULLETTRAIN_IS_SSH_CLIENT`|none|If `true`, the segment will be showed.
 
-### Python virtualenv
+### Python virtualenv (+Pyenv)
 
 |Variable|Default|Meaning
 |--------|-------|-------|

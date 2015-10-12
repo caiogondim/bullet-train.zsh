@@ -363,12 +363,12 @@ prompt_ruby() {
   if command -v rvm-prompt > /dev/null 2>&1; then
     if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
     then
-      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rvm-prompt i v g)"
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
     fi
   elif command -v chruby > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -e 's/ \* //')"
   elif command -v rbenv > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(rbenv version | sed -e 's/ (set.*$//')"
+    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
@@ -394,7 +394,9 @@ prompt_virtualenv() {
 
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX"  $(basename $virtualenv_path)"
+    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
+  elif which pyenv &> /dev/null; then
+    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//')"
   fi
 }
 
@@ -496,4 +498,10 @@ build_prompt() {
   prompt_end
 }
 
-PROMPT='$(prompt_line_sep)%{%f%b%k%}$(build_prompt)$(prompt_line_sep)%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] then
+  PROMPT='
+%{%f%b%k%}$(build_prompt)
+%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
+else
+  PROMPT='%{%f%b%k%}$(build_prompt)%{${fg_bold[default]}%} $(prompt_char) %{$reset_color%}'
+fi
