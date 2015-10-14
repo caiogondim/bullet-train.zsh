@@ -107,6 +107,8 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_PROMPT_CHAR`|`\$`|Character to be show before any command
 |`BULLETTRAIN_PROMPT_ROOT`|`true`|Highlight if running as root
 |`BULLETTRAIN_PROMPT_SEPARATE_LINE`|`true`|Make the prompt span across two lines
+|`BULLETTRAIN_PROMPT_ADD_NEWLINE`|`true`|Adds a newline character before each prompt line
+
 
 ### Status
 
