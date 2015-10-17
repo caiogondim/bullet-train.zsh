@@ -490,12 +490,12 @@ build_prompt() {
   RETVAL=$?
   prompt_time
   prompt_status
+  prompt_context
+  prompt_dir
   prompt_ruby
   prompt_virtualenv
   prompt_nvm
   prompt_go
-  prompt_context
-  prompt_dir
   prompt_git
   # prompt_hg
   prompt_end
