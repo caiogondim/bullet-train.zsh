@@ -501,15 +501,12 @@ build_prompt() {
   prompt_end
 }
 
-if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]]; then
-  if [[ $BULLETTRAIN_PROMPT_ADD_NEWLINE == true ]]; then
-    PROMPT='
-%{%f%b%k%}$(build_prompt)
-%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
-  else
-    PROMPT='%{%f%b%k%}$(build_prompt)
-%{${fg_bold[default]}%}$(prompt_char) %{$reset_color%}'
-  fi
-else
-  PROMPT='%{%f%b%k%}$(build_prompt)%{${fg_bold[default]}%} $(prompt_char) %{$reset_color%}'
-fi
+NEWLINE='
+'
+PROMPT=''
+[[ $BULLETTRAIN_PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
+[[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
+[[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
+PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
