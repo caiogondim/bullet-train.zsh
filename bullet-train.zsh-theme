@@ -481,6 +481,19 @@ prompt_line_sep() {
     echo -e '\n%{\u200B%}'
   fi
 }
+
+prompt_user() {
+  if [[ $BULLETTRAIN_USER == true ]]; then
+    prompt_segment black white "$USER"
+  fi
+}
+
+prompt_hostname() {
+  if [[ $BULLETTRAIN_HOSTNAME == true ]]; then
+    prompt_segment green white "$(hostname -a)"
+  fi
+}
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -489,6 +502,8 @@ prompt_line_sep() {
 build_prompt() {
   RETVAL=$?
   prompt_time
+  prompt_user
+  prompt_hostname
   prompt_status
   prompt_context
   prompt_dir
@@ -503,6 +518,7 @@ build_prompt() {
 
 NEWLINE='
 '
+
 PROMPT=''
 [[ $BULLETTRAIN_PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
 PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
