@@ -356,7 +356,7 @@ prompt_dir() {
 
 # RUBY
 # RVM: only shows RUBY info if on a gemset that is not the default one
-# RBENV: shows current ruby version active in the shell
+# RBENV: shows current ruby version active in the shell; also with non-global gemsets if any is active
 # CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
   if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
@@ -364,14 +364,19 @@ prompt_ruby() {
   fi
 
   if command -v rvm-prompt > /dev/null 2>&1; then
-    if [[ ! -n $(rvm gemset list | grep "=> (default)") ]]
-    then
-      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
-    fi
+    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
   elif command -v chruby > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -e 's/ \* //')"
   elif command -v rbenv > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
+    current_gemset() {
+      echo "$(rbenv gemset active 2&>/dev/null | sed -e 's/ global$//')"
+    }
+
+    if $(rbenv gemset version > /dev/null) && [[ -n $(current_gemset) ]]; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"@"$(current_gemset)"
+    else
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
+    fi
   fi
 }
 
