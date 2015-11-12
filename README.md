@@ -207,6 +207,11 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_GIT_BEHIND`|`" ⬇"`|Icon for behind state from remote
 |`BULLETTRAIN_GIT_DIVERGED`|`" ⬍"`|Icon for diverged state from remote
 
+### Mercurial/HG
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_HG_SHOW`|`true`|Show/hide that segment
 
 ## Contributors
 

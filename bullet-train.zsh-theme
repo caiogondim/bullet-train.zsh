@@ -144,6 +144,11 @@ if [ ! -n "${BULLETTRAIN_GIT_EXTENDED+1}" ]; then
   BULLETTRAIN_GIT_EXTENDED=true
 fi
 
+# HG
+if [ ! -n "${BULLETTRAIN_HG_SHOW+1}" ]; then
+  BULLETTRAIN_HG_SHOW=true
+fi
+
 # CONTEXT
 if [ ! -n "${BULLETTRAIN_CONTEXT_SHOW+1}" ]; then
   BULLETTRAIN_CONTEXT_SHOW=false
@@ -296,6 +301,10 @@ prompt_git() {
 }
 
 prompt_hg() {
+  if [[ $BULLETTRAIN_HG_SHOW == false ]]; then
+    return
+  fi
+
   local rev status
   if $(hg id >/dev/null 2>&1); then
     if $(hg prompt >/dev/null 2>&1); then
@@ -497,7 +506,7 @@ build_prompt() {
   prompt_nvm
   prompt_go
   prompt_git
-  # prompt_hg
+  prompt_hg
   prompt_end
 }
 
