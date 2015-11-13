@@ -16,6 +16,7 @@ It currently shows:
 - Current Ruby version using Rbenv or chruby; version and gemset when on RVM
 - Current Node.js version, through NVM
 - Git status
+- SVN status
 - Timestamp
 - Current directory
 - Background jobs
@@ -62,6 +63,7 @@ In order to use the theme, you will first need:
 * A ZSH framework like [antigen](https://github.com/zsh-users/antigen), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) or [zgen](https://github.com/tarjoilija/zgen)
 * Make sure terminal is using 256-colors mode with `export TERM="xterm-256color"`
 * For [iTerm 2](http://iterm2.com/) users, make sure you go into your settings and set both the regular font and the non-ascii font to powerline compatible [fonts](https://github.com/powerline/fonts) or the prompt separators and special characters will not display correctly.
+* If you use Subversion, make sure the SVN plugin is enabled in your ~/.zshrc
 
 
 ## Installing
@@ -206,6 +208,15 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_GIT_AHEAD`|`" ⬆"`|Icon for ahead state from remote
 |`BULLETTRAIN_GIT_BEHIND`|`" ⬇"`|Icon for behind state from remote
 |`BULLETTRAIN_GIT_DIVERGED`|`" ⬍"`|Icon for diverged state from remote
+
+### Subversion (SVN)
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_SVN_SHOW`|`true`|Show/hide that segment (shows current revision number)
+|`BULLETTRAIN_SVN_BG`|`white`|Background color
+|`BULLETTRAIN_SVN_FG`|`black`|Foreground color
+|`BULLETTRAIN_SVN_EXTENDED`|`true`| Show if there are changes, and the number of changed files
 
 ### Mercurial/HG
 
