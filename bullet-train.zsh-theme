@@ -372,7 +372,7 @@ prompt_ruby() {
       echo "$(rbenv gemset active 2&>/dev/null | sed -e 's/ global$//')"
     }
 
-    if $(rbenv gemset version > /dev/null) && [[ -n $(current_gemset) ]]; then
+    if [[ -n $(current_gemset) ]]; then
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"@"$(current_gemset)"
     else
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
