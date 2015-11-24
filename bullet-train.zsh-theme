@@ -421,9 +421,9 @@ prompt_nvm() {
   $(type nvm >/dev/null 2>&1) || return
 
   local nvm_prompt
-  nvm_prompt=$(node -v 2>/dev/null)
+  nvm_prompt=$(nvm current 2>/dev/null)
   [[ "${nvm_prompt}x" == "x" ]] && return
-  nvm_prompt=${nvm_prompt:1}
+  nvm_prompt=${nvm_prompt}
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
 }
 
