@@ -137,6 +137,9 @@ fi
 if [ ! -n "${BULLETTRAIN_GIT_COLORIZE_DIRTY+1}" ]; then
   BULLETTRAIN_GIT_COLORIZE_DIRTY=false
 fi
+if [ ! -n "${BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR+1}" ]; then
+  BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR=yellow
+fi
 if [ ! -n "${BULLETTRAIN_GIT_BG+1}" ]; then
   BULLETTRAIN_GIT_BG=white
 fi
@@ -294,7 +297,7 @@ prompt_git() {
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     if [[ $BULLETTRAIN_GIT_COLORIZE_DIRTY == true && $(git status --porcelain --ignore-submodules) ]]; then
-      BULLETTRAIN_GIT_BG=yellow
+      BULLETTRAIN_GIT_BG=$BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR
     fi
     prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
 
