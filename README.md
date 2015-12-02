@@ -262,6 +262,13 @@ This theme is highly inspired by the following themes:
 - [Powerline](https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme)
 - [Agnoster](https://gist.github.com/agnoster/3712874)
 
+## Donating
+
+If you found this project useful and are willing to donate, transfer some
+bitcoins to `1BqqKiZA8Tq43CdukdBEwCdDD42jxuX9UY` or through the
+[URL](https://www.coinbase.com/caiogondim) https://www.coinbase.com/caiogondim
+
+Or via [PayPal.me](https://www.paypal.me/caiogondim) https://www.paypal.me/caiogondim.
 
 ## License
 The MIT License (MIT)
