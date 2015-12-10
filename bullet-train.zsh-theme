@@ -57,6 +57,17 @@ if [ ! -n "${BULLETTRAIN_TIME_FG+1}" ]; then
   BULLETTRAIN_TIME_FG=black
 fi
 
+# CUSTOM
+if [ ! -n "${BULLETTRAIN_CUSTOM_MSG+1}" ]; then
+  BULLETTRAIN_CUSTOM_MSG=false
+fi
+if [ ! -n "${BULLETTRAIN_CUSTOM_BG+1}" ]; then
+  BULLETTRAIN_CUSTOM_BG=black
+fi
+if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
+  BULLETTRAIN_CUSTOM_FG=default
+fi
+
 # VIRTUALENV
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_SHOW+1}" ]; then
   BULLETTRAIN_VIRTUALENV_SHOW=true
@@ -286,6 +297,15 @@ prompt_context() {
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
 
+# Custom
+prompt_custom() {
+  if [[ $BULLETTRAIN_CUSTOM_MSG == false ]]; then
+    return
+  fi
+
+  prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
+}
+
 # Git
 prompt_git() {
   if [[ $BULLETTRAIN_GIT_SHOW == false ]]; then
@@ -508,6 +528,7 @@ build_prompt() {
   RETVAL=$?
   prompt_time
   prompt_status
+  prompt_custom
   prompt_context
   prompt_dir
   prompt_ruby
