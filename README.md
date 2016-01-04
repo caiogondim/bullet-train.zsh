@@ -223,6 +223,13 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |--------|-------|-------|
 |`BULLETTRAIN_HG_SHOW`|`true`|Show/hide that segment
 
+### Command execution time
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_EXEC_TIME_SHOW`|`false`|Show/hide that segment
+|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Elapsed time of command execution
+
 ## Contributors
 
 That project was originally a fork from

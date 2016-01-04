@@ -244,6 +244,14 @@ else
   ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_PROMPT_DIVERGED
 fi
 
+# COMMAND EXECUTION TIME
+if [ ! -n "${BULLETTRAIN_EXEC_TIME_SHOW+1}" ]; then
+  BULLETTRAIN_EXEC_TIME_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_EXEC_TIME_ELAPSED+1}" ]; then
+  BULLETTRAIN_EXEC_TIME_ELAPSED=5
+fi
+
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
 # A few functions to make it easy and re-usable to draw segmented prompts
@@ -295,6 +303,22 @@ prompt_context() {
 
   local _context="$(context)"
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
+}
+
+# Prompt previous command execution time
+preexec() {
+    cmd_timestamp=`date +%s`
+}
+
+prompt_cmd_exec_time() {
+  if [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]]; then
+    return
+  fi
+
+  local stop=`date +%s`
+  local start=${cmd_timestamp:-$stop}
+  let local elapsed=$stop-$start
+  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment yellow white "${elapsed}s"
 }
 
 # Custom
@@ -519,6 +543,7 @@ prompt_line_sep() {
     echo -e '\n%{\u200B%}'
   fi
 }
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -537,6 +562,7 @@ build_prompt() {
   prompt_go
   prompt_git
   prompt_hg
+  prompt_cmd_exec_time
   prompt_end
 }
 
