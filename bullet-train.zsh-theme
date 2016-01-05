@@ -251,6 +251,13 @@ fi
 if [ ! -n "${BULLETTRAIN_EXEC_TIME_ELAPSED+1}" ]; then
   BULLETTRAIN_EXEC_TIME_ELAPSED=5
 fi
+if [ ! -n "${BULLETTRAIN_EXEC_TIME_BG+1}" ]; then
+  BULLETTRAIN_EXEC_TIME_BG=yellow
+fi
+if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
+  BULLETTRAIN_EXEC_TIME_FG=black
+fi
+
 
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
@@ -318,7 +325,7 @@ prompt_cmd_exec_time() {
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
   let local elapsed=$stop-$start
-  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment yellow white "${elapsed}s"
+  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${elapsed}s"
 }
 
 # Custom

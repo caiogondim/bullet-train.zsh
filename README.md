@@ -229,6 +229,8 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |--------|-------|-------|
 |`BULLETTRAIN_EXEC_TIME_SHOW`|`false`|Show/hide that segment
 |`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Elapsed time of command execution
+|`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
+|`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
 ## Contributors
 
