@@ -313,19 +313,23 @@ prompt_context() {
 }
 
 # Prompt previous command execution time
-preexec() {
-    cmd_timestamp=`date +%s`
+bullet_train_precmd() {
+  local stop=`date +%s`
+  local start=${cmd_timestamp:-$stop}
+  let cmd_elapsed=$stop-$start
+  cmd_timestamp= # clean timestamp
+}
+
+bullet_train_preexec() {
+  # ONLY record timestamp before a command is about to be executed
+  cmd_timestamp=`date +%s`
 }
 
 prompt_cmd_exec_time() {
-  if [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]]; then
-    return
-  fi
-
-  local stop=`date +%s`
-  local start=${cmd_timestamp:-$stop}
-  let local elapsed=$stop-$start
-  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment yellow black "${elapsed}s"
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
+  [[ $cmd_elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ]] && \
+    prompt_segment yellow black "${cmd_elapsed}s"
+  cmd_elapsed= # clean elapsed
 }
 
 # Custom
@@ -582,3 +586,7 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
 PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
+
+# REGISTER ZSH HOOKS
+add-zsh-hook precmd bullet_train_precmd
+add-zsh-hook preexec bullet_train_preexec
