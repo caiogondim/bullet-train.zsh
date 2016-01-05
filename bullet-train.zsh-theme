@@ -251,6 +251,13 @@ fi
 if [ ! -n "${BULLETTRAIN_EXEC_TIME_ELAPSED+1}" ]; then
   BULLETTRAIN_EXEC_TIME_ELAPSED=5
 fi
+if [ ! -n "${BULLETTRAIN_EXEC_TIME_BG+1}" ]; then
+  BULLETTRAIN_EXEC_TIME_BG=yellow
+fi
+if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
+  BULLETTRAIN_EXEC_TIME_FG=black
+fi
+
 
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
