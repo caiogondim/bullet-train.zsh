@@ -328,7 +328,7 @@ bullet_train_preexec() {
 prompt_cmd_exec_time() {
   [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
   [[ $cmd_elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ]] && \
-    prompt_segment yellow black "${cmd_elapsed}s"
+    prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${cmd_elapsed}s"
   cmd_elapsed= # clean elapsed
 }
 
