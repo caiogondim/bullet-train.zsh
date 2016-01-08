@@ -588,5 +588,10 @@ PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
 
 # REGISTER ZSH HOOKS
-add-zsh-hook precmd bullet_train_precmd
-add-zsh-hook preexec bullet_train_preexec
+precmd() {
+  bullet_train_precmd
+}
+
+preexec() {
+  bullet_train_preexec
+}
