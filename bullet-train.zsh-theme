@@ -160,11 +160,8 @@ fi
 if [ ! -n "${BULLETTRAIN_GIT_EXTENDED+1}" ]; then
   BULLETTRAIN_GIT_EXTENDED=true
 fi
-if [ ! -n "${BULLETTRAIN_GIT_PROMPT_SUBSTITUTION_FROM+1}" ]; then
-  BULLETTRAIN_GIT_PROMPT_SUBSTITUTION_FROM=""
-fi
-if [ ! -n "${BULLETTRAIN_GIT_PROMPT_SUBSTITUTION_TO+1}" ]; then
-  BULLETTRAIN_GIT_PROMPT_SUBSTITUTION_TO=""
+if [ ! -n "${BULLETTRAIN_GIT_PROMPT_CMD+1}" ]; then
+  BULLETTRAIN_GIT_PROMPT_CMD="\$(git_prompt_info)"
 fi
 
 # HG
@@ -349,7 +346,7 @@ prompt_git() {
     return
   fi
 
-  local ref dirty mode repo_path substituted_prompt
+  local ref dirty mode repo_path git_prompt
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
@@ -358,12 +355,11 @@ prompt_git() {
     fi
     prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
 
-    substituted_prompt=${$(git_prompt_info)//${BULLETTRAIN_GIT_PROMPT_SUBSTITUTION_FROM}/${BULLETTRAIN_GIT_PROMPT_SUBSTITUTION_TO}}
-
+    eval git_prompt=${BULLETTRAIN_GIT_PROMPT_CMD}
     if [[ $BULLETTRAIN_GIT_EXTENDED == true ]]; then
-      echo -n ${substituted_prompt}$(git_prompt_status)
+      echo -n ${git_prompt}$(git_prompt_status)
     else
-      echo -n ${substituted_prompt}
+      echo -n ${git_prompt}
     fi
   fi
 }
