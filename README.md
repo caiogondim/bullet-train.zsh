@@ -202,6 +202,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR`|`yellow`|`BULLETTRAIN_GIT_BG` in dirty state
 |`BULLETTRAIN_GIT_BG`|`white`|Background color
 |`BULLETTRAIN_GIT_FG`|`black`|Foreground color
+|`BULLETTRAIN_GIT_PROMPT_CMD`|`git_prompt_info`|Function to display details about your git segment.
 |`BULLETTRAIN_GIT_EXTENDED`|`true`|
 |`BULLETTRAIN_GIT_PREFIX`|`""`|Prefix
 |`BULLETTRAIN_GIT_SUFFIX`|`""`|Suffix
