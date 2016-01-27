@@ -1,4 +1,4 @@
-<img src="http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/icon.svg" width="100%" />
+<img src="http://rawgit.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/icon.svg" width="100%" />
 
 # Bullet Train for oh-my-zsh ![Travis CI](https://travis-ci.org/caiogondim/bullet-train-oh-my-zsh-theme.svg)
 
