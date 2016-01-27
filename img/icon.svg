@@ -14,7 +14,7 @@
             <use id="Oval-1" fill="#3B3B3B" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
             <g id="Group" mask="url(#mask-2)" sketch:type="MSShapeGroup">
                 <g transform="translate(-75.820300, 59.633943)">
-                    <path d="M224.965576,136.245653 L224.965576,136.306156 L70.2828619,136.306156 L70.2828619,0 L224.965576,0 L224.965576,0.0605036933 L292.961509,68.1530782 L224.965576,136.245653 Z" id="Rectangle-2" fill="#78AAD6"></path>
+                    <path d="M224.965576,136.306156 L70.2828619,136.306156 L70.2828619,0 L224.965576,0 L293.016665,68.1530782 L224.965576,136.300887 Z" id="Rectangle-2" fill="#78AAD6"></path>
                     <rect id="Rectangle-3" fill="#A8D4AA" x="0" y="0" width="113.827177" height="136.306156"></rect>
                     <path d="M113.730449,136.306156 L113.730449,0 L181.7868,68.1530782 L113.730449,136.306156 Z" id="Path-2" fill="#A8D4AA"></path>
                 </g>
