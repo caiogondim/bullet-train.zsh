@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="600px" height="600px" viewBox="0 0 600 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.0.3 (7891) - http://www.bohemiancoding.com/sketch -->
+<svg width="980px" height="400px" viewBox="0 0 980 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5 (25232) - http://www.bohemiancoding.com/sketch -->
     <title>icon</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <circle id="path-1" cx="300" cy="299.911111" r="300"></circle>
+        <circle id="path-1" cx="127.787022" cy="128.175116" r="127.787022"></circle>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <mask id="mask-2" sketch:name="Oval 1" fill="white">
-            <use xlink:href="#path-1"></use>
-        </mask>
-        <use id="Oval-1" fill="#3B3B3B" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
-        <g id="Group" sketch:type="MSLayerGroup" mask="url(#mask-2)">
-            <g transform="translate(-178.000000, 139.000000)" sketch:type="MSShapeGroup">
-                <rect id="Rectangle-2" fill="#78AAD6" x="165" y="0" width="363.14184" height="320"></rect>
-                <rect id="Rectangle-3" fill="#A8D4AA" x="0" y="0" width="267.227083" height="320"></rect>
-                <path d="M267,320 L267,0 L426.772917,160 L267,320 Z" id="Path-2" fill="#A8D4AA"></path>
-                <path d="M528,320 L528,0 L687.772917,160 L528,320 Z" id="Path-3" fill="#78AAD6"></path>
+        <g id="Group-2" sketch:type="MSLayerGroup" transform="translate(362.000000, 72.000000)">
+            <mask id="mask-2" sketch:name="Oval 1" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Oval-1" fill="#3B3B3B" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" sketch:type="MSShapeGroup">
+                <g transform="translate(-75.820300, 59.633943)">
+                    <rect id="Rectangle-2" fill="#78AAD6" x="70.2828619" y="0" width="154.682714" height="136.306156"></rect>
+                    <rect id="Rectangle-3" fill="#A8D4AA" x="0" y="0" width="113.827177" height="136.306156"></rect>
+                    <path d="M113.730449,136.306156 L113.730449,0 L181.7868,68.1530782 L113.730449,136.306156 Z" id="Path-2" fill="#A8D4AA"></path>
+                    <path d="M224.905158,136.306156 L224.905158,0 L292.961509,68.1530782 L224.905158,136.306156 Z" id="Path-3" fill="#78AAD6"></path>
+                </g>
             </g>
         </g>
     </g>

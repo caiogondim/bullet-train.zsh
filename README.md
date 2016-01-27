@@ -1,10 +1,6 @@
-# Bullet Train for oh-my-zsh ![Travis CI](https://travis-ci.org/caiogondim/bullet-train-oh-my-zsh-theme.svg)
+<img src="http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/icon.svg" width="100%" />
 
-<img
-  src="http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/icon.png"
-  width="256"
-  align="right"
-/>
+# Bullet Train for oh-my-zsh ![Travis CI](https://travis-ci.org/caiogondim/bullet-train-oh-my-zsh-theme.svg)
 
 Bullet Train is a [oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh)
 theme based on the
