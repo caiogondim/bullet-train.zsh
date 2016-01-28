@@ -195,7 +195,8 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |--------|-------|-------|
 |`BULLETTRAIN_GIT_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY`|`false`|Set `BULLETTRAIN_GIT_BG` to `BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR` in dirty state
-|`BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR`|`yellow`|`BULLETTRAIN_GIT_BG` in dirty state
+|`BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR`|`yellow`|`BULLETTRAIN_GIT_BG` in dirty state
+|`BULLETTRAIN_GIT_COLORIZE_DIRTY_FG_COLOR`|`black`|`BULLETTRAIN_GIT_FG` in dirty state
 |`BULLETTRAIN_GIT_BG`|`white`|Background color
 |`BULLETTRAIN_GIT_FG`|`black`|Foreground color
 |`BULLETTRAIN_GIT_PROMPT_CMD`|`git_prompt_info`|Function to display details about your git segment.
