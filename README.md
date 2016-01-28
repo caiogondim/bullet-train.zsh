@@ -229,6 +229,28 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
+## Tips
+
+### BULLETTRAIN_GIT_PROMPT_CMD
+
+Allows you to specify custom git prompt command. This makes it possible to
+change:
+
+![Git_Prompt_Before](./img/tips/git_prompt_before.png)
+
+into:
+
+![Git_Prompt_After](./img/tips/git_prompt_after.png)
+
+with:
+
+``` bash
+BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
+```
+
+Please note we need to delay variable expansion, so we have to escape all
+**weird** character - *$*, *\*, *\<space>*, etc.
+
 ## Contributors
 
 That project was originally a fork from
