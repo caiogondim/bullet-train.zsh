@@ -236,11 +236,11 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 Allows you to specify custom git prompt command. This makes it possible to
 change:
 
-![Git_Prompt_Before](./img/tips/git_prompt_before.png)
+![Git_Prompt_Origin](./img/tips/git_prompt_origin.png)
 
 into:
 
-![Git_Prompt_After](./img/tips/git_prompt_after.png)
+![Git_Prompt_Command](./img/tips/git_prompt_command.png)
 
 with:
 
@@ -250,6 +250,23 @@ BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
 
 Please note we need to delay variable expansion, so we have to escape all
 **weird** character - *$*, *\*, *\<space>*, etc.
+
+You can also use function to get more complex commands:
+
+``` bash
+BULLETTRAIN_GIT_PROMPT_CMD="\$(custom_git_prompt)"
+
+custom_git_prompt() {
+  prompt=$(git_prompt_info)
+  prompt=${prompt//\//\ \ }
+  prompt=${prompt//_/\ }
+  echo ${prompt}
+}
+```
+
+which gives:
+
+![Git_Prompt_Function](./img/tips/git_prompt_function.png)
 
 ## Contributors
 
