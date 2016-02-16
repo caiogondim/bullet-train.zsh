@@ -141,6 +141,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_CONTEXT_BG`|`black`|Background color
 |`BULLETTRAIN_CONTEXT_FG`|`default`|Foreground color
 |`BULLETTRAIN_CONTEXT_DEFAULT_USER`|none|Default user. If you are running with other user other than default, the segment will be showed.
+|`BULLETTRAIN_CONTEXT_HOSTNAME`|`%m`|Hostname. Set %M to display the full qualified domain name.
 |`BULLETTRAIN_IS_SSH_CLIENT`|none|If `true`, the segment will be showed.
 
 ### Python virtualenv (+Pyenv)

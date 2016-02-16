@@ -179,6 +179,9 @@ fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_FG+1}" ]; then
   BULLETTRAIN_CONTEXT_FG=default
 fi
+if [ ! -n "${BULLETTRAIN_CONTEXT_HOSTNAME+1}" ]; then
+  BULLETTRAIN_CONTEXT_HOSTNAME=%m
+fi
 
 # GIT PROMPT
 if [ ! -n "${BULLETTRAIN_GIT_PREFIX+1}" ]; then
@@ -306,7 +309,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 context() {
   local user="$(whoami)"
-  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@%m"
+  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@$BULLETTRAIN_CONTEXT_HOSTNAME"
 }
 prompt_context() {
   [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] && return
