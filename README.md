@@ -11,6 +11,7 @@ It currently shows:
 - Current Python virtualenv; when using Pyenv and no active virtualenv shows the current Python version the shell uses
 - Current Ruby version using Rbenv or chruby; version and gemset when on RVM
 - Current Node.js version, through NVM
+- Current Perl version using plenv
 - Git status
 - Timestamp
 - Current directory
@@ -178,6 +179,15 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_GO_BG`|`green`|Background color
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
+
+### Perl
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_PERL_SHOW`|`false`|Show/hide that segment
+|`BULLETTRAIN_PERL_BG`|`yellow`|Background color
+|`BULLETTRAIN_PERL_FG`|`black`|Foreground color
+|`BULLETTRAIN_PERL_PREFIX`|`🐪`|Prefix of the segment
 
 ### Dir
 

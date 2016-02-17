@@ -164,6 +164,20 @@ if [ ! -n "${BULLETTRAIN_GIT_PROMPT_CMD+1}" ]; then
   BULLETTRAIN_GIT_PROMPT_CMD="\$(git_prompt_info)"
 fi
 
+# PERL
+if [ ! -n "${BULLETTRAIN_PERL_SHOW+1}" ]; then
+  BULLETTRAIN_PERL_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_PERL_BG+1}" ]; then
+  BULLETTRAIN_PERL_BG=yellow
+fi
+if [ ! -n "${BULLETTRAIN_PERL_FG+1}" ]; then
+  BULLETTRAIN_PERL_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
+  BULLETTRAIN_PERL_PREFIX=🐪
+fi
+
 # HG
 if [ ! -n "${BULLETTRAIN_HG_SHOW+1}" ]; then
   BULLETTRAIN_HG_SHOW=true
@@ -448,6 +462,18 @@ prompt_ruby() {
   fi
 }
 
+# PERL
+# PLENV: shows current PERL version active in the shell
+prompt_perl() {
+  if [[ $BULLETTRAIN_PERL_SHOW == false ]]; then
+    return
+  fi
+
+  if command -v plenv > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG $BULLETTRAIN_PERL_PREFIX" $(plenv version | sed -e 's/ (set.*$//')"
+  fi
+}
+
 # Go
 prompt_go() {
   if [[ $BULLETTRAIN_GO_SHOW == false ]]; then
@@ -567,6 +593,7 @@ build_prompt() {
   prompt_custom
   prompt_context
   prompt_dir
+  prompt_perl
   prompt_ruby
   prompt_virtualenv
   prompt_nvm
