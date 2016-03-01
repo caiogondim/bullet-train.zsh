@@ -291,6 +291,17 @@ if [ ! -n "${BULLETTRAIN_USER_FG+1}" ]; then
   BULLETTRAIN_USER_FG=white
 fi
 
+# HOST
+if [ ! -n "${BULLETTRAIN_HOST_SHOW+1}" ]; then
+  BULLETTRAIN_HOST_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_HOST_BG+1}" ]; then
+  BULLETTRAIN_HOST_BG=black
+fi
+if [ ! -n "${BULLETTRAIN_HOST_FG+1}" ]; then
+  BULLETTRAIN_HOST_FG=white
+fi
+
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
 # A few functions to make it easy and re-usable to draw segmented prompts
@@ -613,6 +624,12 @@ rprompt_user() {
   [[ -n "$_user" ]] && prompt_segment $BULLETTRAIN_USER_BG $BULLETTRAIN_USER_FG "$_user"
 }
 
+# Host
+rprompt_host() {
+  [[ $BULLETTRAIN_HOST_SHOW == false ]] && return
+  prompt_segment $BULLETTRAIN_USER_BG $BULLETTRAIN_USER_FG "%m"
+}
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -651,6 +668,7 @@ build_rprompt() {
   SEGMENT_SEPARATOR=''
   SEGMENT_PLACE='RIGHT'
   rprompt_user
+  rprompt_host
 }
 
 RPROMPT="$(build_rprompt)'
