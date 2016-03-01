@@ -280,6 +280,17 @@ if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
   BULLETTRAIN_EXEC_TIME_FG=black
 fi
 
+# USER
+if [ ! -n "${BULLETTRAIN_USER_SHOW+1}" ]; then
+  BULLETTRAIN_USER_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_USER_BG+1}" ]; then
+  BULLETTRAIN_USER_BG=green
+fi
+if [ ! -n "${BULLETTRAIN_USER_FG+1}" ]; then
+  BULLETTRAIN_USER_FG=white
+fi
+
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
 # A few functions to make it easy and re-usable to draw segmented prompts
@@ -595,6 +606,13 @@ prompt_line_sep() {
 # PROMPT COMPONENTS change frequently
 # ------------------------------------------------------------------------------
 
+# User
+rprompt_user() {
+  [[ $BULLETTRAIN_USER_SHOW == false ]] && return
+  local _user="$(whoami)"
+  [[ -n "$_user" ]] && prompt_segment $BULLETTRAIN_USER_BG $BULLETTRAIN_USER_FG "$_user"
+}
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
@@ -632,6 +650,7 @@ build_rprompt() {
   CURRENT_BG='NONE
   SEGMENT_SEPARATOR=''
   SEGMENT_PLACE='RIGHT'
+  rprompt_user
 }
 
 RPROMPT="$(build_rprompt)'
