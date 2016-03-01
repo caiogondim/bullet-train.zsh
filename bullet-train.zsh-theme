@@ -282,7 +282,7 @@ fi
 
 # USER
 if [ ! -n "${BULLETTRAIN_USER_SHOW+1}" ]; then
-  BULLETTRAIN_USER_SHOW=false
+  BULLETTRAIN_USER_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_USER_BG+1}" ]; then
   BULLETTRAIN_USER_BG=green
@@ -293,7 +293,7 @@ fi
 
 # HOST
 if [ ! -n "${BULLETTRAIN_HOST_SHOW+1}" ]; then
-  BULLETTRAIN_HOST_SHOW=false
+  BULLETTRAIN_HOST_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_HOST_BG+1}" ]; then
   BULLETTRAIN_HOST_BG=black
@@ -323,8 +323,10 @@ prompt_segment() {
       echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
     else
       echo -n "%{$bg%}%{$fg%} "
-  if [[ $SEGMENT_PLACE == 'RIGHT' ]]; then
-      echo -n " %{$fg%K{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$bg%} "
+    fi
+  fi
+  if [[ $SEGMENT_PLACE == 'RIGHT' && -n $1 ]]; then
+      echo -n " %{%F{$1}%K{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg$bg%} "
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
@@ -627,7 +629,7 @@ rprompt_user() {
 # Host
 rprompt_host() {
   [[ $BULLETTRAIN_HOST_SHOW == false ]] && return
-  prompt_segment $BULLETTRAIN_USER_BG $BULLETTRAIN_USER_FG "%m"
+  prompt_segment $BULLETTRAIN_HOST_BG $BULLETTRAIN_HOST_FG "%m"
 }
 
 # ------------------------------------------------------------------------------
@@ -664,11 +666,11 @@ PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
 
 build_rprompt() {
-  CURRENT_BG='NONE
+  CURRENT_BG='NONE'
   SEGMENT_SEPARATOR=''
   SEGMENT_PLACE='RIGHT'
   rprompt_user
   rprompt_host
 }
 
-RPROMPT="$(build_rprompt)'
+RPROMPT='$(build_rprompt)'
