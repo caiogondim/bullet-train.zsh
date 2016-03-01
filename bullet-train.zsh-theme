@@ -16,6 +16,8 @@
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # PROMPT
+# Note that BULLETTRAIN_PROMPT_SEPARATE_LINE and BULLETTRAIN_PROMPT_ADD_NEWLINE
+# does not work in RPROMPT
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
   BULLETTRAIN_PROMPT_CHAR="\$"
 fi
@@ -278,7 +280,6 @@ if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
   BULLETTRAIN_EXEC_TIME_FG=black
 fi
 
-
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
 # A few functions to make it easy and re-usable to draw segmented prompts
@@ -286,6 +287,7 @@ fi
 
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
+SEGMENT_PLACE='LEFT'
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -294,10 +296,13 @@ prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
-  else
-    echo -n "%{$bg%}%{$fg%} "
+  if [[ $SEGMENT_PLACE == 'LEFT' ]]; then
+    if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+      echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    else
+      echo -n "%{$bg%}%{$fg%} "
+  if [[ $SEGMENT_PLACE == 'RIGHT' ]]; then
+      echo -n " %{$fg%K{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$bg%} "
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
@@ -327,7 +332,6 @@ context() {
 }
 prompt_context() {
   [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] && return
-
   local _context="$(context)"
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
@@ -586,6 +590,12 @@ prompt_line_sep() {
 }
 
 # ------------------------------------------------------------------------------
+# RPROMPT COMPONENTS
+# Same as PROMPT COMPONENTS except place in RPROMPT, and they are stable while
+# PROMPT COMPONENTS change frequently
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
 # MAIN
 # Entry point
 # ------------------------------------------------------------------------------
@@ -617,3 +627,11 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
 PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
+
+build_rprompt() {
+  CURRENT_BG='NONE
+  SEGMENT_SEPARATOR=''
+  SEGMENT_PLACE='RIGHT'
+}
+
+RPROMPT="$(build_rprompt)'
