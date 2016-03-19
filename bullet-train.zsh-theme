@@ -570,8 +570,8 @@ prompt_char() {
     bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
   fi
 
-  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false  ]]; then
-    bt_prompt_char=" ${bt_prompt_char}"
+  if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
+    bt_prompt_char="${bt_prompt_char}"
   fi
 
   echo -n $bt_prompt_char
