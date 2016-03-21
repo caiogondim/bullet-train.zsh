@@ -1,4 +1,12 @@
-sudo: false
+sudo: required
 language: node_js
 node_js:
   - 0.10
+
+install:
+  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ wily universe"
+  - sudo apt-get update -q
+  - sudo apt-get install shellcheck -y
+
+script:
+  - shellcheck bullet-train.zsh-theme
