@@ -324,9 +324,12 @@ prompt_segment() {
     else
       echo -n "%{$bg%}%{$fg%} "
     fi
-  fi
-  if [[ $SEGMENT_PLACE == 'RIGHT' && -n $1 ]]; then
-      echo -n " %{%F{$1}%K{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg$bg%} "
+  else
+    if [[ $SEGMENT_PLACE == 'RIGHT' && -n $1 ]]; then
+        echo -n " %{%F{$1}%K{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg$bg%} "
+    else
+      echo -n "%{$bg%}%{$fg%} "
+    fi
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
