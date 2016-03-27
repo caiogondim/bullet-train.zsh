@@ -616,21 +616,15 @@ prompt_line_sep() {
   fi
 }
 
-# ------------------------------------------------------------------------------
-# RPROMPT COMPONENTS
-# Same as PROMPT COMPONENTS except place in RPROMPT, and they are stable while
-# PROMPT COMPONENTS change frequently
-# ------------------------------------------------------------------------------
-
 # User
-rprompt_user() {
+prompt_user() {
   [[ $BULLETTRAIN_USER_SHOW == false ]] && return
   local _user="$(whoami)"
   [[ -n "$_user" ]] && prompt_segment $BULLETTRAIN_USER_BG $BULLETTRAIN_USER_FG "$_user"
 }
 
 # Host
-rprompt_host() {
+prompt_host() {
   [[ $BULLETTRAIN_HOST_SHOW == false ]] && return
   prompt_segment $BULLETTRAIN_HOST_BG $BULLETTRAIN_HOST_FG "%m"
 }
@@ -638,6 +632,9 @@ rprompt_host() {
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
+# You can change the prompt_ function's position while change place it in 
+# build_prompt or build_rprompt function. For example, put the dynamic prompt
+# on the left and put the stable prompt on the right.
 # ------------------------------------------------------------------------------
 
 build_prompt() {
@@ -672,8 +669,8 @@ build_rprompt() {
   CURRENT_BG='NONE'
   SEGMENT_SEPARATOR=''
   SEGMENT_PLACE='RIGHT'
-  rprompt_user
-  rprompt_host
+  prompt_user
+  prompt_host
 }
 
 RPROMPT='$(build_rprompt)'
