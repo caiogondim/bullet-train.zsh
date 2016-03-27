@@ -632,7 +632,7 @@ prompt_host() {
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
-# You can change the prompt_ function's position while change place it in 
+# You can change the prompt_ function's position while change place it in
 # build_prompt or build_rprompt function. For example, put the dynamic prompt
 # on the left and put the stable prompt on the right.
 # ------------------------------------------------------------------------------
