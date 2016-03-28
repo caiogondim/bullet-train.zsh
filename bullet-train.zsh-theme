@@ -181,6 +181,20 @@ if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
   BULLETTRAIN_PERL_PREFIX=🐪
 fi
 
+#SVN
+if [ ! -n "${BULLETTRAIN_SVN_SHOW+1}" ]; then
+  BULLETTRAIN_SVN_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_SVN_BG+1}" ]; then
+  BULLETTRAIN_SVN_BG=white
+fi
+if [ ! -n "${BULLETTRAIN_SVN_FG+1}" ]; then
+  BULLETTRAIN_SVN_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_SVN_EXTENDED+1}" ]; then
+  BULLETTRAIN_SVN_EXTENDED=true
+fi
+
 # HG
 if [ ! -n "${BULLETTRAIN_HG_SHOW+1}" ]; then
   BULLETTRAIN_HG_SHOW=true
@@ -378,6 +392,27 @@ prompt_git() {
       echo -n ${git_prompt}$(git_prompt_status)
     else
       echo -n ${git_prompt}
+    fi
+  fi
+}
+
+prompt_svn() {
+  if [[ $BULLETTRAIN_SVN_SHOW == false ]]; then
+    return
+  fi
+
+  if $(in_svn); then
+    prompt_segment $BULLETTRAIN_SVN_BG $BULLETTRAIN_SVN_FG $(svn_get_rev_nr)
+
+    if [[ $BULLETTRAIN_SVN_EXTENDED == true ]]; then
+      local mofid
+      modif=$(svn status -q | wc -l)
+      if [[ $modif > 0 ]]; then
+        echo -n " ✘"
+        prompt_segment green red $modif
+      else
+        echo -n " ✔"
+      fi
     fi
   fi
 }
@@ -603,8 +638,12 @@ build_prompt() {
   prompt_nvm
   prompt_go
   prompt_git
+  prompt_svn
   prompt_hg
   prompt_cmd_exec_time
+  prompt_end
+}
+
   prompt_end
 }
 
