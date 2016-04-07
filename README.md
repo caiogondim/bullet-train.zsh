@@ -133,6 +133,7 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_CUSTOM_MSG`|`false`|Free segment you can put a custom message
 |`BULLETTRAIN_CUSTOM_BG`|`black`|Background color
 |`BULLETTRAIN_CUSTOM_FG`|`black`|Foreground color
+|`BULLETTRAIN_CUSTOM_FN`|`''`|Custom function to generate message
 
 ### Context
 
