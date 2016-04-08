@@ -356,7 +356,10 @@ prompt_custom() {
   if [[ $BULLETTRAIN_CUSTOM_MSG != false ]]; then
     prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
   elif [[ -n $BULLETTRAIN_CUSTOM_FN ]]; then
-    prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG $($BULLET_TRAINCUSTOM_FN)
+    local msg=$($BULLETTRAIN_CUSTOM_FN)
+    if [[ -n $msg ]]; then
+      prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "$msg"
+    fi
   fi
 
 }
