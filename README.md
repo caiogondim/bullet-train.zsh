@@ -97,6 +97,23 @@ zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 Bullet Train is configurable. You can change colors and which segments you want
 or don't want to see. All options must be overridden in your **.zshrc** file.
 
+### Order
+`BULLETTRAIN_PROMPT_ORDER` defines order of prompt segments. Use zsh array
+syntax to specify your own order, e.g:
+
+```bash
+BULLETTRAIN_PROMPT_ORDER=(
+  git
+  context
+  dir
+  time
+)
+```
+
+NOTE: You do not need to specify *end* segment - it will be added automatically.
+With this you can also specify custom segments, please see [Tips](#tips) for
+more details.
+
 ### Prompt
 
 |Variable|Default|Meaning
@@ -241,6 +258,24 @@ or don't want to see. All options must be overridden in your **.zshrc** file.
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
 ## Tips
+
+### BULLETTRAIN_PROMPT_ORDER
+
+This gives ability to customize order and put user-defined segment on prompt.
+
+```bash
+prompt_say_hello() {
+  prompt_segment yellow blue "hello"
+}
+
+BULLETTRAIN_PROMPT_ORDER=(
+  git
+  dir
+  say_hello
+)
+```
+
+![Prompt_Order](./img/tips/prompt_order.png)
 
 ### BULLETTRAIN_GIT_PROMPT_CMD
 

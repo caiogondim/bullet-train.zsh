@@ -15,6 +15,25 @@
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
+# Define order and content of prompt
+if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
+  BULLETTRAIN_PROMPT_ORDER=(
+    time
+    status
+    custom
+    context
+    dir
+    perl
+    ruby
+    virtualenv
+    nvm
+    go
+    git
+    hg
+    cmd_exec_time
+  )
+fi
+
 # PROMPT
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
   BULLETTRAIN_PROMPT_CHAR="\$"
@@ -592,19 +611,10 @@ prompt_line_sep() {
 
 build_prompt() {
   RETVAL=$?
-  prompt_time
-  prompt_status
-  prompt_custom
-  prompt_context
-  prompt_dir
-  prompt_perl
-  prompt_ruby
-  prompt_virtualenv
-  prompt_nvm
-  prompt_go
-  prompt_git
-  prompt_hg
-  prompt_cmd_exec_time
+  for segment in $BULLETTRAIN_PROMPT_ORDER
+  do
+    prompt_$segment
+  done
   prompt_end
 }
 
