@@ -9,7 +9,7 @@ simplicity, showing information only when it's relevant.
 
 It currently shows:
 - Current Python virtualenv; when using Pyenv and no active virtualenv shows the current Python version the shell uses
-- Current Ruby version using Rbenv or chruby; version and gemset when on RVM
+- Current Ruby version using chruby; version and gemset when on RVM or Rbenv
 - Current Node.js version, through NVM
 - Current Perl version using plenv
 - Git status
