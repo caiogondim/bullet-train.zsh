@@ -86,6 +86,9 @@ fi
 if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
   BULLETTRAIN_CUSTOM_FG=default
 fi
+if [ ! -n "${BULLETTRAIN_CUSTOM_FN+1}" ]; then
+    BULLETTRAIN_CUSTOM_FN=
+fi
 
 # VIRTUALENV
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_SHOW+1}" ]; then
@@ -372,11 +375,15 @@ prompt_cmd_exec_time() {
 
 # Custom
 prompt_custom() {
-  if [[ $BULLETTRAIN_CUSTOM_MSG == false ]]; then
-    return
+  if [[ $BULLETTRAIN_CUSTOM_MSG != false ]]; then
+    prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
+  elif [[ -n $BULLETTRAIN_CUSTOM_FN ]]; then
+    local msg=$($BULLETTRAIN_CUSTOM_FN)
+    if [[ -n $msg ]]; then
+      prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "$msg"
+    fi
   fi
 
-  prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
 }
 
 # Git
