@@ -9,4 +9,4 @@ install:
   - sudo apt-get install shellcheck -y
 
 script:
-  - shellcheck -s-shell=zsh bullet-train.zsh-theme
+  - shellcheck -shell=zsh bullet-train.zsh-theme
