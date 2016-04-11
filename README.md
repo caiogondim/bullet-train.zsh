@@ -21,7 +21,7 @@ It currently shows:
 If you want add some new feature, of fix some bug, open an issue and lets hack
 together.
 
-For a tmux theme to work with it, i suggest [Maglev](https://github.com/caiogondim/maglev).
+For a tmux theme to work with it, I suggest [Maglev](https://github.com/caiogondim/maglev).
 
 ## Preview
 
@@ -330,7 +330,7 @@ of the project:
 8	Viktor (Icon) VAD
 8	Dan Kaplun
 7	Jocelyn Mallon
-6	Jérémy Romey
+6	Jérémy Romey
 6	Joe Block
 5	Arthur Wang
 5	Dawid Kurek
