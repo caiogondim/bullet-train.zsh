@@ -324,48 +324,49 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-141	Caio Gondim
-33 Jérémy Romey
-14 Greg Fitzgerald
-8	Viktor (Icon) VAD
-8	Dan Kaplun
-7	Jocelyn Mallon
-6	Jérémy Romey
-6	Joe Block
-5	Arthur Wang
-5	Dawid Kurek
-4	Flavius Aspra
-3	Michael Cornell
-3	Mario Zigliotto
-2	Jiri Tyr
-2	Charlie Smith
-2	wujtruj
-2	itsZero (Chien-An Cho)
-1	Peter Nagy
-1	Sébastien Bordenave
-1	gvillalta99
-1	illuminatis
-1	krischer
-1	m.kuehn
-1	timfeirg
-1	Adrien Brault
-1	yachi
-1	Andreas Galauner
-1	Dale Davis
-1	Fabio Poloni
-1	Guillaume BINET
-1	Hannes Frank
-1	Heng-Yi Wu
-1	Jack Chu
-1	Jason Hollis
-1	KVoll
-1	Kevin
-1	Manuel Hoffmann
-1	Marius Krämer
-1	Maxime Bruguet
-1	Mertcan Mermerkaya
-1	Michael Robinson
-1	Nicholas
+144 Caio Gondim
+33  Jérémy Romey
+14  Greg Fitzgerald
+8   Viktor (Icon) VAD
+8   Dan Kaplun
+7   Jocelyn Mallon
+6   Jérémy Romey
+6   Joe Block
+5   Arthur Wang
+5   Dawid Kurek
+4   Flavius Aspra
+3   Michael Robinson
+3   Mario Zigliotto
+3   Michael Cornell
+2   Jiri Tyr
+2   Charlie Smith
+2   wujtruj
+2   itsZero (Chien-An Cho)
+1   alysson
+1   gvillalta99
+1   illuminatis
+1   krischer
+1   m.kuehn
+1   timfeirg
+1   Adrien Brault
+1   yachi
+1   Andreas Galauner
+1   Dale Davis
+1   Fabio Poloni
+1   Guillaume BINET
+1   Hannes Frank
+1   Heng-Yi Wu
+1   Jack Chu
+1   Jason Hollis
+1   KVoll
+1   Kevin
+1   Manuel Hoffmann
+1   Marius Krämer
+1   Maxime Bruguet
+1   Mertcan Mermerkaya
+1   Nicholas
+1   Peter Nagy
+1   Sébastien Bordenave
 ```
 
 ## Credits
