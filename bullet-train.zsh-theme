@@ -540,7 +540,7 @@ prompt_nvm() {
   fi
 
   local nvm_prompt
-  if [[ $(type nvm >/dev/null 2>&1) ]]; then
+  if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
     [[ "${nvm_prompt}x" == "x" ]] && return
   else
