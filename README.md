@@ -96,10 +96,10 @@ zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
 If you're using [zplug](https://github.com/zplug/zplug), add the following line to your **~/.zshrc** where you're adding your other zsh plugins **after** the line `zplug "robbyrussell/oh-my-zsh"`. 
 
-'''bash
+```bash
 setopt prompt_subst # Make sure propt is able to be generated properly.
 zplug "adambiggs/zsh-theme", use:adambiggs.zsh-theme
-'''
+```
 
 ## Options
 
