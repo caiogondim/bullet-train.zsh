@@ -92,6 +92,15 @@ If you're using [zgen](https://github.com/tarjoilija/zgen), add the following li
 zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 ```
 
+### For Zplug users
+
+If you're using [zplug](https://github.com/zplug/zplug), add the following line to your **~/.zshrc** where you're adding your other zsh plugins **after** the line `zplug "robbyrussell/oh-my-zsh"`. 
+
+'''bash
+setopt prompt_subst # Make sure propt is able to be generated properly.
+zplug "adambiggs/zsh-theme", use:adambiggs.zsh-theme
+'''
+
 ## Options
 
 Bullet Train is configurable. You can change colors and which segments you want
