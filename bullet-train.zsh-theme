@@ -356,17 +356,21 @@ prompt_context() {
 
 # Prompt previous command execution time
 preexec() {
-    cmd_timestamp=`date +%s`
+  cmd_timestamp=`date +%s`
 }
 
-prompt_cmd_exec_time() {
-  if [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]]; then
-    return
-  fi
+precmd() {
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
 
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
-  let local elapsed=$stop-$start
+  let elapsed=$stop-$start
+  cmd_timestamp=''
+}
+
+prompt_cmd_exec_time() {
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
+
   [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${elapsed}s"
 }
 
