@@ -364,14 +364,14 @@ precmd() {
 
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
-  let elapsed=$stop-$start
+  let BULLETTRAIN_last_exec_duration=$stop-$start
   cmd_timestamp=''
 }
 
 prompt_cmd_exec_time() {
   [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
 
-  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${elapsed}s"
+  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${BULLETTRAIN_last_exec_duration}s"
 }
 
 # Custom
