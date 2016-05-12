@@ -354,6 +354,19 @@ prompt_context() {
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
 
+# Based on http://stackoverflow.com/a/32164707/3859566
+function displaytime {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  [[ $D > 0 ]] && printf '%dd' $D
+  [[ $H > 0 ]] && printf '%dh' $H
+  [[ $M > 0 ]] && printf '%dm' $M
+  printf '%ds' $S
+}
+
 # Prompt previous command execution time
 preexec() {
   cmd_timestamp=`date +%s`
@@ -371,7 +384,7 @@ precmd() {
 prompt_cmd_exec_time() {
   [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
 
-  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${BULLETTRAIN_last_exec_duration}s"
+  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "$(displaytime $BULLETTRAIN_last_exec_duration)"
 }
 
 # Custom
