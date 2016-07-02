@@ -408,11 +408,15 @@ prompt_hg() {
         # if working copy is clean
         prompt_segment green black
       fi
-      echo -n $(hg prompt "☿ {rev}@{branch}") $st
+      echo -n $(hg prompt "☿ {rev}@{branch}{:{bookmark}}") $st
     else
       st=""
       rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
       branch=$(hg id -b 2>/dev/null)
+      bookmark=$(cat "$(hg root)/.hg/bookmarks.current" 2> /dev/null)
+      if [[ ! -z $bookmark ]]; then
+        bookmark_with_colon=":$bookmark"
+      fi
       if $(hg st | grep -Eq "^\?"); then
         prompt_segment red black
         st='±'
@@ -422,7 +426,7 @@ prompt_hg() {
       else
         prompt_segment green black
       fi
-      echo -n "☿ $rev@$branch" $st
+      echo -n "☿ $rev@$branch$bookmark_with_colon" $st
     fi
   fi
 }
