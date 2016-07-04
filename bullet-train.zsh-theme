@@ -18,6 +18,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=true
 # Define order and content of prompt
 if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
   BULLETTRAIN_PROMPT_ORDER=(
+    battery
     time
     status
     custom
@@ -85,6 +86,11 @@ if [ ! -n "${BULLETTRAIN_CUSTOM_BG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
   BULLETTRAIN_CUSTOM_FG=default
+fi
+
+# BATTERY
+if [ ! -n "${BULLETTRAIN_BATTERY_SHOW+1}" ]; then
+  BULLETTRAIN_BATTERY_SHOW=true
 fi
 
 # VIRTUALENV
@@ -394,6 +400,54 @@ prompt_custom() {
   fi
 
   prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
+}
+
+# Battery Level
+prompt_battery() {
+  HEART='♥ '
+  
+  if [[ $BULLETTRAIN_BATTERY_SHOW == false ]] || [ ! -d /sys/module/battery/ ] || [ ! -d /proc/acpi/battery/BAT* ]; then
+    return
+  fi
+
+  if [[ $(uname) == "Linux"  ]] ; then
+
+    function battery_is_charging() {
+      ! [[ $(acpi 2&>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]]
+    }
+
+    function battery_pct() {
+      if (( $+commands[acpi] )) ; then
+        echo "$(acpi | cut -f2 -d ',' | tr -cd '[:digit:]')"
+      fi
+    }
+
+    function battery_pct_remaining() {
+      if [ ! $(battery_is_charging) ] ; then
+        battery_pct
+      else
+        echo "External Power"
+      fi
+    }
+
+    function battery_time_remaining() {
+      if [[ $(acpi 2&>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
+        echo $(acpi | cut -f3 -d ',')
+      fi
+    }
+
+    b=$(battery_pct_remaining)
+    if [[ $(acpi 2&>/dev/null | grep -c '^Battery.*Discharging') -gt 0 ]] ; then
+      if [ $b -gt 40 ] ; then
+        prompt_segment green white
+      elif [ $b -gt 20 ] ; then
+        prompt_segment yellow white
+      else
+        prompt_segment red white
+      fi
+      echo -n "$fg_bold[white]$HEART$(battery_pct_remaining)%%$fg_no_bold[white]"
+    fi
+  fi
 }
 
 # Git
