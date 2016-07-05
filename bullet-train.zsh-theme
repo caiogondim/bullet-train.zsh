@@ -405,7 +405,7 @@ prompt_custom() {
 # Battery Level
 prompt_battery() {
   HEART='♥ '
-  
+
   if [[ $BULLETTRAIN_BATTERY_SHOW == false ]] || [ ! -d /sys/module/battery/ ] || [ ! -d /proc/acpi/battery/BAT* ]; then
     return
   fi
