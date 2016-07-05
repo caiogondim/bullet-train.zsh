@@ -185,6 +185,9 @@ fi
 if [ ! -n "${BULLETTRAIN_GIT_PROMPT_CMD+1}" ]; then
   BULLETTRAIN_GIT_PROMPT_CMD="\$(git_prompt_info)"
 fi
+if [ ! -n "${BULLETTRAIN_GIT_FETCH+1}" ]; then
+  BULLETTRAIN_GIT_FETCH=false
+fi
 
 # PERL
 if [ ! -n "${BULLETTRAIN_PERL_SHOW+1}" ]; then
@@ -405,8 +408,10 @@ prompt_git() {
   local ref dirty mode repo_path git_prompt
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    git fetch
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+    if [[ $BULLETTRAIN_GIT_FETCH == true && $(ping -q -c 1 -W 1 8.8.8.8 >/dev/null) ]]; then
+      git fetch &
+    fi
     if [[ $BULLETTRAIN_GIT_COLORIZE_DIRTY == true && -n $(git status --porcelain --ignore-submodules) ]]; then
       BULLETTRAIN_GIT_BG=$BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR
       BULLETTRAIN_GIT_FG=$BULLETTRAIN_GIT_COLORIZE_DIRTY_FG_COLOR
