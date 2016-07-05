@@ -408,7 +408,7 @@ prompt_git() {
   local ref dirty mode repo_path git_prompt
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     if [[ $BULLETTRAIN_GIT_FETCH == true && $(ping -q -c 1 -W 1 8.8.8.8 >/dev/null) ]]; then
       git fetch &
     fi
