@@ -409,8 +409,8 @@ prompt_git() {
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    if [[ $BULLETTRAIN_GIT_FETCH == true && $(ping -q -c 1 -W 1 8.8.8.8 >/dev/null) ]]; then
-      git fetch &
+    if [[ $BULLETTRAIN_GIT_FETCH == true ]]; then
+      (ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` &> /dev/null) && (git fetch &>/dev/null &)
     fi
     if [[ $BULLETTRAIN_GIT_COLORIZE_DIRTY == true && -n $(git status --porcelain --ignore-submodules) ]]; then
       BULLETTRAIN_GIT_BG=$BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR
