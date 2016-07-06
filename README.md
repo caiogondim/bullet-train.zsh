@@ -233,6 +233,7 @@ more details.
 |Variable|Default|Meaning
 |--------|-------|-------|
 |`BULLETTRAIN_GIT_SHOW`|`true`|Show/hide that segment
+|`BULLETTRAIN_GIT_FETCH`|`false`|Fetch the git repository when there is network access
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY`|`false`|Set `BULLETTRAIN_GIT_BG` to `BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR` in dirty state
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR`|`yellow`|`BULLETTRAIN_GIT_BG` in dirty state
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY_FG_COLOR`|`black`|`BULLETTRAIN_GIT_FG` in dirty state
