@@ -28,28 +28,6 @@ For a tmux theme to work with it, I suggest [Maglev](https://github.com/caiogond
 ![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview.gif)
 
 
-## Other color schemes
-
-It's better to use Bullet Train with a dark background color scheme. Below you
-can check Bullet Train with some popular dark color schemes.
-
-### Solarized Dark
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/solarized-dark.png)
-
-### Monokai
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/monokai.png)
-
-### Tomorrow Night Eighties
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tomorrow-night-eighties.png)
-
-### Tomorrow Night Bright
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tomorrow-night-bright.png)
-
-
 ## Requirements
 
 In order to use the theme, you will first need:
@@ -329,6 +307,7 @@ which gives:
 ## Wiki
 
 - [FAQ](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/FAQ)
+- [Screenshots](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/Screenshots)
 
 ## Contributors
 
