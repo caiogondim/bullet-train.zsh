@@ -326,6 +326,10 @@ which gives:
 
 ![Git_Prompt_Function](./img/tips/git_prompt_function.png)
 
+## Wiki
+
+- [FAQ](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/FAQ)
+
 ## Contributors
 
 That project was originally a fork from
