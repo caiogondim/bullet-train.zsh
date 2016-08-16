@@ -494,7 +494,9 @@ prompt_ruby() {
   fi
 
   if command -v rvm-prompt > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
+    if [[ -n $(rvm-prompt | grep "@") ]] then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
+    fi
   elif command -v chruby > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -n -e 's/ \* //p')"
   elif command -v rbenv > /dev/null 2>&1; then
