@@ -493,6 +493,10 @@ prompt_ruby() {
     return
   fi
 
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.r(b|u|ake)$' &> /dev/null ; then
+    return
+  fi
+
   if command -v rvm-prompt > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
   elif command -v chruby > /dev/null 2>&1; then
@@ -517,6 +521,10 @@ prompt_perl() {
     return
   fi
 
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.pl(c|d)?$' &> /dev/null ; then
+    return
+  fi
+
   if command -v plenv > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG $BULLETTRAIN_PERL_PREFIX" $(plenv version | sed -e 's/ (set.*$//')"
   fi
@@ -525,6 +533,10 @@ prompt_perl() {
 # Go
 prompt_go() {
   if [[ $BULLETTRAIN_GO_SHOW == false ]]; then
+    return
+  fi
+
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.go$' &> /dev/null ; then
     return
   fi
 
@@ -553,6 +565,10 @@ prompt_virtualenv() {
 # NVM: Node version manager
 prompt_nvm() {
   if [[ $BULLETTRAIN_NVM_SHOW == false ]]; then
+    return
+  fi
+
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.(node|es6|jsx?)$' &> /dev/null ; then
     return
   fi
 
