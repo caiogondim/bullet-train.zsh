@@ -99,9 +99,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 ```
 
-NOTE: You do not need to specify *end* segment - it will be added automatically.
-With this you can also specify custom segments, please see [Tips](#tips) for
-more details.
+NOTE: You do not need to specify *end* segment - it will be added automatically. With this you can also specify custom segments.
 
 ### Prompt
 
