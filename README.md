@@ -241,7 +241,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |Variable|Default|Meaning
 |--------|-------|-------|
 |`BULLETTRAIN_EXEC_TIME_SHOW`|`false`|Show/hide that segment
-|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Elapsed time of command execution
+|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Minimum elapsed time of command execution. If the execution time of a command is smaller than this, the segment will be hidden.
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
