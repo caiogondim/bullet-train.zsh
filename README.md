@@ -127,8 +127,8 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_TIME_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_TIME_12HR`|`false`|Format time using 12-hour clock (am/pm)
-|`BULLETTRAIN_TIME_BG`|`''`|Background color
-|`BULLETTRAIN_TIME_FG`|`''`|Foreground color
+|`BULLETTRAIN_TIME_BG`|`'white'`|Background color
+|`BULLETTRAIN_TIME_FG`|`'black'`|Foreground color
 
 ### Custom
 
