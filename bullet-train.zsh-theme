@@ -310,8 +310,8 @@ CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
 
 # Begin a segment
-# Takes two arguments, background and foreground. Both can be omitted,
-# rendering default background/foreground.
+# Takes three arguments, background, foreground and text. All of them can be omitted,
+# rendering default background/foreground and no text.
 prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
