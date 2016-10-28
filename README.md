@@ -275,7 +275,7 @@ of the project:
   3	Michael Robinson
   3	Michael Cornell
   3	Iulian Onofrei
-  2	itsZero (Chien-An Cho
+  2	itsZero (Chien-An Cho)
   2	Daniel Loader
   2	Charlie Smith
   2	wujtruj
