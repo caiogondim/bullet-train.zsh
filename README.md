@@ -117,6 +117,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_STATUS_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_STATUS_EXIT_SHOW`|`false`|Show/hide exit code of last command
+|`BULLETTRAIN_STATUS_EXIT_SIGNAL_SHOW`|`false`|Enable/disable the signal name interpretation
 |`BULLETTRAIN_STATUS_BG`|`green`|Background color
 |`BULLETTRAIN_STATUS_ERROR_BG`|`red`|Background color of segment when last command exited with an error
 |`BULLETTRAIN_STATUS_FG`|`black`|Foreground color
