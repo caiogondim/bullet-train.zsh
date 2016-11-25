@@ -23,6 +23,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     custom
     context
     dir
+    php
     perl
     ruby
     virtualenv
@@ -127,6 +128,20 @@ if [ ! -n "${BULLETTRAIN_RUBY_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_RUBY_PREFIX+1}" ]; then
   BULLETTRAIN_RUBY_PREFIX=♦️
+fi
+
+# PHP
+if [ ! -n "${BULLETTRAIN_PHP_SHOW+1}" ]; then
+  BULLETTRAIN_PHP_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_PHP_BG+1}" ]; then
+  BULLETTRAIN_PHP_BG=magenta
+fi
+if [ ! -n "${BULLETTRAIN_PHP_FG+1}" ]; then
+  BULLETTRAIN_PHP_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_PHP_PREFIX+1}" ]; then
+  BULLETTRAIN_PHP_PREFIX=🐘
 fi
 
 # Go
@@ -510,6 +525,17 @@ prompt_ruby() {
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
     fi
   fi
+}
+
+prompt_php() {
+  if [[ $BULLETTRAIN_PHP_SHOW == false ]]; then
+    return
+  fi
+
+  if command -v php > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_PHP_BG $BULLETTRAIN_PHP_FG $BULLETTRAIN_PHP_PREFIX" $(php -v | tr '\n' ' ' | sed -e 's/ (.*//')"
+  fi
+
 }
 
 # PERL
