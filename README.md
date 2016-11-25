@@ -194,6 +194,15 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_PERL_FG`|`black`|Foreground color
 |`BULLETTRAIN_PERL_PREFIX`|`🐪`|Prefix of the segment
 
+### PHP Cli
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_PHP_SHOW`|`false`|Show/hide that segment
+|`BULLETTRAIN_PHP_BG`|`magenta`|Background color
+|`BULLETTRAIN_PHP_FG`|`white`|Foreground color
+|`BULLETTRAIN_PHP_PREFIX`|`🐘`|Prefix of the segment
+
 ### Dir
 
 |Variable|Default|Meaning
