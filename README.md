@@ -324,3 +324,9 @@ bitcoins to `1BqqKiZA8Tq43CdukdBEwCdDD42jxuX9UY` or through the
 [URL](https://www.coinbase.com/caiogondim) https://www.coinbase.com/caiogondim
 
 Or via [PayPal.me](https://www.paypal.me/caiogondim) https://www.paypal.me/caiogondim.
+
+---
+
+[caiogondim.com](https://caiogondim.com) &nbsp;&middot;&nbsp;
+GitHub [@caiogondim](https://github.com/caiogondim) &nbsp;&middot;&nbsp;
+Twitter [@caio_gondim](https://twitter.com/caio_gondim)
