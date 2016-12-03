@@ -35,6 +35,8 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
 fi
 
 # PROMPT
+# Note that BULLETTRAIN_PROMPT_SEPARATE_LINE and BULLETTRAIN_PROMPT_ADD_NEWLINE
+# does not work in RPROMPT
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
   BULLETTRAIN_PROMPT_CHAR="\$"
 fi
@@ -300,6 +302,27 @@ if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
   BULLETTRAIN_EXEC_TIME_FG=black
 fi
 
+# USER
+if [ ! -n "${BULLETTRAIN_USER_SHOW+1}" ]; then
+  BULLETTRAIN_USER_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_USER_BG+1}" ]; then
+  BULLETTRAIN_USER_BG=green
+fi
+if [ ! -n "${BULLETTRAIN_USER_FG+1}" ]; then
+  BULLETTRAIN_USER_FG=white
+fi
+
+# HOST
+if [ ! -n "${BULLETTRAIN_HOST_SHOW+1}" ]; then
+  BULLETTRAIN_HOST_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_HOST_BG+1}" ]; then
+  BULLETTRAIN_HOST_BG=black
+fi
+if [ ! -n "${BULLETTRAIN_HOST_FG+1}" ]; then
+  BULLETTRAIN_HOST_FG=white
+fi
 
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
@@ -308,6 +331,7 @@ fi
 
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
+SEGMENT_PLACE='LEFT'
 
 # Begin a segment
 # Takes three arguments, background, foreground and text. All of them can be omitted,
@@ -316,10 +340,18 @@ prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+  if [[ $SEGMENT_PLACE == 'LEFT' ]]; then
+    if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+      echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    else
+      echo -n "%{$bg%}%{$fg%} "
+    fi
   else
-    echo -n "%{$bg%}%{$fg%} "
+    if [[ $SEGMENT_PLACE == 'RIGHT' && -n $1 ]]; then
+        echo -n " %{%F{$1}%K{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg$bg%} "
+    else
+      echo -n "%{$bg%}%{$fg%} "
+    fi
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
@@ -349,7 +381,6 @@ context() {
 }
 prompt_context() {
   [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] && return
-
   local _context="$(context)"
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
@@ -633,9 +664,25 @@ prompt_line_sep() {
   fi
 }
 
+# User
+prompt_user() {
+  [[ $BULLETTRAIN_USER_SHOW == false ]] && return
+  local _user="$(whoami)"
+  [[ -n "$_user" ]] && prompt_segment $BULLETTRAIN_USER_BG $BULLETTRAIN_USER_FG "$_user"
+}
+
+# Host
+prompt_host() {
+  [[ $BULLETTRAIN_HOST_SHOW == false ]] && return
+  prompt_segment $BULLETTRAIN_HOST_BG $BULLETTRAIN_HOST_FG "%m"
+}
+
 # ------------------------------------------------------------------------------
 # MAIN
 # Entry point
+# You can change the prompt_ function's position while change place it in
+# build_prompt or build_rprompt function. For example, put the dynamic prompt
+# on the left and put the stable prompt on the right.
 # ------------------------------------------------------------------------------
 
 build_prompt() {
@@ -656,3 +703,13 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
 PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
+
+build_rprompt() {
+  CURRENT_BG='NONE'
+  SEGMENT_SEPARATOR=''
+  SEGMENT_PLACE='RIGHT'
+  prompt_user
+  prompt_host
+}
+
+RPROMPT='$(build_rprompt)'
