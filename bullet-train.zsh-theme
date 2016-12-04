@@ -149,7 +149,7 @@ if [ ! -n "${BULLETTRAIN_ELIXIR_SHOW+1}" ]; then
   BULLETTRAIN_ELIXIR_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_ELIXIR_BG+1}" ]; then
-  BULLETTRAIN_ELIXIR_BG=purple
+  BULLETTRAIN_ELIXIR_BG=magenta
 fi
 if [ ! -n "${BULLETTRAIN_ELIXIR_FG+1}" ]; then
   BULLETTRAIN_ELIXIR_FG=white
