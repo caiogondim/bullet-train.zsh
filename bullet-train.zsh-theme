@@ -28,6 +28,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     virtualenv
     nvm
     go
+    elixir
     git
     hg
     cmd_exec_time
@@ -120,7 +121,7 @@ if [ ! -n "${BULLETTRAIN_RUBY_SHOW+1}" ]; then
   BULLETTRAIN_RUBY_SHOW=true
 fi
 if [ ! -n "${BULLETTRAIN_RUBY_BG+1}" ]; then
-  BULLETTRAIN_RUBY_BG=magenta
+  BULLETTRAIN_RUBY_BG=red
 fi
 if [ ! -n "${BULLETTRAIN_RUBY_FG+1}" ]; then
   BULLETTRAIN_RUBY_FG=white
@@ -141,6 +142,20 @@ if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
   BULLETTRAIN_GO_PREFIX="go "
+fi
+
+# ELIXIR
+if [ ! -n "${BULLETTRAIN_ELIXIR_SHOW+1}" ]; then
+  BULLETTRAIN_ELIXIR_SHOW=false
+fi
+if [ ! -n "${BULLETTRAIN_ELIXIR_BG+1}" ]; then
+  BULLETTRAIN_ELIXIR_BG=purple
+fi
+if [ ! -n "${BULLETTRAIN_ELIXIR_FG+1}" ]; then
+  BULLETTRAIN_ELIXIR_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_ELIXIR_PREFIX+1}" ]; then
+  BULLETTRAIN_ELIXIR_PREFIX="💧"
 fi
 
 # DIR
@@ -509,6 +524,17 @@ prompt_ruby() {
     else
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
     fi
+  fi
+}
+
+# ELIXIR
+prompt_elixir() {
+  if [[ $BULLETTRAIN_ELIXIR_SHOW == false ]]; then
+    return
+  fi
+
+  if command -v elixir > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_ELIXIR_BG $BULLETTRAIN_ELIXIR_FG $BULLETTRAIN_ELIXIR_PREFIX" $(elixir -v | tail -n 1 | awk '{print $2}')"
   fi
 }
 
