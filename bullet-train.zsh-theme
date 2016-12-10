@@ -611,11 +611,11 @@ prompt_char() {
   bt_prompt_char=""
 
   if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]]; then
-    bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
+    bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR} "
   fi
 
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]]; then
-    bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
+    bt_prompt_char="%(!.%F{red}# .%F{green}${bt_prompt_char}%f)"
   fi
 
   if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
@@ -655,4 +655,4 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
-PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
+PROMPT="$PROMPT"'$(prompt_char)%{$reset_color%}'
