@@ -606,23 +606,23 @@ prompt_status() {
 }
 
 # Prompt Character
-prompt_char() {
-  local bt_prompt_char
-  bt_prompt_char=""
+prompt_chars() {
+  local bt_prompt_chars
+  bt_prompt_chars=""
 
   if [[ ${#BULLETTRAIN_PROMPT_CHAR} -eq 1 ]]; then
-    bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR} "
+    bt_prompt_chars="${BULLETTRAIN_PROMPT_CHAR} "
   fi
 
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]]; then
-    bt_prompt_char="%(!.%F{red}# .%F{green}${bt_prompt_char}%f)"
+    bt_prompt_chars="%(!.%F{red}# .%F{green}${bt_prompt_chars}%f)"
   fi
 
   if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
-    bt_prompt_char="${bt_prompt_char}"
+    bt_prompt_chars="${bt_prompt_chars}"
   fi
 
-  echo -n $bt_prompt_char
+  echo -n $bt_prompt_chars
 }
 
 # Prompt Line Separator
@@ -655,4 +655,4 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
-PROMPT="$PROMPT"'$(prompt_char)%{$reset_color%}'
+PROMPT="$PROMPT"'$(prompt_chars)%{$reset_color%}'
