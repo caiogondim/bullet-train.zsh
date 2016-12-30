@@ -357,6 +357,10 @@ prompt_custom() {
 
 # Git
 prompt_git() {
+  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" == "1" ]]; then
+    return
+  fi
+
   local ref dirty mode repo_path git_prompt
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
