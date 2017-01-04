@@ -136,7 +136,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_CUSTOM_MSG`|`false`|Free segment you can put a custom message which will be eval'ed for every prompt
 |`BULLETTRAIN_CUSTOM_BG`|`black`|Background color
-|`BULLETTRAIN_CUSTOM_FG`|`black`|Foreground color
+|`BULLETTRAIN_CUSTOM_FG`|`default`|Foreground color
 
 ### Context
 
