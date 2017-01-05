@@ -49,9 +49,6 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ADD_NEWLINE+1}" ]; then
 fi
 
 # STATUS
-if [ ! -n "${BULLETTRAIN_STATUS_SHOW+1}" ]; then
-  BULLETTRAIN_STATUS_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SHOW+1}" ]; then
   BULLETTRAIN_STATUS_EXIT_SHOW=false
 fi
@@ -66,9 +63,6 @@ if [ ! -n "${BULLETTRAIN_STATUS_FG+1}" ]; then
 fi
 
 # TIME
-if [ ! -n "${BULLETTRAIN_TIME_SHOW+1}" ]; then
-  BULLETTRAIN_TIME_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_TIME_BG+1}" ]; then
   BULLETTRAIN_TIME_BG=white
 fi
@@ -88,9 +82,6 @@ if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
 fi
 
 # VIRTUALENV
-if [ ! -n "${BULLETTRAIN_VIRTUALENV_SHOW+1}" ]; then
-  BULLETTRAIN_VIRTUALENV_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_BG+1}" ]; then
   BULLETTRAIN_VIRTUALENV_BG=yellow
 fi
@@ -102,9 +93,6 @@ if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
 fi
 
 # NVM
-if [ ! -n "${BULLETTRAIN_NVM_SHOW+1}" ]; then
-  BULLETTRAIN_NVM_SHOW=false
-fi
 if [ ! -n "${BULLETTRAIN_NVM_BG+1}" ]; then
   BULLETTRAIN_NVM_BG=green
 fi
@@ -116,9 +104,6 @@ if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
 fi
 
 # RUBY
-if [ ! -n "${BULLETTRAIN_RUBY_SHOW+1}" ]; then
-  BULLETTRAIN_RUBY_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_RUBY_BG+1}" ]; then
   BULLETTRAIN_RUBY_BG=magenta
 fi
@@ -130,9 +115,6 @@ if [ ! -n "${BULLETTRAIN_RUBY_PREFIX+1}" ]; then
 fi
 
 # Go
-if [ ! -n "${BULLETTRAIN_GO_SHOW+1}" ]; then
-  BULLETTRAIN_GO_SHOW=false
-fi
 if [ ! -n "${BULLETTRAIN_GO_BG+1}" ]; then
   BULLETTRAIN_GO_BG=cyan
 fi
@@ -144,9 +126,6 @@ if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
 fi
 
 # DIR
-if [ ! -n "${BULLETTRAIN_DIR_SHOW+1}" ]; then
-  BULLETTRAIN_DIR_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_DIR_BG+1}" ]; then
   BULLETTRAIN_DIR_BG=blue
 fi
@@ -161,9 +140,6 @@ if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
 fi
 
 # GIT
-if [ ! -n "${BULLETTRAIN_GIT_SHOW+1}" ]; then
-  BULLETTRAIN_GIT_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_GIT_COLORIZE_DIRTY+1}" ]; then
   BULLETTRAIN_GIT_COLORIZE_DIRTY=false
 fi
@@ -187,9 +163,6 @@ if [ ! -n "${BULLETTRAIN_GIT_PROMPT_CMD+1}" ]; then
 fi
 
 # PERL
-if [ ! -n "${BULLETTRAIN_PERL_SHOW+1}" ]; then
-  BULLETTRAIN_PERL_SHOW=false
-fi
 if [ ! -n "${BULLETTRAIN_PERL_BG+1}" ]; then
   BULLETTRAIN_PERL_BG=yellow
 fi
@@ -200,15 +173,7 @@ if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
   BULLETTRAIN_PERL_PREFIX=🐪
 fi
 
-# HG
-if [ ! -n "${BULLETTRAIN_HG_SHOW+1}" ]; then
-  BULLETTRAIN_HG_SHOW=true
-fi
-
 # CONTEXT
-if [ ! -n "${BULLETTRAIN_CONTEXT_SHOW+1}" ]; then
-  BULLETTRAIN_CONTEXT_SHOW=false
-fi
 if [ ! -n "${BULLETTRAIN_CONTEXT_BG+1}" ]; then
   BULLETTRAIN_CONTEXT_BG=black
 fi
@@ -287,9 +252,6 @@ else
 fi
 
 # COMMAND EXECUTION TIME
-if [ ! -n "${BULLETTRAIN_EXEC_TIME_SHOW+1}" ]; then
-  BULLETTRAIN_EXEC_TIME_SHOW=false
-fi
 if [ ! -n "${BULLETTRAIN_EXEC_TIME_ELAPSED+1}" ]; then
   BULLETTRAIN_EXEC_TIME_ELAPSED=5
 fi
@@ -347,9 +309,8 @@ context() {
   local user="$(whoami)"
   [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@$BULLETTRAIN_CONTEXT_HOSTNAME"
 }
-prompt_context() {
-  [[ $BULLETTRAIN_CONTEXT_SHOW == false ]] && return
 
+prompt_context() {
   local _context="$(context)"
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
@@ -373,8 +334,6 @@ preexec() {
 }
 
 precmd() {
-  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
-
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
   let BULLETTRAIN_last_exec_duration=$stop-$start
@@ -382,8 +341,6 @@ precmd() {
 }
 
 prompt_cmd_exec_time() {
-  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
-
   [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "$(displaytime $BULLETTRAIN_last_exec_duration)"
 }
 
@@ -400,10 +357,6 @@ prompt_custom() {
 
 # Git
 prompt_git() {
-  if [[ $BULLETTRAIN_GIT_SHOW == false ]]; then
-    return
-  fi
-
   local ref dirty mode repo_path git_prompt
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
@@ -424,10 +377,6 @@ prompt_git() {
 }
 
 prompt_hg() {
-  if [[ $BULLETTRAIN_HG_SHOW == false ]]; then
-    return
-  fi
-
   local rev status
   if $(hg id >/dev/null 2>&1); then
     if $(hg prompt >/dev/null 2>&1); then
@@ -464,10 +413,6 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  if [[ $BULLETTRAIN_DIR_SHOW == false ]]; then
-    return
-  fi
-
   local dir=''
   local _context="$(context)"
   [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
@@ -491,10 +436,6 @@ prompt_dir() {
 # RBENV: shows current ruby version active in the shell; also with non-global gemsets if any is active
 # CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
-  if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
-    return
-  fi
-
   if command -v rvm-prompt > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
   elif command -v chruby > /dev/null 2>&1; then
@@ -515,10 +456,6 @@ prompt_ruby() {
 # PERL
 # PLENV: shows current PERL version active in the shell
 prompt_perl() {
-  if [[ $BULLETTRAIN_PERL_SHOW == false ]]; then
-    return
-  fi
-
   if command -v plenv > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG $BULLETTRAIN_PERL_PREFIX" $(plenv version | sed -e 's/ (set.*$//')"
   fi
@@ -526,10 +463,6 @@ prompt_perl() {
 
 # Go
 prompt_go() {
-  if [[ $BULLETTRAIN_GO_SHOW == false ]]; then
-    return
-  fi
-
   setopt extended_glob
   if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml) ]]; then
     if command -v go > /dev/null 2>&1; then
@@ -540,10 +473,6 @@ prompt_go() {
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ $BULLETTRAIN_VIRTUALENV_SHOW == false ]]; then
-    return
-  fi
-
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
@@ -554,10 +483,6 @@ prompt_virtualenv() {
 
 # NVM: Node version manager
 prompt_nvm() {
-  if [[ $BULLETTRAIN_NVM_SHOW == false ]]; then
-    return
-  fi
-
   local nvm_prompt
   if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
@@ -570,10 +495,6 @@ prompt_nvm() {
 }
 
 prompt_time() {
-  if [[ $BULLETTRAIN_TIME_SHOW == false ]]; then
-    return
-  fi
-
   if [[ $BULLETTRAIN_TIME_12HR == true ]]; then
     prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r}
   else
@@ -586,10 +507,6 @@ prompt_time() {
 # - am I root
 # - are there background jobs?
 prompt_status() {
-  if [[ $BULLETTRAIN_STATUS_SHOW == false ]]; then
-    return
-  fi
-
   local symbols
   symbols=()
   [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+="✘"
