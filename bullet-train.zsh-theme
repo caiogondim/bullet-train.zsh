@@ -310,8 +310,8 @@ CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
 
 # Begin a segment
-# Takes two arguments, background and foreground. Both can be omitted,
-# rendering default background/foreground.
+# Takes three arguments, background, foreground and text. All of them can be omitted,
+# rendering default background/foreground and no text.
 prompt_segment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
@@ -354,20 +354,37 @@ prompt_context() {
   [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
 }
 
-# Prompt previous command execution time
-preexec() {
-    cmd_timestamp=`date +%s`
+# Based on http://stackoverflow.com/a/32164707/3859566
+function displaytime {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  [[ $D > 0 ]] && printf '%dd' $D
+  [[ $H > 0 ]] && printf '%dh' $H
+  [[ $M > 0 ]] && printf '%dm' $M
+  printf '%ds' $S
 }
 
-prompt_cmd_exec_time() {
-  if [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]]; then
-    return
-  fi
+# Prompt previous command execution time
+preexec() {
+  cmd_timestamp=`date +%s`
+}
+
+precmd() {
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
 
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
-  let local elapsed=$stop-$start
-  [ $elapsed -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "${elapsed}s"
+  let BULLETTRAIN_last_exec_duration=$stop-$start
+  cmd_timestamp=''
+}
+
+prompt_cmd_exec_time() {
+  [[ $BULLETTRAIN_EXEC_TIME_SHOW == false ]] && return
+
+  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "$(displaytime $BULLETTRAIN_last_exec_duration)"
 }
 
 # Custom
@@ -376,7 +393,9 @@ prompt_custom() {
     return
   fi
 
-  prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${BULLETTRAIN_CUSTOM_MSG}"
+  local custom_msg
+  eval custom_msg=$BULLETTRAIN_CUSTOM_MSG
+  [[ -n "${custom_msg}" ]] && prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${custom_msg}"
 }
 
 # Git
@@ -539,11 +558,13 @@ prompt_nvm() {
     return
   fi
 
-  $(type nvm >/dev/null 2>&1) || return
-
   local nvm_prompt
-  nvm_prompt=$(nvm current 2>/dev/null)
-  [[ "${nvm_prompt}x" == "x" ]] && return
+  if type nvm >/dev/null 2>&1; then
+    nvm_prompt=$(nvm current 2>/dev/null)
+    [[ "${nvm_prompt}x" == "x" ]] && return
+  else
+    nvm_prompt="$(node --version)"
+  fi
   nvm_prompt=${nvm_prompt}
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
 }
@@ -589,15 +610,16 @@ prompt_char() {
   local bt_prompt_char
   bt_prompt_char="${BULLETTRAIN_PROMPT_CHAR}"
 
+
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]]; then
-    bt_prompt_char="%(!.%F{red}#.%F{green}${bt_prompt_char}%f)"
+    bt_prompt_chars="%(!.%F{red}# .%F{green}${bt_prompt_chars}%f)"
   fi
 
   if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
-    bt_prompt_char="${bt_prompt_char}"
+    bt_prompt_chars="${bt_prompt_chars}"
   fi
 
-  echo -n $bt_prompt_char
+  echo -n $bt_prompt_chars
 }
 
 # Prompt Line Separator
@@ -630,4 +652,4 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
-PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
+PROMPT="$PROMPT"'$(prompt_chars)%{$reset_color%}'

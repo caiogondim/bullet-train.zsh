@@ -1,6 +1,6 @@
 <img src="http://rawgit.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/icon.svg" width="100%" />
 
-# Bullet Train for oh-my-zsh ![Travis CI](https://travis-ci.org/caiogondim/bullet-train-oh-my-zsh-theme.svg) [![Slack Status](https://bullet-train-zsh-slack.herokuapp.com/badge.svg)](https://bullet-train-zsh-slack.herokuapp.com/)
+# Bullet Train for oh-my-zsh [![Slack Status](https://bullet-train-zsh-slack.herokuapp.com/badge.svg)](https://bullet-train-zsh-slack.herokuapp.com/)
 
 Bullet Train is a [oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh)
 theme based on the
@@ -10,7 +10,7 @@ simplicity, showing information only when it's relevant.
 It currently shows:
 - Current Python virtualenv; when using Pyenv and no active virtualenv shows the current Python version the shell uses
 - Current Ruby version using chruby; version and gemset when on RVM or Rbenv
-- Current Node.js version, through NVM
+- Current Node.js version, through NVM (if present) or Node.js
 - Current Perl version using plenv
 - Git status
 - Timestamp
@@ -26,28 +26,6 @@ For a tmux theme to work with it, I suggest [Maglev](https://github.com/caiogond
 ## Preview
 
 ![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview.gif)
-
-
-## Other color schemes
-
-It's better to use Bullet Train with a dark background color scheme. Below you
-can check Bullet Train with some popular dark color schemes.
-
-### Solarized Dark
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/solarized-dark.png)
-
-### Monokai
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/monokai.png)
-
-### Tomorrow Night Eighties
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tomorrow-night-eighties.png)
-
-### Tomorrow Night Bright
-
-![Preview](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/preview/tomorrow-night-bright.png)
 
 
 ## Requirements
@@ -92,6 +70,17 @@ If you're using [zgen](https://github.com/tarjoilija/zgen), add the following li
 zgen load caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 ```
 
+### For Zplug users
+
+If you're using [zplug](https://github.com/zplug/zplug), add the following line
+to your **~/.zshrc** where you're adding your other zsh plugins **after** the
+line `zplug "robbyrussell/oh-my-zsh"`.
+
+```bash
+setopt prompt_subst # Make sure propt is able to be generated properly.
+zplug "adambiggs/zsh-theme", use:adambiggs.zsh-theme
+```
+
 ## Options
 
 Bullet Train is configurable. You can change colors and which segments you want
@@ -110,9 +99,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 ```
 
-NOTE: You do not need to specify *end* segment - it will be added automatically.
-With this you can also specify custom segments, please see [Tips](#tips) for
-more details.
+NOTE: You do not need to specify *end* segment - it will be added automatically. With this you can also specify custom segments.
 
 ### Prompt
 
@@ -140,16 +127,16 @@ more details.
 |--------|-------|-------|
 |`BULLETTRAIN_TIME_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_TIME_12HR`|`false`|Format time using 12-hour clock (am/pm)
-|`BULLETTRAIN_TIME_BG`|`''`|Background color
-|`BULLETTRAIN_TIME_FG`|`''`|Foreground color
+|`BULLETTRAIN_TIME_BG`|`white`|Background color
+|`BULLETTRAIN_TIME_FG`|`black`|Foreground color
 
 ### Custom
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_CUSTOM_MSG`|`false`|Free segment you can put a custom message
+|`BULLETTRAIN_CUSTOM_MSG`|`false`|Free segment you can put a custom message which will be eval'ed for every prompt
 |`BULLETTRAIN_CUSTOM_BG`|`black`|Background color
-|`BULLETTRAIN_CUSTOM_FG`|`black`|Foreground color
+|`BULLETTRAIN_CUSTOM_FG`|`default`|Foreground color
 
 ### Context
 
@@ -254,66 +241,15 @@ more details.
 |Variable|Default|Meaning
 |--------|-------|-------|
 |`BULLETTRAIN_EXEC_TIME_SHOW`|`false`|Show/hide that segment
-|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Elapsed time of command execution
+|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Minimum elapsed time of command execution. If the execution time of a command is smaller than this, the segment will be hidden.
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
-## Tips
+## Wiki
 
-### BULLETTRAIN_PROMPT_ORDER
-
-This gives ability to customize order and put user-defined segment on prompt.
-
-```bash
-prompt_say_hello() {
-  prompt_segment yellow blue "hello"
-}
-
-BULLETTRAIN_PROMPT_ORDER=(
-  git
-  dir
-  say_hello
-)
-```
-
-![Prompt_Order](./img/tips/prompt_order.png)
-
-### BULLETTRAIN_GIT_PROMPT_CMD
-
-Allows you to specify custom git prompt command. This makes it possible to
-change:
-
-![Git_Prompt_Origin](./img/tips/git_prompt_origin.png)
-
-into:
-
-![Git_Prompt_Command](./img/tips/git_prompt_command.png)
-
-with:
-
-``` bash
-BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
-```
-
-Please note we need to delay variable expansion, so we have to escape all
-**weird** character - *$*, *\*, *\<space>*, etc.
-
-You can also use function to get more complex commands:
-
-``` bash
-BULLETTRAIN_GIT_PROMPT_CMD="\$(custom_git_prompt)"
-
-custom_git_prompt() {
-  prompt=$(git_prompt_info)
-  prompt=${prompt//\//\ \ }
-  prompt=${prompt//_/\ }
-  echo ${prompt}
-}
-```
-
-which gives:
-
-![Git_Prompt_Function](./img/tips/git_prompt_function.png)
+- [FAQ](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/FAQ)
+- [Screenshots](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/Screenshots)
+- [Tips](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/Tips)
 
 ## Contributors
 
@@ -324,48 +260,55 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-141	Caio Gondim
-33 Jérémy Romey
-14 Greg Fitzgerald
-8	Viktor (Icon) VAD
-8	Dan Kaplun
-7	Jocelyn Mallon
-6	Jérémy Romey
-6	Joe Block
-5	Arthur Wang
-5	Dawid Kurek
-4	Flavius Aspra
-3	Michael Cornell
-3	Mario Zigliotto
-2	Jiri Tyr
-2	Charlie Smith
-2	wujtruj
-2	itsZero (Chien-An Cho)
-1	Peter Nagy
-1	Sébastien Bordenave
-1	gvillalta99
-1	illuminatis
-1	krischer
-1	m.kuehn
-1	timfeirg
-1	Adrien Brault
-1	yachi
-1	Andreas Galauner
-1	Dale Davis
-1	Fabio Poloni
-1	Guillaume BINET
-1	Hannes Frank
-1	Heng-Yi Wu
-1	Jack Chu
-1	Jason Hollis
-1	KVoll
-1	Kevin
-1	Manuel Hoffmann
-1	Marius Krämer
-1	Maxime Bruguet
-1	Mertcan Mermerkaya
-1	Michael Robinson
-1	Nicholas
+156	Caio Gondim
+ 33	Jérémy Romey
+ 14	Greg Fitzgerald
+  8	Dan Kaplun
+  8	Viktor (Icon) VAD
+  7	Jocelyn Mallon
+  7	Dawid Kurek
+  6	Joe Block
+  6	Jérémy Romey
+  5	Arthur Wang
+  4	Flavius Aspra
+  3	Mario Zigliotto
+  3	Michael Robinson
+  3	Michael Cornell
+  3	Iulian Onofrei
+  2	itsZero (Chien-An Cho)
+  2	Daniel Loader
+  2	Charlie Smith
+  2	wujtruj
+  2	Jiri Tyr
+  1	Sébastien Bordenave
+  1	Yongqian Li
+  1	alysson
+  1	gvillalta99
+  1	illuminatis
+  1	krischer
+  1	m.kuehn
+  1	timfeirg
+  1	Adrien Brault
+  1	yachi
+  1	Andreas Galauner
+  1	Dale Davis
+  1	Fabio Poloni
+  1	Faure Hu
+  1	Guillaume BINET
+  1	Hannes Frank
+  1	Heng-Yi Wu
+  1	Jack Chu
+  1	Jason Hollis
+  1	KVoll
+  1	Kevin
+  1	Lyncredible
+  1	Manuel Hoffmann
+  1	Marius Krämer
+  1	Maxime Bruguet
+  1	Mertcan Mermerkaya
+  1	Nicholas
+  1	Peter Nagy
+  1	Sen Jiang
 ```
 
 ## Credits
@@ -382,25 +325,8 @@ bitcoins to `1BqqKiZA8Tq43CdukdBEwCdDD42jxuX9UY` or through the
 
 Or via [PayPal.me](https://www.paypal.me/caiogondim) https://www.paypal.me/caiogondim.
 
-## License
-The MIT License (MIT)
+---
 
-Copyright (c) 2014-2015 [Caio Gondim](http://caiogondim.com)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[caiogondim.com](https://caiogondim.com) &nbsp;&middot;&nbsp;
+GitHub [@caiogondim](https://github.com/caiogondim) &nbsp;&middot;&nbsp;
+Twitter [@caio_gondim](https://twitter.com/caio_gondim)
