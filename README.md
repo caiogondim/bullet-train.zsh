@@ -175,7 +175,6 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_ELIXIR_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_ELIXIR_BG`|`magenta`|Background color
 |`BULLETTRAIN_ELIXIR_FG`|`white`|Foreground color
 |`BULLETTRAIN_ELIXIR_PREFIX`|`"💧"`|Prefix of the segment
