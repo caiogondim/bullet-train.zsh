@@ -127,9 +127,6 @@ if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
 fi
 
 # ELIXIR
-if [ ! -n "${BULLETTRAIN_ELIXIR_SHOW+1}" ]; then
-  BULLETTRAIN_ELIXIR_SHOW=false
-fi
 if [ ! -n "${BULLETTRAIN_ELIXIR_BG+1}" ]; then
   BULLETTRAIN_ELIXIR_BG=magenta
 fi
@@ -470,10 +467,6 @@ prompt_ruby() {
 
 # ELIXIR
 prompt_elixir() {
-  if [[ $BULLETTRAIN_ELIXIR_SHOW == false ]]; then
-    return
-  fi
-
   if command -v elixir > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_ELIXIR_BG $BULLETTRAIN_ELIXIR_FG $BULLETTRAIN_ELIXIR_PREFIX" $(elixir -v | tail -n 1 | awk '{print $2}')"
   fi
