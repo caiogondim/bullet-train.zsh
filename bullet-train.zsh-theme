@@ -34,6 +34,12 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
   )
 fi
 
+if [ -n "${BULLETTRAIN_PROMPT_REMOVE+1}" ]; then
+  for item in $BULLETTRAIN_PROMPT_REMOVE; do
+    BULLETTRAIN_PROMPT_ORDER=("${(@)BULLETTRAIN_PROMPT_ORDER:#$item}")
+  done
+fi
+
 # PROMPT
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
   BULLETTRAIN_PROMPT_CHAR="\$"
