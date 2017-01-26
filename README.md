@@ -192,7 +192,6 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_DIR_BG`|`blue`|Background color
 |`BULLETTRAIN_DIR_FG`|`white`|Foreground color
-|`BULLETTRAIN_DIR_CONTEXT_SHOW`|`false`|Show user and machine in an SCP formatted style
 |`BULLETTRAIN_DIR_EXTENDED`|`1`|Extended path (0=short path, 1=medium path, 2=complete path, everything else=medium path)
 
 ### Git
