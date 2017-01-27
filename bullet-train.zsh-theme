@@ -105,14 +105,11 @@ if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
 fi
 
 # AWS
-if [ ! -n "${BULLETTRAIN_AWS_SHOW+1}" ]; then
-  BULLETTRAIN_AWS_SHOW=true
-fi
 if [ ! -n "${BULLETTRAIN_AWS_BG+1}" ]; then
-  BULLETTRAIN_AWS_BG=red
+  BULLETTRAIN_AWS_BG=yellow
 fi
 if [ ! -n "${BULLETTRAIN_AWS_FG+1}" ]; then
-  BULLETTRAIN_AWS_FG=white
+  BULLETTRAIN_AWS_FG=black
 fi
 if [ ! -n "${BULLETTRAIN_AWS_PREFIX+1}" ]; then
   BULLETTRAIN_AWS_PREFIX="☁️  "
@@ -511,11 +508,7 @@ prompt_nvm() {
 
 # AWS Profile
 prompt_aws() {
-  if [[ $BULLETTRAIN_AWS_SHOW == false ]]; then
-    return
-  fi
-
-  local aws_profile="$AWS_DEFAULT_PROFILE"
+  local aws_profile="$AWS_PROFILE"
 
   if [[ -n "$aws_profile" ]]; then
     prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$aws_profile
