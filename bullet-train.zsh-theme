@@ -27,6 +27,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     ruby
     virtualenv
     nvm
+    aws
     go
     git
     hg
@@ -101,6 +102,20 @@ if [ ! -n "${BULLETTRAIN_NVM_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
   BULLETTRAIN_NVM_PREFIX="⬡ "
+fi
+
+# AWS
+if [ ! -n "${BULLETTRAIN_AWS_SHOW+1}" ]; then
+  BULLETTRAIN_AWS_SHOW=true
+fi
+if [ ! -n "${BULLETTRAIN_AWS_BG+1}" ]; then
+  BULLETTRAIN_AWS_BG=red
+fi
+if [ ! -n "${BULLETTRAIN_AWS_FG+1}" ]; then
+  BULLETTRAIN_AWS_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_AWS_PREFIX+1}" ]; then
+  BULLETTRAIN_AWS_PREFIX="☁️  "
 fi
 
 # RUBY
@@ -492,6 +507,19 @@ prompt_nvm() {
   fi
   nvm_prompt=${nvm_prompt}
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+}
+
+# AWS Profile
+prompt_aws() {
+  if [[ $BULLETTRAIN_AWS_SHOW == false ]]; then
+    return
+  fi
+
+  local aws_profile="$AWS_DEFAULT_PROFILE"
+
+  if [[ -n "$aws_profile" ]]; then
+    prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$aws_profile
+  fi
 }
 
 prompt_time() {
