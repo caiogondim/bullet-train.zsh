@@ -1,6 +1,6 @@
 <img src="http://rawgit.com/caiogondim/bullet-train-oh-my-zsh-theme/master/img/icon.svg" width="100%" />
 
-# Bullet Train for oh-my-zsh ![Travis CI](https://travis-ci.org/caiogondim/bullet-train-oh-my-zsh-theme.svg) [![Slack Status](https://bullet-train-zsh-slack.herokuapp.com/badge.svg)](https://bullet-train-zsh-slack.herokuapp.com/)
+# Bullet Train for oh-my-zsh [![Slack Status](https://bullet-train-zsh-slack.herokuapp.com/badge.svg)](https://bullet-train-zsh-slack.herokuapp.com/)
 
 Bullet Train is a [oh-my-zsh shell](https://github.com/robbyrussell/oh-my-zsh)
 theme based on the
@@ -99,9 +99,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 )
 ```
 
-NOTE: You do not need to specify *end* segment - it will be added automatically.
-With this you can also specify custom segments, please see [Tips](#tips) for
-more details.
+NOTE: You do not need to specify *end* segment - it will be added automatically. With this you can also specify custom segments.
 
 ### Prompt
 
@@ -117,7 +115,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_STATUS_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_STATUS_EXIT_SHOW`|`false`|Show/hide exit code of last command
 |`BULLETTRAIN_STATUS_BG`|`green`|Background color
 |`BULLETTRAIN_STATUS_ERROR_BG`|`red`|Background color of segment when last command exited with an error
@@ -127,24 +124,22 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_TIME_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_TIME_12HR`|`false`|Format time using 12-hour clock (am/pm)
-|`BULLETTRAIN_TIME_BG`|`''`|Background color
-|`BULLETTRAIN_TIME_FG`|`''`|Foreground color
+|`BULLETTRAIN_TIME_BG`|`white`|Background color
+|`BULLETTRAIN_TIME_FG`|`black`|Foreground color
 
 ### Custom
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_CUSTOM_MSG`|`false`|Free segment you can put a custom message
+|`BULLETTRAIN_CUSTOM_MSG`|`false`|Free segment you can put a custom message which will be eval'ed for every prompt
 |`BULLETTRAIN_CUSTOM_BG`|`black`|Background color
-|`BULLETTRAIN_CUSTOM_FG`|`black`|Foreground color
+|`BULLETTRAIN_CUSTOM_FG`|`default`|Foreground color
 
 ### Context
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_CONTEXT_SHOW`|`false`|Show/hide that segment
 |`BULLETTRAIN_CONTEXT_BG`|`black`|Background color
 |`BULLETTRAIN_CONTEXT_FG`|`default`|Foreground color
 |`BULLETTRAIN_CONTEXT_DEFAULT_USER`|none|Default user. If you are running with other user other than default, the segment will be showed.
@@ -155,7 +150,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_VIRTUALENV_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_VIRTUALENV_BG`|`yellow`|Background color
 |`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
 |`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
@@ -164,7 +158,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_NVM_SHOW`|`false`|Show/hide that segment
 |`BULLETTRAIN_NVM_BG`|`green`|Background color
 |`BULLETTRAIN_NVM_FG`|`white`|Foreground color
 |`BULLETTRAIN_NVM_PREFIX`|`"⬡ "`|Prefix of the segment
@@ -173,7 +166,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_RUBY_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_RUBY_BG`|`magenta`|Background color
 |`BULLETTRAIN_RUBY_FG`|`white`|Foreground color
 |`BULLETTRAIN_RUBY_PREFIX`|`"♦"`|Prefix of the segment
@@ -182,7 +174,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_GO_SHOW`|`false`|Show/hide that segment
 |`BULLETTRAIN_GO_BG`|`green`|Background color
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
@@ -191,7 +182,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_PERL_SHOW`|`false`|Show/hide that segment
 |`BULLETTRAIN_PERL_BG`|`yellow`|Background color
 |`BULLETTRAIN_PERL_FG`|`black`|Foreground color
 |`BULLETTRAIN_PERL_PREFIX`|`🐪`|Prefix of the segment
@@ -200,7 +190,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_DIR_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_DIR_BG`|`blue`|Background color
 |`BULLETTRAIN_DIR_FG`|`white`|Foreground color
 |`BULLETTRAIN_DIR_CONTEXT_SHOW`|`false`|Show user and machine in an SCP formatted style
@@ -210,7 +199,6 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_GIT_SHOW`|`true`|Show/hide that segment
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY`|`false`|Set `BULLETTRAIN_GIT_BG` to `BULLETTRAIN_GIT_COLORIZE_DIRTY_COLOR` in dirty state
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR`|`yellow`|`BULLETTRAIN_GIT_BG` in dirty state
 |`BULLETTRAIN_GIT_COLORIZE_DIRTY_FG_COLOR`|`black`|`BULLETTRAIN_GIT_FG` in dirty state
@@ -236,14 +224,12 @@ more details.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_HG_SHOW`|`true`|Show/hide that segment
 
 ### Command execution time
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_EXEC_TIME_SHOW`|`false`|Show/hide that segment
-|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Elapsed time of command execution
+|`BULLETTRAIN_EXEC_TIME_ELAPSED`|5|Minimum elapsed time of command execution. If the execution time of a command is smaller than this, the segment will be hidden.
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
@@ -262,49 +248,55 @@ most of the code was later erased and its now more closely related to
 of the project:
 
 ```
-144 Caio Gondim
-33  Jérémy Romey
-14  Greg Fitzgerald
-8   Viktor (Icon) VAD
-8   Dan Kaplun
-7   Jocelyn Mallon
-6   Jérémy Romey
-6   Joe Block
-5   Arthur Wang
-5   Dawid Kurek
-4   Flavius Aspra
-3   Michael Robinson
-3   Mario Zigliotto
-3   Michael Cornell
-2   Jiri Tyr
-2   Charlie Smith
-2   wujtruj
-2   itsZero (Chien-An Cho)
-1   alysson
-1   gvillalta99
-1   illuminatis
-1   krischer
-1   m.kuehn
-1   timfeirg
-1   Adrien Brault
-1   yachi
-1   Andreas Galauner
-1   Dale Davis
-1   Fabio Poloni
-1   Guillaume BINET
-1   Hannes Frank
-1   Heng-Yi Wu
-1   Jack Chu
-1   Jason Hollis
-1   KVoll
-1   Kevin
-1   Manuel Hoffmann
-1   Marius Krämer
-1   Maxime Bruguet
-1   Mertcan Mermerkaya
-1   Nicholas
-1   Peter Nagy
-1   Sébastien Bordenave
+156	Caio Gondim
+ 33	Jérémy Romey
+ 14	Greg Fitzgerald
+  8	Dan Kaplun
+  8	Viktor (Icon) VAD
+  7	Jocelyn Mallon
+  7	Dawid Kurek
+  6	Joe Block
+  6	Jérémy Romey
+  5	Arthur Wang
+  4	Flavius Aspra
+  3	Mario Zigliotto
+  3	Michael Robinson
+  3	Michael Cornell
+  3	Iulian Onofrei
+  2	itsZero (Chien-An Cho)
+  2	Daniel Loader
+  2	Charlie Smith
+  2	wujtruj
+  2	Jiri Tyr
+  1	Sébastien Bordenave
+  1	Yongqian Li
+  1	alysson
+  1	gvillalta99
+  1	illuminatis
+  1	krischer
+  1	m.kuehn
+  1	timfeirg
+  1	Adrien Brault
+  1	yachi
+  1	Andreas Galauner
+  1	Dale Davis
+  1	Fabio Poloni
+  1	Faure Hu
+  1	Guillaume BINET
+  1	Hannes Frank
+  1	Heng-Yi Wu
+  1	Jack Chu
+  1	Jason Hollis
+  1	KVoll
+  1	Kevin
+  1	Lyncredible
+  1	Manuel Hoffmann
+  1	Marius Krämer
+  1	Maxime Bruguet
+  1	Mertcan Mermerkaya
+  1	Nicholas
+  1	Peter Nagy
+  1	Sen Jiang
 ```
 
 ## Credits
@@ -320,3 +312,9 @@ bitcoins to `1BqqKiZA8Tq43CdukdBEwCdDD42jxuX9UY` or through the
 [URL](https://www.coinbase.com/caiogondim) https://www.coinbase.com/caiogondim
 
 Or via [PayPal.me](https://www.paypal.me/caiogondim) https://www.paypal.me/caiogondim.
+
+---
+
+[caiogondim.com](https://caiogondim.com) &nbsp;&middot;&nbsp;
+GitHub [@caiogondim](https://github.com/caiogondim) &nbsp;&middot;&nbsp;
+Twitter [@caio_gondim](https://twitter.com/caio_gondim)

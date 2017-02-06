@@ -5,7 +5,3 @@ install:
 # Symlinks the theme for easier development
 link:
 	ln -sF `pwd`/bullet-train.zsh-theme ~/.oh-my-zsh/themes/
-
-#
-test:
-	npm test
