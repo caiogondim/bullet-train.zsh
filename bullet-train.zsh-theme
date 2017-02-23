@@ -534,7 +534,7 @@ prompt_chars() {
     bt_prompt_chars="${bt_prompt_chars}"
   fi
 
-  echo -n $bt_prompt_chars
+  echo -n "$bt_prompt_chars "
 }
 
 # Prompt Line Separator
