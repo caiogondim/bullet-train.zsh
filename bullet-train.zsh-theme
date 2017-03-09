@@ -122,7 +122,7 @@ if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
   BULLETTRAIN_GO_FG=white
 fi
 if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
-  BULLETTRAIN_GO_PREFIX="go "
+  BULLETTRAIN_GO_PREFIX="go"
 fi
 
 # DIR
@@ -131,9 +131,6 @@ if [ ! -n "${BULLETTRAIN_DIR_BG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_DIR_FG+1}" ]; then
   BULLETTRAIN_DIR_FG=white
-fi
-if [ ! -n "${BULLETTRAIN_DIR_CONTEXT_SHOW+1}" ]; then
-  BULLETTRAIN_DIR_CONTEXT_SHOW=false
 fi
 if [ ! -n "${BULLETTRAIN_DIR_EXTENDED+1}" ]; then
   BULLETTRAIN_DIR_EXTENDED=1
@@ -418,8 +415,6 @@ prompt_hg() {
 # Dir: current working directory
 prompt_dir() {
   local dir=''
-  local _context="$(context)"
-  [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
 
   if [[ $BULLETTRAIN_DIR_EXTENDED == 0 ]]; then
     #short directories
