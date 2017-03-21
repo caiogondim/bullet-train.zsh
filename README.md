@@ -12,6 +12,7 @@ It currently shows:
 - Current Ruby version using chruby; version and gemset when on RVM or Rbenv
 - Current Node.js version, through NVM (if present) or Node.js
 - Current Perl version using plenv
+- Current Elixir version
 - Git status
 - Timestamp
 - Current directory
@@ -169,6 +170,14 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_RUBY_BG`|`magenta`|Background color
 |`BULLETTRAIN_RUBY_FG`|`white`|Foreground color
 |`BULLETTRAIN_RUBY_PREFIX`|`"♦"`|Prefix of the segment
+
+### Elixir
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_ELIXIR_BG`|`magenta`|Background color
+|`BULLETTRAIN_ELIXIR_FG`|`white`|Foreground color
+|`BULLETTRAIN_ELIXIR_PREFIX`|`"💧"`|Prefix of the segment
 
 ### Go
 
