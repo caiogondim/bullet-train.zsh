@@ -79,7 +79,7 @@ line `zplug "robbyrussell/oh-my-zsh"`.
 
 ```bash
 setopt prompt_subst # Make sure propt is able to be generated properly.
-zplug "adambiggs/zsh-theme", use:adambiggs.zsh-theme
+zplug "caiogondim/bullet-train.zsh", as:theme
 ```
 
 ## Options
