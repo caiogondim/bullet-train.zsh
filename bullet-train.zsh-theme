@@ -78,7 +78,7 @@ if [ ! -n "${BULLETTRAIN_CUSTOM_MSG+1}" ]; then
   BULLETTRAIN_CUSTOM_MSG=false
 fi
 if [ ! -n "${BULLETTRAIN_CUSTOM_BG+1}" ]; then
-  BULLETTRAIN_CUSTOM_BG=black
+  BULLETTRAIN_CUSTOM_BG=default
 fi
 if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
   BULLETTRAIN_CUSTOM_FG=default
