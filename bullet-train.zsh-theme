@@ -13,6 +13,9 @@
 # The default configuration, that can be overwrite in your .zshrc file
 # ------------------------------------------------------------------------------
 
+# space variable to make spaces more visible and avoid bugs
+space=' '
+
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
 # Define order and content of prompt
@@ -101,7 +104,7 @@ if [ ! -n "${BULLETTRAIN_NVM_FG+1}" ]; then
   BULLETTRAIN_NVM_FG=white
 fi
 if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
-  BULLETTRAIN_NVM_PREFIX="⬡ "
+  BULLETTRAIN_NVM_PREFIX="⬡${space}"
 fi
 
 # RUBY
@@ -208,57 +211,57 @@ else
   ZSH_THEME_GIT_PROMPT_SUFFIX=$BULLETTRAIN_GIT_SUFFIX
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DIRTY+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}✘%F{black}"
+  ZSH_THEME_GIT_PROMPT_DIRTY="${space}%F{red}✘%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_DIRTY=$BULLETTRAIN_GIT_DIRTY
 fi
 if [ ! -n "${BULLETTRAIN_GIT_CLEAN+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_CLEAN=" %F{green}✔%F{black}"
+  ZSH_THEME_GIT_PROMPT_CLEAN="${space}%F{green}✔%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_CLEAN=$BULLETTRAIN_GIT_CLEAN
 fi
 if [ ! -n "${BULLETTRAIN_GIT_ADDED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_ADDED=" %F{green}✚%F{black}"
+  ZSH_THEME_GIT_PROMPT_ADDED="${space}%F{green}✚%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_ADDED=$BULLETTRAIN_GIT_ADDED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_MODIFIED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_MODIFIED=" %F{blue}✹%F{black}"
+  ZSH_THEME_GIT_PROMPT_MODIFIED="${space}%F{blue}✹%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_MODIFIED=$BULLETTRAIN_GIT_MODIFIED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DELETED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_DELETED=" %F{red}✖%F{black}"
+  ZSH_THEME_GIT_PROMPT_DELETED="${space}%F{red}✖%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_DELETED=$BULLETTRAIN_GIT_DELETED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_UNTRACKED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_UNTRACKED=" %F{yellow}✭%F{black}"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="${space}%F{yellow}✭%F{black}"
 else
   ZSH_THEME_GIT_PROMPT_UNTRACKED=$BULLETTRAIN_GIT_UNTRACKED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_RENAMED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
+  ZSH_THEME_GIT_PROMPT_RENAMED="${space}➜"
 else
   ZSH_THEME_GIT_PROMPT_RENAMED=$BULLETTRAIN_GIT_RENAMED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_UNMERGED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_UNMERGED=" ═"
+  ZSH_THEME_GIT_PROMPT_UNMERGED="${space}═"
 else
   ZSH_THEME_GIT_PROMPT_UNMERGED=$BULLETTRAIN_GIT_UNMERGED
 fi
 if [ ! -n "${BULLETTRAIN_GIT_AHEAD+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_AHEAD=" ⬆"
+  ZSH_THEME_GIT_PROMPT_AHEAD="${space}⬆"
 else
   ZSH_THEME_GIT_PROMPT_AHEAD=$BULLETTRAIN_GIT_AHEAD
 fi
 if [ ! -n "${BULLETTRAIN_GIT_BEHIND+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
+  ZSH_THEME_GIT_PROMPT_BEHIND="${space}⬇"
 else
   ZSH_THEME_GIT_PROMPT_BEHIND=$BULLETTRAIN_GIT_BEHIND
 fi
 if [ ! -n "${BULLETTRAIN_GIT_DIVERGED+1}" ]; then
-  ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
+  ZSH_THEME_GIT_PROMPT_DIVERGED="${space}⬍"
 else
   ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_PROMPT_DIVERGED
 fi
@@ -291,9 +294,9 @@ prompt_segment() {
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    echo -n "${space}%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%}${space}"
   else
-    echo -n "%{$bg%}%{$fg%} "
+    echo -n "%{$bg%}%{$fg%}${space}"
   fi
   CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
@@ -302,7 +305,7 @@ prompt_segment() {
 # End the prompt, closing any open segments
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    echo -n "${space}%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
   else
     echo -n "%{%k%}"
   fi
@@ -557,7 +560,7 @@ prompt_chars() {
     bt_prompt_chars="${bt_prompt_chars}"
   fi
 
-  echo -n "$bt_prompt_chars "
+  echo -n "$bt_prompt_chars${space}"
 }
 
 # Prompt Line Separator
