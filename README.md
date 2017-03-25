@@ -78,7 +78,7 @@ to your **~/.zshrc** where you're adding your other zsh plugins **after** the
 line `zplug "robbyrussell/oh-my-zsh"`.
 
 ```bash
-setopt prompt_subst # Make sure propt is able to be generated properly.
+setopt prompt_subst # Make sure prompt is able to be generated properly.
 zplug "adambiggs/zsh-theme", use:adambiggs.zsh-theme
 ```
 
