@@ -26,7 +26,6 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     perl
     ruby
     virtualenv
-    nvm
     go
     elixir
     git
