@@ -178,6 +178,14 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
 
+### AWS Profile
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_AWS_BG`|`yellow`|Background color
+|`BULLETTRAIN_AWS_FG`|`black`|Foreground color
+|`BULLETTRAIN_AWS_PREFIX`|`☁️  `|Prefix of the segment
+
 ### Perl
 
 |Variable|Default|Meaning
