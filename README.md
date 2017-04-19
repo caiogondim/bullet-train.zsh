@@ -180,6 +180,9 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 ### AWS Profile
 
+Displays which AWS (Amazon Web Services) credentials profile is currently set.
+This environment var is used by aws-cli and other tools to use the right access keys and other parameters.
+
 |Variable|Default|Meaning
 |--------|-------|-------|
 |`BULLETTRAIN_AWS_BG`|`yellow`|Background color
