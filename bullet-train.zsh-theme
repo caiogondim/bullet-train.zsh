@@ -112,7 +112,7 @@ if [ ! -n "${BULLETTRAIN_AWS_FG+1}" ]; then
   BULLETTRAIN_AWS_FG=black
 fi
 if [ ! -n "${BULLETTRAIN_AWS_PREFIX+1}" ]; then
-  BULLETTRAIN_AWS_PREFIX="☁️  "
+  BULLETTRAIN_AWS_PREFIX="☁️"
 fi
 
 # RUBY
@@ -506,12 +506,12 @@ prompt_nvm() {
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
 }
 
-# AWS Profile
 prompt_aws() {
   local aws_profile="$AWS_PROFILE"
+  local spaces="  "
 
   if [[ -n "$aws_profile" ]]; then
-    prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$aws_profile
+    prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$spaces$aws_profile
   fi
 }
 
