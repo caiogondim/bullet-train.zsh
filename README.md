@@ -99,6 +99,10 @@ BULLETTRAIN_PROMPT_ORDER=(
   time
 )
 ```
+To remove segments use an array with the elements in any order:
+
+```bash
+BULLETTRAIN_PROMPT_REMOVE=(nvm time)
 
 NOTE: You do not need to specify *end* segment - it will be added automatically. With this you can also specify custom segments.
 
