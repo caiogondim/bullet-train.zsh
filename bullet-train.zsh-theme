@@ -27,6 +27,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     ruby
     virtualenv
     nvm
+    aws
     go
     elixir
     git
@@ -102,6 +103,17 @@ if [ ! -n "${BULLETTRAIN_NVM_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
   BULLETTRAIN_NVM_PREFIX="⬡ "
+fi
+
+# AWS
+if [ ! -n "${BULLETTRAIN_AWS_BG+1}" ]; then
+  BULLETTRAIN_AWS_BG=yellow
+fi
+if [ ! -n "${BULLETTRAIN_AWS_FG+1}" ]; then
+  BULLETTRAIN_AWS_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_AWS_PREFIX+1}" ]; then
+  BULLETTRAIN_AWS_PREFIX="☁️"
 fi
 
 # RUBY
@@ -515,6 +527,15 @@ prompt_nvm() {
   fi
   nvm_prompt=${nvm_prompt}
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
+}
+
+#AWS Profile
+prompt_aws() {
+  local spaces="  "
+
+  if [[ -n "$AWS_PROFILE" ]]; then
+    prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$spaces$AWS_PROFILE
+  fi
 }
 
 prompt_time() {

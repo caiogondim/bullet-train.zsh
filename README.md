@@ -187,6 +187,17 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
 
+### AWS Profile
+
+Displays which AWS (Amazon Web Services) credentials profile is currently set.
+This environment var is used by aws-cli and other tools to use the right access keys and other parameters.
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_AWS_BG`|`yellow`|Background color
+|`BULLETTRAIN_AWS_FG`|`black`|Foreground color
+|`BULLETTRAIN_AWS_PREFIX`|`☁️`|Prefix of the segment
+
 ### Perl
 
 |Variable|Default|Meaning
