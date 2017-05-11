@@ -96,6 +96,7 @@ BULLETTRAIN_PROMPT_ORDER=(
   git
   context
   dir
+  #nvm   this segment is hidden
   time
 )
 ```
