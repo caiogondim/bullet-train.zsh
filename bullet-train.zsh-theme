@@ -91,10 +91,7 @@ if [ ! -n "${BULLETTRAIN_VIRTUALENV_FG+1}" ]; then
   BULLETTRAIN_VIRTUALENV_FG=white
 fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_NAME+1}" ]; then
-  BULLETTRAIN_VIRTUALENV_NAME=" %m"
-fi
-if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
-  BULLETTRAIN_VIRTUALENV_PREFIX=🐍
+  BULLETTRAIN_VIRTUALENV_NAME="🐍 %m"
 fi
 
 # NVM
@@ -519,7 +516,7 @@ prompt_virtualenv() {
       local virtualenv_name="$(basename $virtualenv_path)"
     fi
     local virtualenv_name=${BULLETTRAIN_VIRTUALENV_NAME:gs/%m/"${virtualenv_name}"}   # expand the %m
-    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX"$virtualenv_name"
+    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG "$virtualenv_name"
   fi
 }
 

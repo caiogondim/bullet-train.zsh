@@ -153,8 +153,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_VIRTUALENV_BG`|`yellow`|Background color
 |`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
-|`BULLETTRAIN_VIRTUALENV_NAME`|` %m`|Text to show after the prefix (use %m for virtualenv name)
-|`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
+|`BULLETTRAIN_VIRTUALENV_NAME`|`🐍 %m`|Text to show in segment (use %m for virtualenv name)
 
 ### node.js nvm
 
