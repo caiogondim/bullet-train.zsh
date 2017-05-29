@@ -82,21 +82,34 @@ setopt prompt_subst # Make sure prompt is able to be generated properly.
 zplug "adambiggs/zsh-theme", use:adambiggs.zsh-theme
 ```
 
-## Options
+## Customizing
 
 Bullet Train is configurable. You can change colors and which segments you want
 or don't want to see. All options must be overridden in your **.zshrc** file.
 
 ### Order
-`BULLETTRAIN_PROMPT_ORDER` defines order of prompt segments. Use zsh array
-syntax to specify your own order, e.g:
+`BULLETTRAIN_PROMPT_ORDER` defines the order of prompt segments. The following order
+is the default, but you can overwrite it by specifying your own BULLETTRAIN_PROMPT_ORDER 
+in your ~/.zshrc file.
 
 ```bash
+# Default order
 BULLETTRAIN_PROMPT_ORDER=(
-  git
+  time
+  status
+  custom
   context
   dir
-  time
+  perl
+  ruby
+  virtualenv
+  nvm
+  aws
+  go
+  elixir
+  git
+  hg
+  cmd_exec_time
 )
 ```
 
