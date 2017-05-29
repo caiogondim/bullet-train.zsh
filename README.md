@@ -115,6 +115,15 @@ BULLETTRAIN_PROMPT_ORDER=(
 
 NOTE: You do not need to specify *end* segment - it will be added automatically. With this you can also specify custom segments.
 
+It's possible to keep the default order, only removing certain segments:
+
+```bash
+# remove context, ruby, and nvm from the prompt
+export BULLETTRAIN_PROMPT_ORDER=(${BULLETTRAIN_PROMPT_ORDER:#(context|ruby|nvm)})
+```
+
+NOTE: This only works after (**not before**) loading the theme in your `.zshrc`.
+
 ### Prompt
 
 |Variable|Default|Meaning
