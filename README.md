@@ -169,7 +169,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_RUBY_BG`|`magenta`|Background color
 |`BULLETTRAIN_RUBY_FG`|`white`|Foreground color
-|`BULLETTRAIN_RUBY_PREFIX`|`"♦"`|Prefix of the segment
+|`BULLETTRAIN_RUBY_PREFIX`|`"💎"`|Prefix of the segment
 
 ### Elixir
 
