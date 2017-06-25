@@ -26,6 +26,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     perl
     ruby
     virtualenv
+    python
     nvm
     aws
     go
@@ -84,6 +85,9 @@ if [ ! -n "${BULLETTRAIN_CUSTOM_FG+1}" ]; then
 fi
 
 # VIRTUALENV
+if [ ! -n "${BULLETTRAIN_VIRTUALENV_PYTHON_VERSION+1}" ]; then
+  BULLETTRAIN_VIRTUALENV_PYTHON_VERSION=false
+fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_BG+1}" ]; then
   BULLETTRAIN_VIRTUALENV_BG=yellow
 fi
@@ -92,6 +96,17 @@ if [ ! -n "${BULLETTRAIN_VIRTUALENV_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
   BULLETTRAIN_VIRTUALENV_PREFIX=🐍
+fi
+
+# PYTHON
+if [ ! -n "${BULLETTRAIN_PYTHON_BG+1}" ]; then
+  BULLETTRAIN_PYTHON_BG=cyan
+fi
+if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
+  BULLETTRAIN_PYTHON_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
+  BULLETTRAIN_PYTHON_PREFIX="Python"
 fi
 
 # NVM
@@ -513,6 +528,15 @@ prompt_virtualenv() {
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
   elif which pyenv &> /dev/null; then
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
+  fi
+}
+
+# Python
+prompt_python() {
+  local python_version
+  if [[ -n $VIRTUAL_ENV && "$BULLETTRAIN_VIRTUALENV_PYTHON_VERSION" = true ]]; then
+    python_version=$(python -c "import sys; print('{0[0]}.{0[1]}'.format(sys.version_info))")
+    prompt_segment $BULLETTRAIN_PYTHON_BG $BULLETTRAIN_PYTHON_FG $BULLETTRAIN_PYTHON_PREFIX" $python_version"
   fi
 }
 
