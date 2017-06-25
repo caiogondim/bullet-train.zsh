@@ -23,6 +23,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     custom
     context
     dir
+    screen
     perl
     ruby
     virtualenv
@@ -273,6 +274,17 @@ if [ ! -n "${BULLETTRAIN_GIT_DIVERGED+1}" ]; then
   ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
 else
   ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_PROMPT_DIVERGED
+fi
+
+# SCREEN
+if [ ! -n "${BULLETTRAIN_SCREEN_BG+1}" ]; then
+  BULLETTRAIN_SCREEN_BG=white
+fi
+if [ ! -n "${BULLETTRAIN_SCREEN_FG+1}" ]; then
+  BULLETTRAIN_SCREEN_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_SCREEN_PREFIX+1}" ]; then
+  BULLETTRAIN_SCREEN_PREFIX="⚙"
 fi
 
 # COMMAND EXECUTION TIME
@@ -535,6 +547,14 @@ prompt_aws() {
 
   if [[ -n "$AWS_PROFILE" ]]; then
     prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$spaces$AWS_PROFILE
+  fi
+}
+
+# SCREEN Session
+prompt_screen() {
+  local session_name="$STY"
+  if [[ "$session_name" != "" ]]; then
+    prompt_segment $BULLETTRAIN_SCREEN_BG $BULLETTRAIN_SCREEN_FG $BULLETTRAIN_SCREEN_PREFIX" $session_name"
   fi
 }
 
