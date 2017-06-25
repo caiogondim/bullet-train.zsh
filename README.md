@@ -192,7 +192,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_GO_BG`|`green`|Background color
+|`BULLETTRAIN_GO_BG`|`cyan`|Background color
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
 
@@ -294,7 +294,7 @@ of the project:
   3	Michael Robinson
   3	Michael Cornell
   3	Iulian Onofrei
-  2 Dhia Abbassi
+  3	Dhia Abbassi
   2	itsZero (Chien-An Cho)
   2	Daniel Loader
   2	Charlie Smith
