@@ -284,6 +284,7 @@ of the project:
  14	Greg Fitzgerald
   8	Dan Kaplun
   8	Viktor (Icon) VAD
+  8	Dhia Abbassi
   7	Jocelyn Mallon
   7	Dawid Kurek
   6	Joe Block
@@ -294,7 +295,6 @@ of the project:
   3	Michael Robinson
   3	Michael Cornell
   3	Iulian Onofrei
-  3	Dhia Abbassi
   2	itsZero (Chien-An Cho)
   2	Daniel Loader
   2	Charlie Smith
