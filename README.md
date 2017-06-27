@@ -151,9 +151,18 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
+|`BULLETTRAIN_VIRTUALENV_PYTHON_VERSION`|`false`|Add current python version to prompt if `true`.
 |`BULLETTRAIN_VIRTUALENV_BG`|`yellow`|Background color
 |`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
 |`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
+
+### Python version (virtualenv)
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_PYTHON_BG`|`cyan`|Background color
+|`BULLETTRAIN_PYTHON_FG`|`white`|Foreground color
+|`BULLETTRAIN_GO_PREFIX`|`Python`|Prefix of the segment
 
 ### node.js nvm
 
@@ -183,7 +192,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_GO_BG`|`green`|Background color
+|`BULLETTRAIN_GO_BG`|`cyan`|Background color
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
 
@@ -285,6 +294,7 @@ of the project:
   3	Michael Robinson
   3	Michael Cornell
   3	Iulian Onofrei
+  3	Dhia Abbassi
   2	itsZero (Chien-An Cho)
   2	Daniel Loader
   2	Charlie Smith
