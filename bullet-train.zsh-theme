@@ -38,7 +38,7 @@ fi
 
 # PROMPT
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
-  BULLETTRAIN_PROMPT_CHAR="\$"
+  BULLETTRAIN_PROMPT_CHAR="\$ "
 fi
 if [ ! -n "${BULLETTRAIN_PROMPT_ROOT+1}" ]; then
   BULLETTRAIN_PROMPT_ROOT=true
@@ -195,6 +195,11 @@ if [ ! -n "${BULLETTRAIN_PERL_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_PERL_PREFIX+1}" ]; then
   BULLETTRAIN_PERL_PREFIX=🐪
+fi
+
+# HG
+if [ ! -n "${BULLETTRAIN_HG_SHOW+1}" ]; then
+  BULLETTRAIN_HG_SHOW=true
 fi
 
 # CONTEXT
@@ -464,6 +469,14 @@ prompt_dir() {
 # RBENV: shows current ruby version active in the shell; also with non-global gemsets if any is active
 # CHRUBY: shows current ruby version active in the shell
 prompt_ruby() {
+  if [[ $BULLETTRAIN_RUBY_SHOW == false ]]; then
+    return
+  fi
+
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.r(b|u|ake)$' &> /dev/null ; then
+    return
+  fi
+
   if command -v rvm-prompt > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
   elif command -v chruby > /dev/null 2>&1; then
@@ -491,6 +504,14 @@ prompt_elixir() {
 # PERL
 # PLENV: shows current PERL version active in the shell
 prompt_perl() {
+  if [[ $BULLETTRAIN_PERL_SHOW == false ]]; then
+    return
+  fi
+
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.pl(c|d)?$' &> /dev/null ; then
+    return
+  fi
+
   if command -v plenv > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_PERL_BG $BULLETTRAIN_PERL_FG $BULLETTRAIN_PERL_PREFIX" $(plenv version | sed -e 's/ (set.*$//')"
   fi
@@ -498,11 +519,17 @@ prompt_perl() {
 
 # Go
 prompt_go() {
+  if [[ $BULLETTRAIN_GO_SHOW == false ]]; then
+    return
+  fi
+
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.go$' &> /dev/null ; then
+    return
+  fi
+
   setopt extended_glob
-  if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml) ]]; then
-    if command -v go > /dev/null 2>&1; then
-      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]')"
-    fi
+  if command -v go > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]')"
   fi
 }
 
@@ -518,6 +545,14 @@ prompt_virtualenv() {
 
 # NVM: Node version manager
 prompt_nvm() {
+  if [[ $BULLETTRAIN_NVM_SHOW == false ]]; then
+    return
+  fi
+
+  if ! (git ls-files 2> /dev/null || ls -1) | grep -E '\.(node|es6|jsx?)$' &> /dev/null ; then
+    return
+  fi
+
   local nvm_prompt
   if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
