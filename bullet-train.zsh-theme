@@ -467,7 +467,8 @@ prompt_ruby() {
   if command -v rvm-prompt > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
   elif command -v chruby > /dev/null 2>&1; then
-    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $(chruby | sed -n -e 's/ \* //p')"
+    chruby_version=`(chruby | grep -oE '\* .*' || ruby -e 'puts "* ruby-#{RUBY_VERSION}"') | cut -c 3-`
+    prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX"  $chruby_version"
   elif command -v rbenv > /dev/null 2>&1; then
     current_gemset() {
       echo "$(rbenv gemset active 2&>/dev/null | sed -e 's/ global$//')"
