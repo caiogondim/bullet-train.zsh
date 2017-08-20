@@ -541,7 +541,9 @@ prompt_aws() {
 }
 
 prompt_time() {
-  if [[ $BULLETTRAIN_TIME_12HR == true ]]; then
+  if [ -n "$BULLETTRAIN_TIME_FORMAT" ]; then
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{$BULLETTRAIN_TIME_FORMAT}
+  elif [[ $BULLETTRAIN_TIME_12HR == true ]]; then
     prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r}
   else
     prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%T}
