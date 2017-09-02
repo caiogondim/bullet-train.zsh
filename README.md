@@ -109,6 +109,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_PROMPT_ROOT`|`true`|Highlight if running as root
 |`BULLETTRAIN_PROMPT_SEPARATE_LINE`|`true`|Make the prompt span across two lines
 |`BULLETTRAIN_PROMPT_ADD_NEWLINE`|`true`|Adds a newline character before each prompt line
+|`BULLETTRAIN_PROMPT_SEGMENT_SEPARATOR` |``|Character to be show between prompt segments
 
 
 ### Status
