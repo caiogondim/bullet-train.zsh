@@ -248,7 +248,7 @@ The git prompt can be disabled for a specific repository by setting a git config
 |--------|-------|-------|
 |`BULLETTRAIN_SCREEN_BG`|`white`|Background color
 |`BULLETTRAIN_SCREEN_FG`|`black`|Foreground color
-|`BULLETTRAIN_SCREEN_PREFIX`|`⚙`|Prefix of the segment
+|`BULLETTRAIN_SCREEN_PREFIX`|`⬗`|Prefix of the segment
 
 ### Mercurial/HG
 
