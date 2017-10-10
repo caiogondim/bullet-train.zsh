@@ -1,3 +1,4 @@
+#@IgnoreInspection BashAddShebang
 # README
 #
 # In order for this theme to render correctly, you will need a
@@ -31,6 +32,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     aws
     go
     elixir
+    java
     git
     hg
     cmd_exec_time
@@ -137,6 +139,17 @@ if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
   BULLETTRAIN_GO_PREFIX="go"
+fi
+
+# Java
+if [ ! -n "${BULLETTRAIN_JAVA_BG+1}" ]; then
+  BULLETTRAIN_JAVA_BG=red
+fi
+if [ ! -n "${BULLETTRAIN_JAVA_FG+1}" ]; then
+  BULLETTRAIN_JAVA_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_JAVA_PREFIX+1}" ]; then
+  BULLETTRAIN_JAVA_PREFIX="jdk"
 fi
 
 # ELIXIR
@@ -516,6 +529,15 @@ prompt_go() {
       prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]')"
     fi
   fi
+}
+
+# Java
+prompt_java() {
+
+  if command -v java > /dev/null 2>&1; then
+    prompt_segment $BULLETTRAIN_JAVA_BG $BULLETTRAIN_JAVA_FG $BULLETTRAIN_JAVA_PREFIX" $(java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}')"
+  fi
+
 }
 
 # Virtualenv: current working virtualenv
