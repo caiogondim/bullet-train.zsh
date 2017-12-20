@@ -600,7 +600,11 @@ prompt_chars() {
     bt_prompt_chars="${bt_prompt_chars}"
   fi
 
-  echo -n "$bt_prompt_chars "
+  echo -n "$bt_prompt_chars"
+
+  if [[ -n $BULLETTRAIN_PROMPT_CHAR ]]; then
+    echo -n " "
+  fi
 }
 
 # Prompt Line Separator
