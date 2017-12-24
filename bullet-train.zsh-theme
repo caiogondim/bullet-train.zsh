@@ -139,6 +139,17 @@ if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
   BULLETTRAIN_GO_PREFIX="go"
 fi
 
+# Kubernetes Context
+if [ ! -n "${BULLETTRAIN_KCTX_BG+1}" ]; then
+  BULLETTRAIN_KCTX_BG=yellow
+fi
+if [ ! -n "${BULLETTRAIN_KCTX_FG+1}" ]; then
+  BULLETTRAIN_KCTX_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_KCTX_PREFIX+1}" ]; then
+  BULLETTRAIN_KCTX_PREFIX="⎈"
+fi
+
 # ELIXIR
 if [ ! -n "${BULLETTRAIN_ELIXIR_BG+1}" ]; then
   BULLETTRAIN_ELIXIR_BG=magenta
@@ -515,6 +526,18 @@ prompt_go() {
     if command -v go > /dev/null 2>&1; then
       prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]')"
     fi
+  fi
+}
+
+# Kubernetes Context
+prompt_kctx() {
+  if [[ ! -n $BULLETTRAIN_KCTX_KCONFIG ]]; then
+    return
+  fi
+  if command -v kubectl > /dev/null 2>&1; then
+    if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
+      prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
+    fi  
   fi
 }
 
