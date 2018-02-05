@@ -30,6 +30,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     nvm
     aws
     go
+    rust
     elixir
     git
     hg
@@ -137,6 +138,17 @@ if [ ! -n "${BULLETTRAIN_GO_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_GO_PREFIX+1}" ]; then
   BULLETTRAIN_GO_PREFIX="go"
+fi
+
+# Rust
+if [ ! -n "${BULLETTRAIN_RUST_BG+1}" ]; then
+  BULLETTRAIN_RUST_BG=black
+fi
+if [ ! -n "${BULLETTRAIN_RUST_FG+1}" ]; then
+  BULLETTRAIN_RUST_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_RUST_PREFIX+1}" ]; then
+  BULLETTRAIN_RUST_PREFIX="🦀"
 fi
 
 # Kubernetes Context
@@ -525,6 +537,15 @@ prompt_go() {
   if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml) ]]; then
     if command -v go > /dev/null 2>&1; then
       prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]')"
+    fi
+  fi
+}
+
+# Rust
+prompt_rust() {
+  if [[ (-f Cargo.toml) ]]; then
+    if command -v rustc > /dev/null 2>&1; then
+      prompt_segment $BULLETTRAIN_RUST_BG $BULLETTRAIN_RUST_FG $BULLETTRAIN_RUST_PREFIX" $(rustc -V version | cut -d' ' -f2)"
     fi
   fi
 }
