@@ -154,6 +154,14 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
 |`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
 
+### Dockerhost
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_DOCKERHOST_BG`|`red`|Background color
+|`BULLETTRAIN_DOCKERHOST_FG`|`white`|Foreground color
+|`BULLETTRAIN_DOCKERHOST_PREFIX`|`!!!`|Prefix of the segment
+
 ### node.js nvm
 
 |Variable|Default|Meaning

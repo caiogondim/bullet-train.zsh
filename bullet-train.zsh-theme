@@ -32,6 +32,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     go
     rust
     elixir
+    dockerhost
     git
     hg
     cmd_exec_time
@@ -94,6 +95,17 @@ if [ ! -n "${BULLETTRAIN_VIRTUALENV_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
   BULLETTRAIN_VIRTUALENV_PREFIX=🐍
+fi
+
+# DOCKERHOST
+if [ ! -n "${BULLETTRAIN_DOCKERHOST_BG+1}" ]; then
+  BULLETTRAIN_DOCKERHOST_BG=red
+fi
+if [ ! -n "${BULLETTRAIN_DOCKERHOST_FG+1}" ]; then
+  BULLETTRAIN_DOCKERHOST_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_DOCKERHOST_PREFIX+1}" ]; then
+  BULLETTRAIN_DOCKERHOST_PREFIX="!!!"
 fi
 
 # NVM
@@ -569,6 +581,13 @@ prompt_virtualenv() {
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
   elif which pyenv &> /dev/null; then
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
+  fi
+}
+
+prompt_dockerhost() {
+  local dockerhost="$DOCKER_HOST"
+  if [[ -n $dockerhost && ! -z $dockerhost ]]; then
+    prompt_segment $BULLETTRAIN_DOCKERHOST_BG $BULLETTRAIN_DOCKERHOST_FG $BULLETTRAIN_DOCKERHOST_PREFIX" $dockerhost"
   fi
 }
 
