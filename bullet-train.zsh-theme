@@ -498,6 +498,7 @@ prompt_dir() {
 # RVM: only shows RUBY info if on a gemset that is not the default one
 # RBENV: shows current ruby version active in the shell; also with non-global gemsets if any is active
 # CHRUBY: shows current ruby version active in the shell
+# ASDF: shows current ruby version active in the shell
 prompt_ruby() {
   if command -v rvm-prompt > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rvm-prompt i v g)"
@@ -512,6 +513,10 @@ prompt_ruby() {
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"@"$(current_gemset)"
     else
       prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(rbenv version | sed -e 's/ (set.*$//')"
+    fi
+  elif command -v asdf > /dev/null 2>&1; then
+    if asdf plugin-list | grep "ruby" > /dev/null; then
+      prompt_segment $BULLETTRAIN_RUBY_BG $BULLETTRAIN_RUBY_FG $BULLETTRAIN_RUBY_PREFIX" $(asdf current ruby | sed -e 's/   (set.*$//')"
     fi
   fi
 }
