@@ -675,10 +675,22 @@ build_prompt() {
 
 NEWLINE='
 '
+
+display_bullettrain_precmd() {
+  print -rP "$BULLETTRAIN_PROMPT_PRECMD"
+}
+
+bullettrain_separate_line() {
+  BULLETTRAIN_PROMPT_PRECMD="$PROMPT"
+  PROMPT=''
+  autoload -U add-zsh-hook
+  add-zsh-hook precmd display_bullettrain_precmd
+}
+
 PROMPT=''
 [[ $BULLETTRAIN_PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
 PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
-[[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+[[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && bullettrain_separate_line
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
 PROMPT="$PROMPT"'$(prompt_chars)%{$reset_color%}'
