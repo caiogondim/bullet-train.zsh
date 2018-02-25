@@ -10,7 +10,7 @@
 
 # ------------------------------------------------------------------------------
 # CONFIGURATION
-# The default configuration, that can be overwrite in your .zshrc file
+# The default configuration, that can be overwritten in your .zshrc file
 # ------------------------------------------------------------------------------
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
