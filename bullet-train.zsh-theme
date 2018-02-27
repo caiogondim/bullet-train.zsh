@@ -33,6 +33,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     rust
     elixir
     git
+    git_tag
     hg
     cmd_exec_time
   )
@@ -208,6 +209,9 @@ if [ ! -n "${BULLETTRAIN_GIT_EXTENDED+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_GIT_PROMPT_CMD+1}" ]; then
   BULLETTRAIN_GIT_PROMPT_CMD="\$(git_prompt_info)"
+fi
+if [ ! -n "${BULLETTRAIN_GIT_TAG_PROMPT_CMD+1}" ]; then
+  BULLETTRAIN_GIT_TAG_PROMPT_CMD="\$(git describe --abbrev=0 --tags)"
 fi
 
 # PERL
@@ -435,6 +439,24 @@ prompt_git() {
       echo -n ${git_prompt}$(git_prompt_status)
     else
       echo -n ${git_prompt}
+    fi
+  fi
+}
+
+prompt_git_tag() {
+  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" == "1" ]]; then
+    return
+  fi
+
+  local repo_path git_tag_prompt
+  repo_path=$(git rev-parse --git-dir 2>/dev/null)
+
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    if $(git describe --abbrev=0 --tags >/dev/null 2>&1); then
+      prompt_segment $BULLETTRAIN_GIT_BG $BULLETTRAIN_GIT_FG
+
+      eval git_tag_prompt=${BULLETTRAIN_GIT_TAG_PROMPT_CMD}
+      echo -n ${git_tag_prompt}
     fi
   fi
 }
