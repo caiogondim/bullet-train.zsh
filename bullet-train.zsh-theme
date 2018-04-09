@@ -575,10 +575,18 @@ prompt_virtualenv() {
 # NVM: Node version manager
 prompt_nvm() {
   local nvm_prompt
-  if type nvm >/dev/null 2>&1; then
-    nvm_prompt=$(nvm current 2>/dev/null)
-    [[ "${nvm_prompt}x" == "x" ]] && return
+
+  if [[ -n "$NVM_BIN" ]]; then
+    # NVM is loaded, but
+    nvm_prompt=$($NVM_BIN/node --version)
+  elif [[ -n "$NVM_DIR" ]]; then
+    # NVM exists is in a default state
+    nvm_prompt="v$(cat $NVM_DIR/alias/default 2>/dev/null)"
+  elif [[ -d "$HOME/.nvm" ]]; then
+    # we know that NVM exists and isn't loaded
+    nvm_prompt="v$(cat $HOME/.nvm/alias/default 2>/dev/null)"
   elif type node >/dev/null 2>&1; then
+    # no NVM, but we have node
     nvm_prompt="$(node --version)"
   else
     return
