@@ -273,6 +273,23 @@ The git prompt can be disabled for a specific repository by setting a git config
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
+### Proxy environment variable
+
+Displays if any of the following environment variables are set:
+
+```shell
+http_proxy
+https_proxy
+HTTP_PROXY
+HTTPS_PROXY
+```
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_PROXY_BG`|blue|Background color
+|`BULLETTRAIN_PROXY_FG`|black|Foreground color
+|`BULLETTRAIN_PROXY_SYMBOL`|🌎|Text to show in the segment
+
 ## Wiki
 
 - [FAQ](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/FAQ)

@@ -118,6 +118,17 @@ if [ ! -n "${BULLETTRAIN_AWS_PREFIX+1}" ]; then
   BULLETTRAIN_AWS_PREFIX="☁️"
 fi
 
+# PROXY
+if [ ! -n "${BULLETTRAIN_PROXY_BG+1}" ]; then
+  BULLETTRAIN_PROXY_BG=blue
+fi
+if [ ! -n "${BULLETTRAIN_PROXY_FG+1}" ]; then
+  BULLETTRAIN_PROXY_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_PROXY_SYMBOL+1}" ]; then
+  BULLETTRAIN_PROXY_SYMBOL=🌎
+fi
+
 # RUBY
 if [ ! -n "${BULLETTRAIN_RUBY_BG+1}" ]; then
   BULLETTRAIN_RUBY_BG=red
@@ -587,12 +598,19 @@ prompt_nvm() {
   prompt_segment $BULLETTRAIN_NVM_BG $BULLETTRAIN_NVM_FG $BULLETTRAIN_NVM_PREFIX$nvm_prompt
 }
 
-#AWS Profile
+# AWS Profile
 prompt_aws() {
   local spaces="  "
 
   if [[ -n "$AWS_PROFILE" ]]; then
     prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$spaces$AWS_PROFILE
+  fi
+}
+
+# proxy detection
+prompt_proxy() {
+  if [ -n "${HTTP_PROXY}" ] || [ -n "${http_proxy}" ] || [ -n "${HTTPS_PROXY}" ] || [ -n "${https_proxy}" ]; then
+    prompt_segment $BULLETTRAIN_PROXY_BG $BULLETTRAIN_PROXY_FG "${BULLETTRAIN_PROXY_SYMBOL}"
   fi
 }
 
