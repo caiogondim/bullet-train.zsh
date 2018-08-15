@@ -81,25 +81,47 @@ setopt prompt_subst # Make sure prompt is able to be generated properly.
 zplug "caiogondim/bullet-train.zsh", use:bullet-train.zsh-theme, defer:3 # defer until other plugins like oh-my-zsh is loaded
 ```
 
-## Options
+## Customizing
 
 Bullet Train is configurable. You can change colors and which segments you want
 or don't want to see. All options must be overridden in your **.zshrc** file.
 
 ### Order
-`BULLETTRAIN_PROMPT_ORDER` defines order of prompt segments. Use zsh array
-syntax to specify your own order, e.g:
+`BULLETTRAIN_PROMPT_ORDER` defines the order of prompt segments. The following order
+is the default, but you can overwrite it by specifying your own BULLETTRAIN_PROMPT_ORDER 
+in your ~/.zshrc file.
 
 ```bash
+# Default order
 BULLETTRAIN_PROMPT_ORDER=(
-  git
+  time
+  status
+  custom
   context
   dir
-  time
+  perl
+  ruby
+  virtualenv
+  nvm
+  aws
+  go
+  elixir
+  git
+  hg
+  cmd_exec_time
 )
 ```
 
 NOTE: You do not need to specify *end* segment - it will be added automatically. With this you can also specify custom segments.
+
+It's possible to keep the default order, only removing certain segments:
+
+```bash
+# remove context, ruby, and nvm from the prompt
+export BULLETTRAIN_PROMPT_ORDER=(${BULLETTRAIN_PROMPT_ORDER:#(context|ruby|nvm)})
+```
+
+NOTE: This only works after (**not before**) loading the theme in your `.zshrc`.
 
 ### Prompt
 
