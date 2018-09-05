@@ -193,9 +193,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_KCTX_BG`|`yellow`|Background color
 |`BULLETTRAIN_KCTX_FG`|`white`|Foreground color
 |`BULLETTRAIN_KCTX_PREFIX`|`⎈`|[Kubernetes](https://unicode-table.com/de/2388/) prefix of the segment
-|`BULLETTRAIN_KCTX_KCONFIG`|`<MUST_BE_SET>`|Location of kube config file (e.g. /Users/Hugo/.kube/config)
 
-`BULLETTRAIN_KCTX_KCONFIG` must be set, e.g. in .zshrc. There can be no default value and `~/` can not be reliably interpreted. The prompt will also do a sanity check whether `kubectl` is installed. If either condition fails, the prompt segment will not be drawn at all. 
 
 ### AWS Profile
 
