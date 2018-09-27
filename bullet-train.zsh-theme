@@ -29,6 +29,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     virtualenv
     nvm
     aws
+    gcp
     go
     rust
     elixir
@@ -116,6 +117,17 @@ if [ ! -n "${BULLETTRAIN_AWS_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_AWS_PREFIX+1}" ]; then
   BULLETTRAIN_AWS_PREFIX="☁️"
+fi
+
+# GCP 
+if [ ! -n "${BULLETTRAIN_GCP_BG+1}" ]; then
+  BULLETTRAIN_GCP_BG=blue
+fi
+if [ ! -n "${BULLETTRAIN_GCP_FG+1}" ]; then
+  BULLETTRAIN_GCP_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_GCP_PREFIX+1}" ]; then
+  BULLETTRAIN_GCP_PREFIX="G"
 fi
 
 # RUBY
@@ -596,6 +608,20 @@ prompt_aws() {
   fi
 }
 
+#GCP Profile
+prompt_gcp() {
+  local spaces=" "
+  
+  if [ -f "$HOME/.config/gcloud/active_config" ]; then
+    gcp_profile=$(cat $HOME/.config/gcloud/active_config)
+    gcp_project=$(awk '/project/{print $3}' $HOME/.config/gcloud/configurations/config_$gcp_profile)
+  
+    if [[ -n "${gcp_project}" ]]; then
+      prompt_segment $BULLETTRAIN_GCP_BG $BULLETTRAIN_GCP_FG $BULLETTRAIN_GCP_PREFIX$spaces$gcp_project
+    fi
+  fi
+
+}
 # SCREEN Session
 prompt_screen() {
   local session_name="$STY"
