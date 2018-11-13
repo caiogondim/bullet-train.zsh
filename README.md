@@ -250,7 +250,7 @@ This environment var is used by aws-cli and other tools to use the right access 
 |`BULLETTRAIN_GIT_BEHIND`|`" ⬇"`|Icon for behind state from remote
 |`BULLETTRAIN_GIT_DIVERGED`|`" ⬍"`|Icon for diverged state from remote
 
-The git prompt can be disabled for a specific repository by setting a git config flag: `get config oh-my-zsh.hide-status 1`. This is useful to avoid performance issues for particularly huge repositories.
+The git prompt can be disabled for a specific repository by setting a git config flag: `git config oh-my-zsh.hide-status 1`. This is useful to avoid performance issues for particularly huge repositories.
 
 ### Screen
 
