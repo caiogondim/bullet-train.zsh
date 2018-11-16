@@ -552,6 +552,7 @@ prompt_rust() {
 
 # Kubernetes Context
 prompt_kctx() {
+  BULLETTRAIN_KCTX_KCONFIG=$(echo ${BULLETTRAIN_KCTX_KCONFIG} | cut -d":" -f1)
   if [[ ! -n $BULLETTRAIN_KCTX_KCONFIG ]]; then
     return
   fi
