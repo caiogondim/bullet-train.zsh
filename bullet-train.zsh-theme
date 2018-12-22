@@ -474,6 +474,23 @@ prompt_hg() {
   fi
 }
 
+prompt_pwd_maybe_short_dir() {
+  git_root=$PWD
+  while [[ $git_root != / && ! -e $git_root/.git ]]; do
+    git_root=$git_root:h
+  done
+
+  if [[ $git_root = / || $git_root = ~ || $git_root = "$HOME" ]]; then
+    unset git_root
+    prompt_short_dir='%~'
+  else
+    parent=${git_root%\/*}
+    prompt_short_dir=${PWD#$parent/}
+  fi
+
+  echo $prompt_short_dir
+}
+
 # Dir: current working directory
 prompt_dir() {
   local dir=''
@@ -486,6 +503,8 @@ prompt_dir() {
   elif [[ $BULLETTRAIN_DIR_EXTENDED == 2 ]]; then
     #long directories
     dir="${dir}%0~"
+  elif [[ $BULLETTRAIN_DIR_SHORTEN_GIT_REPO == true ]] then
+    prompt_segment $BULLETTRAIN_DIR_BG $BULLETTRAIN_DIR_FG `prompt_pwd_maybe_short_dir`
   else
     #medium directories (default case)
     dir="${dir}%4(c:...:)%3c"
@@ -558,7 +577,7 @@ prompt_kctx() {
   if command -v kubectl > /dev/null 2>&1; then
     if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
       prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
-    fi  
+    fi
   fi
 }
 
