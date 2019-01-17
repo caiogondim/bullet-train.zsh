@@ -33,6 +33,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     rust
     elixir
     git
+    terraform
     hg
     cmd_exec_time
   )
@@ -299,6 +300,14 @@ else
   ZSH_THEME_GIT_PROMPT_DIVERGED=$BULLETTRAIN_GIT_PROMPT_DIVERGED
 fi
 
+# TERRAFORM
+if [ ! -n "${BULLETTRAIN_TERRAFORM_BG+1}" ]; then
+    BULLETTRAIN_TERRAFORM_BG=magenta
+fi
+if [ ! -n "${BULLETTRAIN_TERRAFORM_FG+1}" ]; then
+    BULLETTRAIN_TERRAFORM_FG=white
+fi
+
 # SCREEN
 if [ ! -n "${BULLETTRAIN_SCREEN_BG+1}" ]; then
   BULLETTRAIN_SCREEN_BG=white
@@ -437,6 +446,13 @@ prompt_git() {
       echo -n ${git_prompt}
     fi
   fi
+}
+
+prompt_terraform() {
+    local workspace="$(tf_prompt_info)"
+    if [[ -n "$workspace" ]]; then
+        prompt_segment $BULLETTRAIN_TERRAFORM_BG $BULLETTRAIN_TERRAFORM_FG
+    fi
 }
 
 prompt_hg() {
