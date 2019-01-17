@@ -257,7 +257,7 @@ The git prompt can be disabled for a specific repository by setting a git config
 |--------|-------|-------|
 |`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
 |`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
-|`BULLETTRAIN_TERRAFORM_PREFIX`|`""`|Prefix
+|`BULLETTRAIN_TERRAFORM_PREFIX`|`"♦"`|Prefix
 
 ### Screen
 
