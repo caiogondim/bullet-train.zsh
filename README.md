@@ -158,6 +158,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
+|`BULLETTRAIN_DISABLE_NVM`|none|Hide the NVM prompt
 |`BULLETTRAIN_NVM_BG`|`green`|Background color
 |`BULLETTRAIN_NVM_FG`|`white`|Foreground color
 |`BULLETTRAIN_NVM_PREFIX`|`"⬡ "`|Prefix of the segment
