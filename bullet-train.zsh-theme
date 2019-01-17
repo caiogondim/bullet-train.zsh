@@ -454,7 +454,7 @@ prompt_git() {
 prompt_terraform() {
     local workspace="$(tf_prompt_info)"
     if [[ -n "$workspace" ]]; then
-        prompt_segment $BULLETTRAIN_TERRAFORM_BG $BULLETTRAIN_TERRAFORM_FG $BULLETTRAIN_TERRAFORM_PREFIX $workspace
+        prompt_segment $BULLETTRAIN_TERRAFORM_BG $BULLETTRAIN_TERRAFORM_FG "$BULLETTRAIN_TERRAFORM_PREFIX $workspace"
     fi
 }
 
