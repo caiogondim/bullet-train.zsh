@@ -307,6 +307,9 @@ fi
 if [ ! -n "${BULLETTRAIN_TERRAFORM_FG+1}" ]; then
     BULLETTRAIN_TERRAFORM_FG=white
 fi
+if [ ! -n "${BULLETTRAIN_TERRAFORM_PREFIX+1}" ]; then
+    BULLETTRAIN_TERRAFORM_PREFIX=""
+fi
 
 # SCREEN
 if [ ! -n "${BULLETTRAIN_SCREEN_BG+1}" ]; then
@@ -451,7 +454,7 @@ prompt_git() {
 prompt_terraform() {
     local workspace="$(tf_prompt_info)"
     if [[ -n "$workspace" ]]; then
-        prompt_segment $BULLETTRAIN_TERRAFORM_BG $BULLETTRAIN_TERRAFORM_FG
+        prompt_segment $BULLETTRAIN_TERRAFORM_BG $BULLETTRAIN_TERRAFORM_FG $BULLETTRAIN_TERRAFORM_PREFIX $workspace
     fi
 }
 
