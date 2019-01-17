@@ -252,6 +252,13 @@ This environment var is used by aws-cli and other tools to use the right access 
 
 The git prompt can be disabled for a specific repository by setting a git config flag: `git config oh-my-zsh.hide-status 1`. This is useful to avoid performance issues for particularly huge repositories.
 
+### Terraform
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
+|`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
+|`BULLETTRAIN_TERRAFORM_PREFIX`|`""`|Prefix
+
 ### Screen
 
 |Variable|Default|Meaning
