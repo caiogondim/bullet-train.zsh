@@ -92,8 +92,8 @@ fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_FG+1}" ]; then
   BULLETTRAIN_VIRTUALENV_FG=white
 fi
-if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
-  BULLETTRAIN_VIRTUALENV_PREFIX=🐍
+if [ ! -n "${BULLETTRAIN_VIRTUALENV_NAME+1}" ]; then
+  BULLETTRAIN_VIRTUALENV_NAME="🐍 %m"
 fi
 
 # NVM
@@ -565,10 +565,14 @@ prompt_kctx() {
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
-  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
-  elif which pyenv &> /dev/null; then
-    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
+  if [[ -n $VIRTUAL_ENV_DISABLE_PROMPT && -n $virtualenv_path ]]; then
+    if which pyenv &> /dev/null; then
+      local virtualenv_name="$(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
+    else
+      local virtualenv_name="$(basename $virtualenv_path)"
+    fi
+    local virtualenv_name=${BULLETTRAIN_VIRTUALENV_NAME:gs/%m/"${virtualenv_name}"}   # expand the %m
+    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG "$virtualenv_name"
   fi
 }
 
