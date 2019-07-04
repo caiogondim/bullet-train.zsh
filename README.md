@@ -287,6 +287,13 @@ most of the code was later erased and its now more closely related to
 [Agnoster](https://gist.github.com/agnoster/3712874). Below is a `git summary`
 of the project:
 
+### Terraform
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
+|`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
+|`BULLETTRAIN_TERRAFORM_PREFIX`|`"ƒ"`|Prefix
+
 ```
 156	Caio Gondim
  33	Jérémy Romey
