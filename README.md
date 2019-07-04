@@ -273,6 +273,13 @@ The git prompt can be disabled for a specific repository by setting a git config
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
+### Terraform
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
+|`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
+|`BULLETTRAIN_TERRAFORM_PREFIX`|`"ƒ"`|Prefix
+
 ## Wiki
 
 - [FAQ](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/FAQ)
@@ -286,13 +293,6 @@ That project was originally a fork from
 most of the code was later erased and its now more closely related to
 [Agnoster](https://gist.github.com/agnoster/3712874). Below is a `git summary`
 of the project:
-
-### Terraform
-|Variable|Default|Meaning
-|--------|-------|-------|
-|`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
-|`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
-|`BULLETTRAIN_TERRAFORM_PREFIX`|`"ƒ"`|Prefix
 
 ```
 156	Caio Gondim
