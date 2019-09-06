@@ -534,7 +534,7 @@ prompt_perl() {
 # Go
 prompt_go() {
   setopt extended_glob
-  if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml) ]]; then
+  if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml || -f go.mod ) ]]; then
     if command -v go > /dev/null 2>&1; then
       prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]+')"
     fi
@@ -555,10 +555,20 @@ prompt_kctx() {
   if [[ ! -n $BULLETTRAIN_KCTX_KCONFIG ]]; then
     return
   fi
+
+  if [[ -z "$BULLETTRAIN_KCTX_CONTEXT" ]]; then
+    BULLETTRAIN_KCTX_CONTEXT="$(kubectl config current-context 2>/dev/null)"
+  fi
+
+  if [[ -z "$BULLETTRAIN_KCTX_NAMESPACE" ]]; then
+    BULLETTRAIN_KCTX_NAMESPACE="$(kubectl config view -o 'jsonpath={.contexts[?(@.name=="'$BULLETTRAIN_KCTX_CONTEXT'")].context.namespace}' 2>/dev/null)"
+    BULLETTRAIN_KCTX_NAMESPACE="$([[ ! -z "$BULLETTRAIN_KCTX_NAMESPACE" ]] && echo $BULLETTRAIN_KCTX_NAMESPACE || echo default)"
+  fi
+
   if command -v kubectl > /dev/null 2>&1; then
-    if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
-      prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
-    fi  
+    if [[ ! -z $BULLETTRAIN_KCTX_CONTEXT && -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
+      prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $BULLETTRAIN_KCTX_CONTEXT:$BULLETTRAIN_KCTX_NAMESPACE"
+    fi
   fi
 }
 
@@ -567,7 +577,7 @@ prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
-  elif which pyenv &> /dev/null; then
+  elif [[ -n $virtualenv_path && $(which pyenv &> /dev/null) ]]; then
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
   fi
 }
