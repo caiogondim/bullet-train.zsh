@@ -193,9 +193,15 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_KCTX_BG`|`yellow`|Background color
 |`BULLETTRAIN_KCTX_FG`|`white`|Foreground color
 |`BULLETTRAIN_KCTX_PREFIX`|`⎈`|[Kubernetes](https://unicode-table.com/de/2388/) prefix of the segment
-|`BULLETTRAIN_KCTX_KCONFIG`|`<MUST_BE_SET>`|Location of kube config file (e.g. /Users/Hugo/.kube/config)
+|`BULLETTRAIN_KCTX_KUBECTL`|`true`|If `false` disable `kubectl` usage
+|`BULLETTRAIN_KCTX_NAMESPACE`|`true`|If `false` will not show the default namespace. Namespace is only visible if `kubectl` is installed
+|`BULLETTRAIN_KCTX_KCONFIG`|`${HOME}/.kube/config`|Location of kube config file (e.g. /Users/Hugo/.kube/config)
 
-`BULLETTRAIN_KCTX_KCONFIG` must be set, e.g. in .zshrc. There can be no default value and `~/` can not be reliably interpreted. The prompt will also do a sanity check whether `kubectl` is installed. If either condition fails, the prompt segment will not be drawn at all. 
+The prompt will first check if `BULLETTRAIN_KCTX_KUBECTL=true` and `kubectl` is installed than it will use `kubectl config view --minify` to determine the context and default namespace in use.
+If `BULLETTRAIN_KCTX_KUBECTL=false` or `kubectl` is not installed, `BULLETTRAIN_KCTX_KCONFIG` will be parsed to get the current context.
+
+The usage of `kubectl` allow the prompt to get the default namespace even if you are using multiple kube config files (e.g. KUBECONFIG=~/.kube/config:path-to-config1:path-to-config2)
+
 
 ### AWS Profile
 

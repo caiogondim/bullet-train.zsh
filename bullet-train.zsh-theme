@@ -161,6 +161,15 @@ fi
 if [ ! -n "${BULLETTRAIN_KCTX_PREFIX+1}" ]; then
   BULLETTRAIN_KCTX_PREFIX="⎈"
 fi
+if [ ! -n "${BULLETTRAIN_KCTX_KCONFIG+1}" ]; then
+  BULLETTRAIN_KCTX_KCONFIG="${HOME}/.kube/config"
+fi
+if [ ! -n "${BULLETTRAIN_KCTX_KUBECTL+1}" ]; then
+  BULLETTRAIN_KCTX_KUBECTL="true"
+fi
+if [ ! -n "${BULLETTRAIN_KCTX_NAMESPACE+1}" ]; then
+  BULLETTRAIN_KCTX_NAMESPACE="true"
+fi
 
 # ELIXIR
 if [ ! -n "${BULLETTRAIN_ELIXIR_BG+1}" ]; then
@@ -552,13 +561,14 @@ prompt_rust() {
 
 # Kubernetes Context
 prompt_kctx() {
-  if [[ ! -n $BULLETTRAIN_KCTX_KCONFIG ]]; then
-    return
-  fi
-  if command -v kubectl > /dev/null 2>&1; then
-    if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
-      prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
-    fi  
+  if [[ "$BULLETTRAIN_KCTX_KUBECTL" == "true" ]] && command -v kubectl > /dev/null 2>&1; then
+    local jsonpath='{.current-context}'
+    if [[ "$BULLETTRAIN_KCTX_NAMESPACE" == "true" ]]; then
+      jsonpath="${jsonpath}{':'}{..namespace}"
+    fi
+    prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(kubectl config view --minify --output "jsonpath=${jsonpath}" 2>/dev/null)"
+  elif [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
+    prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG | grep current-context | awk '{print $2}')"
   fi
 }
 
