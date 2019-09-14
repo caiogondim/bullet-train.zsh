@@ -589,9 +589,7 @@ prompt_nvm() {
   local nvm_prompt
   if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
-    [[ "${nvm_prompt}x" == "x" ]] && return
-  elif type node >/dev/null 2>&1; then
-    nvm_prompt="$(node --version)"
+    [[ "${nvm_prompt}x" == "x" || "${system}" == "system" ]] && return
   else
     return
   fi
