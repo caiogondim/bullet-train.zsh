@@ -279,6 +279,13 @@ The git prompt can be disabled for a specific repository by setting a git config
 |`BULLETTRAIN_EXEC_TIME_BG`|`yellow`|Background color
 |`BULLETTRAIN_EXEC_TIME_FG`|`black`|Foreground color
 
+### Terraform
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
+|`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
+|`BULLETTRAIN_TERRAFORM_PREFIX`|`"ƒ"`|Prefix
+
 ## Wiki
 
 - [FAQ](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme/wiki/FAQ)
