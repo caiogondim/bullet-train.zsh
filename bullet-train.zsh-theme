@@ -106,6 +106,9 @@ fi
 if [ ! -n "${BULLETTRAIN_NVM_PREFIX+1}" ]; then
   BULLETTRAIN_NVM_PREFIX="⬡ "
 fi
+if [ ! -n "${BULLETTRAIN_NVM_PROJECT_ONLY+1}" ]; then
+  BULLETTRAIN_NVM_PROJECT_ONLY=false
+fi
 
 # AWS
 if [ ! -n "${BULLETTRAIN_AWS_BG+1}" ]; then
@@ -180,6 +183,9 @@ if [ ! -n "${BULLETTRAIN_ELIXIR_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_ELIXIR_PREFIX+1}" ]; then
   BULLETTRAIN_ELIXIR_PREFIX="💧"
+fi
+if [ ! -n "${BULLETTRAIN_ELIXIR_PROJECT_ONLY+1}" ]; then
+  BULLETTRAIN_ELIXIR_PROJECT_ONLY=false
 fi
 
 # DIR
@@ -527,7 +533,7 @@ prompt_ruby() {
 
 # ELIXIR
 prompt_elixir() {
-  if command -v elixir > /dev/null 2>&1; then
+  if [[ "$BULLETTRAIN_ELIXIR_PROJECT_ONLY" == "false" || -f mix.exs ]] && command -v elixir > /dev/null 2>&1; then
     prompt_segment $BULLETTRAIN_ELIXIR_BG $BULLETTRAIN_ELIXIR_FG $BULLETTRAIN_ELIXIR_PREFIX" $(elixir -v | tail -n 1 | awk '{print $2}')"
   fi
 }
@@ -586,6 +592,9 @@ prompt_virtualenv() {
 
 # NVM: Node version manager
 prompt_nvm() {
+  # Disable prompt if "project only" option is set and no package.json is found
+  [[ "$BULLETTRAIN_NVM_PROJECT_ONLY" == "false" || -f package.json ]] || return
+
   local nvm_prompt
   if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
