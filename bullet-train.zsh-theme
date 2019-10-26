@@ -543,7 +543,7 @@ prompt_perl() {
 # Go
 prompt_go() {
   setopt extended_glob
-  if [[ (-d Godeps || -f glide.yaml || -f *.go(#qN)) ]]; then
+  if [[ (-f go.mod || -f Gopkg.toml || -d Godeps || -f glide.yaml || -f *.go(#qN)) ]]; then
     if command -v go > /dev/null 2>&1; then
       prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]+')"
     fi
