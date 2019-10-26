@@ -150,9 +150,18 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
+|`BULLETTRAIN_VIRTUALENV_PYTHON_VERSION`|`false`|Add current python version to prompt if `true`.
 |`BULLETTRAIN_VIRTUALENV_BG`|`yellow`|Background color
 |`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
 |`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
+
+### Python version (virtualenv)
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_PYTHON_BG`|`cyan`|Background color
+|`BULLETTRAIN_PYTHON_FG`|`white`|Foreground color
+|`BULLETTRAIN_GO_PREFIX`|`Python`|Prefix of the segment
 
 ### node.js nvm
 
@@ -182,7 +191,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 
 |Variable|Default|Meaning
 |--------|-------|-------|
-|`BULLETTRAIN_GO_BG`|`green`|Background color
+|`BULLETTRAIN_GO_BG`|`cyan`|Background color
 |`BULLETTRAIN_GO_FG`|`white`|Foreground color
 |`BULLETTRAIN_GO_PREFIX`|`go`|Prefix of the segment
 
@@ -299,6 +308,7 @@ of the project:
  14	Greg Fitzgerald
   8	Dan Kaplun
   8	Viktor (Icon) VAD
+  8	Dhia Abbassi
   7	Jocelyn Mallon
   7	Dawid Kurek
   6	Joe Block
