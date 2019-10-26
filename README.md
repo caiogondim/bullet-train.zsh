@@ -161,6 +161,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_NVM_BG`|`green`|Background color
 |`BULLETTRAIN_NVM_FG`|`white`|Foreground color
 |`BULLETTRAIN_NVM_PREFIX`|`"⬡ "`|Prefix of the segment
+|`BULLETTRAIN_NVM_PROJECT_ONLY`|`false`|Only show Node version in directories with a package.json file
 
 ### Ruby RVM/Rbenv
 
@@ -177,6 +178,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_ELIXIR_BG`|`magenta`|Background color
 |`BULLETTRAIN_ELIXIR_FG`|`white`|Foreground color
 |`BULLETTRAIN_ELIXIR_PREFIX`|`"💧"`|Prefix of the segment
+|`BULLETTRAIN_ELIXIR_PROJECT_ONLY`|`false`|Only show Elixir version in directories with a mix.exs file
 
 ### Go
 
