@@ -649,7 +649,7 @@ prompt_chars() {
   local bt_prompt_chars="${BULLETTRAIN_PROMPT_CHAR}"
 
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]]; then
-    bt_prompt_chars="%(!.%F{red}# .%F{green}${bt_prompt_chars}%f)"
+    bt_prompt_chars="%(!.%F{red}#%f.%F{green}${bt_prompt_chars}%f)"
   fi
 
   if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
