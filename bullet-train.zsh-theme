@@ -56,6 +56,9 @@ fi
 if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SHOW+1}" ]; then
   BULLETTRAIN_STATUS_EXIT_SHOW=false
 fi
+if [ ! -n "${BULLETTRAIN_STATUS_EXIT_SIGNAL_SHOW+1}" ]; then
+  BULLETTRAIN_STATUS_EXIT_SIGNAL_SHOW=false
+fi
 if [ ! -n "${BULLETTRAIN_STATUS_BG+1}" ]; then
   BULLETTRAIN_STATUS_BG=green
 fi
@@ -630,9 +633,17 @@ prompt_time() {
 # - are there background jobs?
 prompt_status() {
   local symbols
+  local ret_signal
   symbols=()
+  ret_signal=$(kill -l $(($RETVAL - 128)))
+
   [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+="✘"
-  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+="✘ $RETVAL"
+  if [[ $RETVAL -gt 128 && $BULLETTRAIN_STATUS_EXIT_SIGNAL_SHOW == true ]]; then
+    # In Linux, return value grater than 128, i.e. 128+n, means fatal error of signal "n"
+    [[ $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+="✘ $ret_signal "
+  else
+    [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+="✘ $RETVAL"
+  fi
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡%f"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⚙"
 
