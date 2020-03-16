@@ -485,7 +485,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  local dir=''
+  local dir='📁'
   local _context="$(context)"
   [[ $BULLETTRAIN_DIR_CONTEXT_SHOW == true && -n "$_context" ]] && dir="${dir}${_context}:"
 
@@ -618,9 +618,9 @@ prompt_screen() {
 
 prompt_time() {
   if [[ $BULLETTRAIN_TIME_12HR == true ]]; then
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r}
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG "⏱  %D{%r}"
   else
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%T}
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG "⏱  %D{%T}"
   fi
 }
 
@@ -642,6 +642,18 @@ prompt_status() {
     prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
   fi
 
+}
+
+# Prompt battery status
+prompt_battery(){
+   battery_procent=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
+   if [ $battery_procent -ge 80 ] ; then
+      prompt_segment green black "🔋$battery_procent"
+   elif [ $battery_procent -ge 20 ] ; then
+      prompt_segment yellow black "🔋$battery_procent"
+   else
+   prompt_segment red white "🔋$battery_procent"
+   fi
 }
 
 # Prompt Character
