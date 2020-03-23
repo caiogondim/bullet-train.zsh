@@ -34,6 +34,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     elixir
     git
     hg
+    terraform
     cmd_exec_time
   )
 fi
@@ -330,6 +331,16 @@ if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
   BULLETTRAIN_EXEC_TIME_FG=black
 fi
 
+# TERRAFORM
+if [ ! -n "${BULLETTRAIN_TERRAFORM_BG+1}" ]; then
+    BULLETTRAIN_TERRAFORM_BG=magenta
+fi
+if [ ! -n "${BULLETTRAIN_TERRAFORM_FG+1}" ]; then
+    BULLETTRAIN_TERRAFORM_FG=white
+fi
+if [ ! -n "${BULLETTRAIN_TERRAFORM_PREFIX+1}" ]; then
+    BULLETTRAIN_TERRAFORM_PREFIX="♦"
+fi
 
 # ------------------------------------------------------------------------------
 # SEGMENT DRAWING
@@ -606,6 +617,13 @@ prompt_aws() {
   if [[ -n "$AWS_PROFILE" ]]; then
     prompt_segment $BULLETTRAIN_AWS_BG $BULLETTRAIN_AWS_FG $BULLETTRAIN_AWS_PREFIX$spaces$AWS_PROFILE
   fi
+}
+
+prompt_terraform() {
+    local workspace="$(tf_prompt_info || echo '')"
+    if [[ -n "$workspace" ]]; then
+        prompt_segment $BULLETTRAIN_TERRAFORM_BG $BULLETTRAIN_TERRAFORM_FG "$BULLETTRAIN_TERRAFORM_PREFIX $workspace"
+    fi
 }
 
 # SCREEN Session
