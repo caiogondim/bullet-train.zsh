@@ -202,7 +202,6 @@ If `BULLETTRAIN_KCTX_KUBECTL=false` or `kubectl` is not installed, `BULLETTRAIN_
 
 The usage of `kubectl` allow the prompt to get the default namespace even if you are using multiple kube config files (e.g. KUBECONFIG=~/.kube/config:path-to-config1:path-to-config2)
 
-
 ### AWS Profile
 
 Displays which AWS (Amazon Web Services) credentials profile is currently set.
@@ -257,6 +256,14 @@ This environment var is used by aws-cli and other tools to use the right access 
 |`BULLETTRAIN_GIT_DIVERGED`|`" ⬍"`|Icon for diverged state from remote
 
 The git prompt can be disabled for a specific repository by setting a git config flag: `git config oh-my-zsh.hide-status 1`. This is useful to avoid performance issues for particularly huge repositories.
+
+### Terraform
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_TERRAFORM_BG`|`magenta`|Background color
+|`BULLETTRAIN_TERRAFORM_FG`|`white`|Foreground color
+|`BULLETTRAIN_TERRAFORM_PREFIX`|`"♦"`|Prefix
 
 ### Screen
 
