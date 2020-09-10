@@ -590,7 +590,9 @@ prompt_nvm() {
   if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
     [[ "${nvm_prompt}x" == "x" || "${nvm_prompt}" == "system" ]] && return
-  elif type node >/dev/null 2>&1; then
+  fi
+  # Since `nvm current` is not available in windows-nvm, node should be tested separately
+  if type node >/dev/null 2>&1; then
     nvm_prompt="$(node --version)"
   else
     return
