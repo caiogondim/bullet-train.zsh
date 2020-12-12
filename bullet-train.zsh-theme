@@ -581,6 +581,10 @@ prompt_virtualenv() {
     if [[ "$(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')" != "system" ]]; then
       prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
     fi
+  elif which conda &> /dev/null; then
+    if [[ "$(conda env list | sed '1d' | sed 's/#//' | grep '*' | cut -f1 -d'*'|  sed "s/ //g")" != "base" ]]; then
+      prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(conda env list | sed '1d' | sed 's/#//' | grep '*' | cut -f1 -d'*'|  sed "s/ //g" | tr '\n' ' ')"
+    fi
   fi
 }
 
