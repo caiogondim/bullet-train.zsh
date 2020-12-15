@@ -125,6 +125,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |Variable|Default|Meaning
 |--------|-------|-------|
 |`BULLETTRAIN_TIME_12HR`|`false`|Format time using 12-hour clock (am/pm)
+|`BULLETTRAIN_TIME_FORMAT`|none|Custom time format string. For format specification, see `man strftime(3)`. Overrides `BULLETTRAIN_TIME_12HR` if set
 |`BULLETTRAIN_TIME_BG`|`white`|Background color
 |`BULLETTRAIN_TIME_FG`|`black`|Foreground color
 
