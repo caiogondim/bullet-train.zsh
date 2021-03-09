@@ -27,6 +27,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     perl
     ruby
     virtualenv
+    guixenv
     nvm
     aws
     go
@@ -94,6 +95,17 @@ if [ ! -n "${BULLETTRAIN_VIRTUALENV_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
   BULLETTRAIN_VIRTUALENV_PREFIX=🐍
+fi
+
+# GUIXENV
+if [ ! -n "${BULLETTRAIN_GUIXENV_BG+1}" ]; then
+  BULLETTRAIN_GUIXENV_BG=green
+fi
+if [ ! -n "${BULLETTRAIN_GUIXENV_FG+1}" ]; then
+  BULLETTRAIN_GUIXENV_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_GUIXENV_PREFIX+1}" ]; then
+  BULLETTRAIN_GUIXENV_PREFIX=🦬
 fi
 
 # NVM
@@ -582,6 +594,62 @@ prompt_virtualenv() {
       prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
     fi
   fi
+}
+
+
+# Guix Environments and Profiles
+# --------
+# Explanation of mechanism:
+# https://unix.stackexchange.com/questions/638211/coproc-and-named-pipe-behaviour-under-command-substitution
+
+# User-based temp storage for named pipes
+PIPE_STORE="${HOME}/.pipes-bullet-train"
+mkdir -p "${PIPE_STORE}"
+# Location of named pipe and clean-up
+# &! is just to hide job/pid
+# If guix is in ps it's a subprocess started by guix (guix environment)
+# - hence we alreday have a named pipe in the parent shell
+# Initialize the pipe with base profile (or empty)
+ps | grep -q guix ||
+    { export NAMEDP="$PIPE_STORE/$$.bullet.tmp";
+      trap "rm -f $NAMEDP" EXIT;
+      rm -f "${NAMEDP}";
+      mkfifo "${NAMEDP}" && print $(basename "${GUIX_PROFILE}") > $NAMEDP &!; }
+GUIX_DELIM='#~|'
+
+prompt_guixenv() {
+  local last_command=(${(s: :)$(fc -ln | tail -1)})
+  local candidate_addition=""
+  local profiles_str=$(cat $NAMEDP)
+  
+  # Q removes quotes, s splits on delimiter
+  local profiles=(${(Qs:${GUIX_DELIM}:)profiles_str})
+
+  # Have we just exited a guix environment?
+  if [[ ! -n $GUIX_ENVIRONMENT && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
+    local del_index=$profiles[(I)🌍*]
+    profiles=( "${profiles[@]:0:$del_index-1}" )
+  fi
+
+  # Have we just entered a guix environment?
+  if [[ -n $GUIX_ENVIRONMENT && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
+    # Guix Environment Prompt
+    candidate_addition="🌍 ${(j:,:)last_command[@]:2}"
+  # Otherwise just check the guix profile
+  elif [[ -n $GUIX_PROFILE ]]; then
+    # Guix Profile Prompt
+    candidate_addition=$(basename "$GUIX_PROFILE")
+  fi
+  # We only add it if is unique in the current list
+  # This avoids repeating profiles either side of an environment if only testing the last element
+  [[ $profiles[(Ie)$candidate_addition] -eq 0 ]] && profiles+=( $candidate_addition )
+  prompt_segment $BULLETTRAIN_GUIXENV_BG $BULLETTRAIN_GUIXENV_FG $BULLETTRAIN_GUIXENV_PREFIX" ${(j: ← :)profiles}"
+
+  # Close the file descriptor of stdout so the anonymous pipe from the command
+  # substitution created by $(build_prompt) at the bottom of this file is not
+  # held open waiting for writes from the subprocess (which cases a deadlock).
+  # Then send the profiles array to the named pipe for storage.
+  { exec >&-; print ${(j:${GUIX_DELIM}:q)profiles} > $NAMEDP } &!
 }
 
 # NVM: Node version manager
