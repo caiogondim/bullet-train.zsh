@@ -611,34 +611,34 @@ mkdir -p "${PIPE_STORE}"
 # - hence we alreday have a named pipe in the parent shell
 # Initialize the pipe with base profile (or empty)
 ps | grep -q guix ||
-    { export NAMEDP="$PIPE_STORE/$$.bullet.tmp";
-      trap "rm -f $NAMEDP" EXIT;
+    { export NAMEDP="${PIPE_STORE}/$$.bullet.tmp";
+      trap "rm -f \"${NAMEDP}\"" EXIT;
       rm -f "${NAMEDP}";
-      mkfifo "${NAMEDP}" && print $(basename "${GUIX_PROFILE}") > $NAMEDP &!; }
+      mkfifo "${NAMEDP}" && print $(basename "${GUIX_PROFILE}") > "${NAMEDP}" &!; }
 GUIX_DELIM='#~|'
 
 prompt_guixenv() {
   local last_command=(${(s: :)$(fc -ln | tail -1)})
   local candidate_addition=""
-  local profiles_str=$(cat $NAMEDP)
+  local profiles_str=$(cat "${NAMEDP}")
   
   # Q removes quotes, s splits on delimiter
   local profiles=(${(Qs:${GUIX_DELIM}:)profiles_str})
 
   # Have we just exited a guix environment?
-  if [[ ! -n $GUIX_ENVIRONMENT && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
+  if [[ ! -n "${GUIX_ENVIRONMENT}" && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
     local del_index=$profiles[(I)🌍*]
     profiles=( "${profiles[@]:0:$del_index-1}" )
   fi
 
   # Have we just entered a guix environment?
-  if [[ -n $GUIX_ENVIRONMENT && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
+  if [[ -n "${GUIX_ENVIRONMENT}" && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
     # Guix Environment Prompt
     candidate_addition="🌍 ${(j:,:)last_command[@]:2}"
   # Otherwise just check the guix profile
-  elif [[ -n $GUIX_PROFILE ]]; then
+  elif [[ -n "${GUIX_PROFILE}" ]]; then
     # Guix Profile Prompt
-    candidate_addition=$(basename "$GUIX_PROFILE")
+    candidate_addition=$(basename "${GUIX_PROFILE}")
   fi
   # We only add it if is unique in the current list
   # This avoids repeating profiles either side of an environment if only testing the last element
@@ -649,7 +649,7 @@ prompt_guixenv() {
   # substitution created by $(build_prompt) at the bottom of this file is not
   # held open waiting for writes from the subprocess (which cases a deadlock).
   # Then send the profiles array to the named pipe for storage.
-  { exec >&-; print ${(j:${GUIX_DELIM}:q)profiles} > $NAMEDP } &!
+  { exec >&-; print ${(j:${GUIX_DELIM}:q)profiles} > "${NAMEDP}" } &!
 }
 
 # NVM: Node version manager
