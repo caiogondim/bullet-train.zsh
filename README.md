@@ -9,6 +9,7 @@ simplicity, showing information only when it's relevant.
 
 It currently shows:
 - Current Python virtualenv; when using Pyenv and no active virtualenv shows the current Python version the shell uses
+- Current Guix Profile(s) or Environment(s)
 - Current Ruby version using chruby; version and gemset when on RVM or Rbenv
 - Current Node.js version, through NVM (if present) or Node.js
 - Current Perl version using plenv
@@ -153,6 +154,21 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |`BULLETTRAIN_VIRTUALENV_BG`|`yellow`|Background color
 |`BULLETTRAIN_VIRTUALENV_FG`|`white`|Foreground color
 |`BULLETTRAIN_VIRTUALENV_PREFIX`|`🐍`|Prefix of the segment
+
+### Guix Profiles/Environments
+
+|Variable|Default|Meaning
+|--------|-------|-------|
+|`BULLETTRAIN_VIRTUALENV_BG`|`green`|Background color
+|`BULLETTRAIN_VIRTUALENV_FG`|`black`|Foreground color
+|`BULLETTRAIN_VIRTUALENV_PREFIX`|`🦬`|Prefix of the segment
+
+Note:
+- Profiles and environments can be stacked on top of each other, the order is tracked by the plugin and represented using "←".
+- Environments are represented with a 🌍 symbol + any switches provided.
+- Currently profiles must be initialized using the GUIX_PROFILE environment variable to be picked-up.
+- Environments with the --pure switch are not separately supported yet.
+
 
 ### node.js nvm
 
@@ -343,6 +359,7 @@ of the project:
   1	Nicholas
   1	Peter Nagy
   1	Sen Jiang
+  1	Phil Beadling
 ```
 
 ## Credits
