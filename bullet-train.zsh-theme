@@ -625,13 +625,14 @@ prompt_guixenv() {
   source "${NAMEDP}"
   
   # Have we just exited a guix environment?
-  if [[ ! -n "${GUIX_ENVIRONMENT}" && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
+  # Watch for the edge-case when the last command fails!
+  if [[ ! -n "${GUIX_ENVIRONMENT}" && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" && ${RETVAL} -eq 0 ]]; then
     local last_env_index=$profiles[(I)🌍*]
     profiles=( "${profiles[@]:0:${last_env_index}-1}" )
   fi
 
   # Have we just entered a guix environment?
-  if [[ -n "${GUIX_ENVIRONMENT}" && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" ]]; then
+  if [[ -n "${GUIX_ENVIRONMENT}" && "${last_command[1]}" == "guix" && "${last_command[2]}" == "environment" && ${RETVAL} -eq 0 ]]; then
     # Guix Environment Prompt
     candidate_addition="🌍 ${(j:,:)last_command[@]:2}"
   # Otherwise just check the guix profile
