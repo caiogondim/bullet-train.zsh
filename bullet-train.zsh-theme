@@ -611,16 +611,22 @@ prompt_aws() {
 #GCP Profile
 prompt_gcp() {
   local spaces=" "
-  
-  if [ -f "$HOME/.config/gcloud/active_config" ]; then
+
+  local gcp_profile=""
+  if [[ -n "${CLOUDSDK_ACTIVE_CONFIG_NAME}" && -f "$HOME/.config/gcloud/configurations/config_$CLOUDSDK_ACTIVE_CONFIG_NAME" ]]; then
+    gcp_profile="$CLOUDSDK_ACTIVE_CONFIG_NAME"
+  elif [[ -f "$HOME/.config/gcloud/active_config" ]]; then
     gcp_profile=$(cat $HOME/.config/gcloud/active_config)
-    gcp_project=$(awk '/project/{print $3}' $HOME/.config/gcloud/configurations/config_$gcp_profile)
-  
-    if [[ -n "${gcp_project}" ]]; then
-      prompt_segment $BULLETTRAIN_GCP_BG $BULLETTRAIN_GCP_FG $BULLETTRAIN_GCP_PREFIX$spaces$gcp_project
-    fi
   fi
 
+  local gcp_project=""
+  if [[ -n "${gcp_profile}" ]]; then
+    gcp_project=$(awk '/project/{print $3}' $HOME/.config/gcloud/configurations/config_$gcp_profile)
+  fi
+  
+  if [[ -n "${gcp_project}" ]]; then
+    prompt_segment $BULLETTRAIN_GCP_BG $BULLETTRAIN_GCP_FG $BULLETTRAIN_GCP_PREFIX$spaces$gcp_project
+  fi
 }
 # SCREEN Session
 prompt_screen() {
