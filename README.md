@@ -44,6 +44,19 @@ In order to use the theme, you will first need:
 
 ### For oh-my-zsh users
 
+**Automatic Installation**
+
+Copy and paste the following into your terminal to automatically install Bullet Train:
+
+```bash
+[ -f ~/.zshrc ] && [ -d "$ZSH_CUSTOM/themes" ] && \
+curl -fsSL -o "$ZSH_CUSTOM/themes/bullet-train.zsh-theme" "http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme" && \
+sed -i $(if [[ "$OSTYPE" == "darwin"* ]]; then printf "''"; fi) 's/^ZSH_THEME=.*/ZSH_THEME="bullet-train"/' ~/.zshrc && \
+source ~/.zshrc
+```
+
+**Manual Installation**
+
 1. Download the theme [here](http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme)
 
 2. Put the file **bullet-train.zsh-theme** in **$ZSH_CUSTOM/themes/**
