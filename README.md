@@ -192,7 +192,7 @@ NOTE: You do not need to specify *end* segment - it will be added automatically.
 |--------|-------|-------|
 |`BULLETTRAIN_KCTX_BG`|`yellow`|Background color
 |`BULLETTRAIN_KCTX_FG`|`white`|Foreground color
-|`BULLETTRAIN_KCTX_PREFIX`|`⎈`|[Kubernetes](https://unicode-table.com/de/2388/) prefix of the segment
+|`BULLETTRAIN_KCTX_PREFIX`|`⎈`|[Kubernetes](https://symbl.cc/de/2388/) prefix of the segment
 |`BULLETTRAIN_KCTX_KUBECTL`|`true`|If `false` disable `kubectl` usage
 |`BULLETTRAIN_KCTX_NAMESPACE`|`true`|If `false` will not show the default namespace. Namespace is only visible if `kubectl` is installed
 |`BULLETTRAIN_KCTX_KCONFIG`|`${HOME}/.kube/config`|Location of kube config file (e.g. /Users/Hugo/.kube/config)
