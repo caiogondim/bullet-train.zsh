@@ -26,6 +26,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     screen
     perl
     ruby
+    ros
     virtualenv
     nvm
     aws
@@ -94,6 +95,17 @@ if [ ! -n "${BULLETTRAIN_VIRTUALENV_FG+1}" ]; then
 fi
 if [ ! -n "${BULLETTRAIN_VIRTUALENV_PREFIX+1}" ]; then
   BULLETTRAIN_VIRTUALENV_PREFIX=🐍
+fi
+
+# ROS
+if [ ! -n "${BULLETTRAIN_ROS_BG+1}" ]; then
+  BULLETTRAIN_ROS_BG=green
+fi
+if [ ! -n "${BULLETTRAIN_ROS_FG+1}" ]; then
+  BULLETTRAIN_ROS_FG=black
+fi
+if [ ! -n "${BULLETTRAIN_ROS_PREFIX+1}" ]; then
+  BULLETTRAIN_ROS_PREFIX=🤖
 fi
 
 # NVM
@@ -583,6 +595,14 @@ prompt_virtualenv() {
     fi
   fi
 }
+
+prompt_ros() {
+  local ros_distro="$ROS_DISTRO"
+  if [[ -n $ros_distro ]]; then
+    prompt_segment $BULLETTRAIN_ROS_BG $BULLETTRAIN_ROS_FG $BULLETTRAIN_ROS_PREFIX" $(basename $ros_distro)"
+  fi
+}
+
 
 # NVM: Node version manager
 prompt_nvm() {
